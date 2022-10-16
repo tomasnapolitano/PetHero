@@ -19,7 +19,7 @@ class Owner
         $this->lastNmae = $lastName;
         $this->email = $email;
         $this->avatar = $avatar;
-        $this->petList = $petList;
+        $this->petList = $petList; // no se guarda en el json ni bd
     }
 
 
