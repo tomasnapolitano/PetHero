@@ -20,7 +20,7 @@
     <div class="content"> 
       <div id="comments" >
         <h2>ADD NEW CELLPHONE</h2>
-        <form action="" method="post"  style="background-color: #EAEDED;padding: 2rem !important;">
+        <form action="Owner\Add" method="post"  style="background-color: #EAEDED;padding: 2rem !important;">
           <table> 
             <thead>
               <tr>

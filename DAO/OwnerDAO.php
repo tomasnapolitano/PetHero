@@ -10,7 +10,15 @@
         private $ownerList = array();
         private $filename = ROOT.'Data/owners.json';
 
-        public function add(Owner $owner){}
+        public function add(Owner $owner){
+           
+            $this->RetrieveData();
+
+            array_push($this->ownerList, $owner);
+            
+            $this->SaveData();
+            
+        }
 
         public function getAll(){
             $this->RetrieveData();
@@ -22,7 +30,7 @@
         {
              if(file_exists($this->filename))
              {
-                 $this->cellphoneList = array();
+                 $this->ownerList = array();
                  $jsonToDecode = file_get_contents($this->filename);
  
                  $jsonArray = ($jsonToDecode) ? json_decode($jsonToDecode,true) : array();
@@ -36,6 +44,7 @@
                      $newOwner->setName($value['name']);
                      $newOwner->setLastName($value['lastName']);
                      $newOwner->setAvatar($value['avatar']);
+                     $newOwner->setUserRole($value['userRole']);
 
  
                      array_push($this->ownerList,$newOwner);
@@ -65,8 +74,10 @@
             file_put_contents($this->filename,$content);
         }
 
+
     }
 
+    
 
 
 ?>

@@ -10,6 +10,7 @@ class Owner
     private $lastName;
     private $avatar;
     private $petList;
+    private $userRole;
 
     public function __construct($userName = NULL,$password = NULL, $name=NULL, $lastName=NULL, $email=NULL, $avatar=NULL, $petList = NULL)
     {
@@ -19,7 +20,7 @@ class Owner
         $this->lastNmae = $lastName;
         $this->email = $email;
         $this->avatar = $avatar;
-        $this->petList = $petList; // no se guarda en el json ni bd
+        $this->petList = $petList; // no se guarda en el json ni bd. Se guarda un array con los id de las pets, y se recuperan los objects desde el DAO
     }
 
 
@@ -45,6 +46,26 @@ class Owner
     public function getPetList(){return $this->petList;}
     public function setPetList($petList){$this->petList = $petList;}
 
+
+    /**
+     * Get the value of userRole
+     */ 
+    public function getUserRole()
+    {
+        return $this->userRole;
+    }
+
+    /**
+     * Set the value of userRole
+     *
+     * @return  self
+     */ 
+    public function setUserRole($userRole)
+    {
+        $this->userRole = $userRole;
+
+        return $this;
+    }
 }
 
 ?>
