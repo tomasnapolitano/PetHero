@@ -11,7 +11,7 @@
             $this->ownerDAO = new OwnerDAO();
         }
 
-        public function Add($userName,$email,$password,$name,$lastName,$avatar,$petList,$userRole)  
+        public function Add($userName,$email,$password,$name,$lastName,$avatar)
         {
             $owner = new Owner();
             $owner->setUserName($userName);
@@ -20,8 +20,8 @@
             $owner->setName($name);
             $owner->setLastName($lastName);
             $owner->setAvatar($avatar);
-            $owner->setPetList($petList);
-            $owner->setUserRole($userRole);
+            $owner->setPetList(array());
+            $owner->setUserRole(1);
             
             $this->ownerDAO->Add($owner);
 
