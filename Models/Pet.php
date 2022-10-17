@@ -15,7 +15,7 @@ class Pet
         $this->name = $name;
         $this->species = $species;
         $this->vacPlan = $vacPlan;
-        $this->lastNmae = $vacObs;
+        $this->vacObs = $vacObs;
         $this->picture = $picture;
         $this->video = $video;
     }
