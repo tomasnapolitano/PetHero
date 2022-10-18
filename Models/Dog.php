@@ -16,6 +16,6 @@ class Dog extends Pet
     public function setRace($race){$this->race = $race;}
 
     public function getSize(){return $this->size;}
-    public function setSize($size){$this->size = $size;} 
+    public function setSize($size){$this->size = $size;}
 }
 ?>

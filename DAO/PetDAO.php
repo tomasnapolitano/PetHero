@@ -58,12 +58,12 @@
             foreach($this->petList as $pet)
             {
                 $value = array();
-                $value['name'] = $owner->getName();
-                $value['Picture'] = $owner->getPicture();
-                $value['Species'] = $owner->getSpecies();
-                $value['VacPlan'] = $owner->getVacPlan();
-                $value['VacObs'] = $owner->getVacObs();
-                $value['Video'] = $owner->getVideo();
+                $value['name'] = $pet->getName();
+                $value['Picture'] = $pet->getPicture();
+                $value['Species'] = $pet->getSpecies();
+                $value['VacPlan'] = $pet->getVacPlan();
+                $value['VacObs'] = $pet->getVacObs();
+                $value['Video'] = $pet->getVideo();
 
                 array_push($jsonArray,$value);
             }
