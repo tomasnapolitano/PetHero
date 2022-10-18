@@ -1,33 +1,34 @@
 <?php
     namespace Controllers;
 
-    use Models\Pet as Pet;  
+    use Models\Pet as Pet;
     use Models\Dog as Dog;
+    //use DAO\PetDAO as PetDAO;
     use DAO\DogDAO as DogDAO;
 use Models\Owner;
 
-    class DogController{
-        private $dogDAO;
+    class PetController{
+        private $PetDAO;
         
         function __construct()
         {
-            $this->dogDAO = new DogDAO();
+            $this->PetDAO = new PetDAO();
         }
 
-        public function Add($name,$petSpecies,$picture,$video)
+        public function AddPet($name,$petSpecies,$picture,$video)
         {
             require_once(VIEWS_PATH."validate-session.php");
             $owner = new Owner();
             $owner = $_SESSION['loggedUser'];
             
-            $pet = new Dog();
+            $pet = new Pet();
             $pet->setOwnerId($owner->getId());
             $pet->setName($name);
             $pet->setPetSpecies($petSpecies);
             $pet->setPicture($picture);
             $pet->setVideo($video);
             
-            $this->dogDAO->Add($pet);
+            $this->PetDAO->Add($pet);
 
             //$this->ShowAddView();
 

@@ -3,19 +3,20 @@
 
     use DAO\IPetDAO as IPetDAO;
     use Models\Pet as Pet;
+    use Models\Dog as Dog;
 
-    class PetDAO implements IPetDAO
+    class DogDAO implements IPetDAO
     {
         private $petList = array();
         private $filename = ROOT.'Data/pets.json';
 
-        public function add(Pet $pet){
+        public function add(Dog $dog){
            
             $this->RetrieveData();
 
-            $pet->setId($this->getNextId());
+            $dog->setId($this->getNextId());
 
-            array_push($this->petList, $pet);
+            array_push($this->petList, $dog);
             
             $this->SaveData();
             
@@ -38,15 +39,21 @@
  
                  foreach($jsonArray as $value)
                  {
-                     $newPet = new Pet();
-                     $newPet->setName($value['name']);
-                     $newPet->setPicture($value['Picture']);
-                     $newPet->setPetSpecies($value['petSpecies']);
-                     $newPet->setVideo($value['video']);
+                    if ($value['petSpecies'] == 1){ //checkeo que sea Dog
+
+                     $newDog = new Dog();
+                     $newDog->setName($value['name']);
+                     $newDog->setPicture($value['picture']);
+                     $newDog->setPetSpecies($value['petSpecies']);
+                     $newDog->setVideo($value['video']);
+                     $newDog->setBreed($value['breed']);
+                     $newDog->setSize($value['size']);
+                     $newDog->setVacPlan($value['vacPlan']);
+                     $newDog->setVacObs($value['vacObs']);
 
  
-                     array_push($this->petList,$newPet);
-                     
+                     array_push($this->petList,$newDog);
+                    }
                  }
              }
              
@@ -59,10 +66,16 @@
             {
                 $value = array();
                 $value['name'] = $pet->getName();
-                $value['Picture'] = $pet->getPicture();
+                $value['picture'] = $pet->getPicture();
                 $value['petSpecies'] = $pet->getPetSpecies();
-                $value['Video'] = $pet->getVideo();
+                $value['video'] = $pet->getVideo();
 
+                if($pet->getPetSpecies() == 1){ // checkeo que sea de tipo Dog
+                    $value['breed'] = $pet->getBreed();
+                    $value['size'] = $pet->getSize();
+                    $value['vacPlan'] = $pet->getVacPlan();
+                    $value['vacObs'] = $pet->getVacObs();
+                }
                 array_push($jsonArray,$value);
             }
 

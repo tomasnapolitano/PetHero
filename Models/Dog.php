@@ -3,7 +3,7 @@ namespace Models;
 
 class Dog extends Pet
 {
-    private $race;
+    private $breed;
     private $size;
     private $vacPlan;
     private $vacObs;
@@ -14,8 +14,8 @@ class Dog extends Pet
         $this->size = $size;
     }
 
-    public function getRace(){return $this->race;}
-    public function setRace($race){$this->race = $race;}
+    public function getBreed(){return $this->breed;}
+    public function setBreed($breed){$this->breed = $breed;}
 
     public function getSize(){return $this->size;}
     public function setSize($size){$this->size = $size;}
