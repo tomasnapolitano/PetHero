@@ -22,7 +22,7 @@
             $pet->setPicture($picture);
             $pet->setVideo($video);
             
-            $this->PetDAO->AddPet($pet);
+            $this->PetDAO->Add($pet);
 
             //$this->ShowAddView();
 

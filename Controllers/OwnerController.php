@@ -11,7 +11,7 @@
             $this->ownerDAO = new OwnerDAO();
         }
 
-        public function Add($userName,$email,$password,$name,$lastName,$avatar)
+        public function Add($email,$userName,$password,$name,$lastName,$avatar)
         {
             $owner = new Owner();
             $owner->setUserName($userName);
@@ -26,6 +26,11 @@
             $this->ownerDAO->Add($owner);
 
             //$this->ShowAddView();
+
+        }
+
+        public function addPet(){
+
 
         }
     }

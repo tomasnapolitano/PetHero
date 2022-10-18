@@ -66,6 +66,7 @@
                 $value['name'] = $owner->getName();
                 $value['lastName'] = $owner->getLastName();
                 $value['avatar'] = $owner->getAvatar();
+                $value['userRole'] = $owner->getUserRole();
 
                 array_push($jsonArray,$value);
             }

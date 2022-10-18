@@ -19,7 +19,7 @@
             $keeper->setPrice($price);
             $keeper->setAvailability($availability);
             
-            $this->KeeperDAO->AddKeeper($keeper);
+            $this->KeeperDAO->Add($keeper);
 
             //$this->ShowAddView();
 
