@@ -3,6 +3,7 @@ namespace Models;
 
 class Owner
 {
+    private $id;
     private $userName;
     private $email;
     private $password;
@@ -63,6 +64,26 @@ class Owner
     public function setUserRole($userRole)
     {
         $this->userRole = $userRole;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of id
+     */ 
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set the value of id
+     *
+     * @return  self
+     */ 
+    public function setId($id)
+    {
+        $this->id = $id;
 
         return $this;
     }

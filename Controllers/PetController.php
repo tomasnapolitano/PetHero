@@ -12,13 +12,12 @@
             $this->PetDAO = new PetDAO();
         }
 
-        public function AddPet($name,$species,$vacPlan,$vacObs,$picture,$video)
+        public function AddPet($name,$petSpecies,$picture,$video)
         {
+            require_once(VIEWS_PATH."validate-session.php");
             $pet = new Pet();
             $pet->setName($name);
-            $pet->setSpecies($species);
-            $pet->setVacPlan($vacPlan);
-            $pet->setVacObs($vacObs);
+            $pet->setPetSpecies($petSpecies);
             $pet->setPicture($picture);
             $pet->setVideo($video);
             

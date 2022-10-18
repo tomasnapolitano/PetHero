@@ -13,6 +13,7 @@
 
         public function Add($email,$userName,$password,$name,$lastName,$avatar)
         {
+            require_once(VIEWS_PATH."validate-session.php");
             $owner = new Owner();
             $owner->setUserName($userName);
             $owner->setEmail($email);
@@ -27,6 +28,11 @@
 
             //$this->ShowAddView();
 
+        }
+
+        public function ShowAddView(){
+            require_once(VIEWS_PATH."validate-session.php");
+            require_once(VIEWS_PATH."add-owner.php");
         }
 
         public function addPet(){

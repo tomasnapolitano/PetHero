@@ -14,6 +14,8 @@
            
             $this->RetrieveData();
 
+            $owner->setId($this->getNextId());
+
             array_push($this->ownerList, $owner);
             
             $this->SaveData();
@@ -75,6 +77,34 @@
             file_put_contents($this->filename,$content);
         }
 
+
+        private function getNextId()
+        {
+            $id = 0;
+            
+            foreach($this->ownerList as $owner)
+            {
+                $id = ($owner->getId() > $id) ? $owner->getId() : $id;
+
+            }   
+            
+            return $id+1;
+        }
+
+        public function GetByUserName($userName){
+            
+            $this->RetrieveData();
+
+            $owner = null;
+
+            $owners = array_filter($this->ownerList, function($owner) use($userName){
+                return $owner->getUserName() == $userName;
+            });
+
+            $owners = array_values($owners);
+
+            return (count($owners) > 0) ? $owners[0] : null;
+        }
 
     }
 

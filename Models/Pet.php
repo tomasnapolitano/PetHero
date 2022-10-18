@@ -1,19 +1,19 @@
 <?php 
 namespace Models;
 
-class Pet
+abstract class Pet
 {
+    private $id;
+    private $ownerId;
     private $name;
     private $picture;
-    private $species;
-    private $vacPlan;
-    private $vacObs;
+    private $petSpecies;
     private $video;
 
-    public function __construct($name=NULL,$picture = NULL,$species = NULL,  $vacPlan=NULL, $vacObs=NULL, $video=NULL)
+    public function __construct($name=NULL,$picture = NULL,$petSpecies = NULL,  $vacPlan=NULL, $vacObs=NULL, $video=NULL)
     {
         $this->name = $name;
-        $this->species = $species;
+        $this->species = $petSpecies;
         $this->vacPlan = $vacPlan;
         $this->vacObs = $vacObs;
         $this->picture = $picture;
@@ -26,16 +26,67 @@ class Pet
     public function getPicture(){ return $this->picture; }
     public function setPicture($picture){ $this->picture = $picture;}
 
-    public function getSpecies(){ return $this->species; }
-    public function setSpecies($species){ $this->species = $species;}
-
-    public function getVacPlan(){ return $this->vacPlan; }
-    public function setVacPlan($vacPlan){ $this->vacPlan = $vacPlan;}
-
-    public function getVacObs(){ return $this->vacObs; }
-    public function setVacObs($vacObs){ $this->vacObs = $vacObs;}
-
     public function getVideo(){ return $this->video; }
     public function setVideo($video){ $this->video = $video;}
+
+    /**
+     * Get the value of petSpecies
+     */ 
+    public function getPetSpecies()
+    {
+        return $this->petSpecies;
+    }
+
+    /**
+     * Set the value of petSpecies
+     *
+     * @return  self
+     */ 
+    public function setPetSpecies($petSpecies)
+    {
+        $this->petSpecies = $petSpecies;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of id
+     */ 
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set the value of id
+     *
+     * @return  self
+     */ 
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of ownerId
+     */ 
+    public function getOwnerId()
+    {
+        return $this->ownerId;
+    }
+
+    /**
+     * Set the value of ownerId
+     *
+     * @return  self
+     */ 
+    public function setOwnerId($ownerId)
+    {
+        $this->ownerId = $ownerId;
+
+        return $this;
+    }
 }
 ?>
