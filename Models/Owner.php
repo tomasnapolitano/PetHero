@@ -18,7 +18,7 @@ class Owner
         $this->userName = $userName;
         $this->password = $password;
         $this->name = $name;
-        $this->lastNmae = $lastName;
+        $this->lastName = $lastName;
         $this->email = $email;
         $this->avatar = $avatar;
         $this->petList = $petList; // no se guarda en el json ni bd. Se guarda un array con los id de las pets, y se recuperan los objects desde el DAO
@@ -35,7 +35,7 @@ class Owner
     public function setName($name){ $this->name = $name;}
 
     public function getLastName(){ return $this->lastName; }
-    public function setLastName($lastName){ $this->lastname = $lastName;}
+    public function setLastName($lastName){ $this->lastName = $lastName;}
 
     public function getEmail(){ return $this->email; }
     public function setEmail($email){ $this->email = $email;}
