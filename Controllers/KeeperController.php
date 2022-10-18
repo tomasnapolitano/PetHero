@@ -1,6 +1,7 @@
 <?php
     namespace Controllers;
 
+    use Models\Owner as Owner;
     use Models\Keeper as Keeper;
     use DAO\KeeperDAO as KeeperDAO;
 
@@ -12,8 +13,9 @@
             $this->KeeperDAO = new KeeperDAO();
         }
 
-        public function AddKeeper($petSize,$price,$availability)
+        public function Add($petSize,$price,$availability)
         {
+            require_once(VIEWS_PATH."validate-session.php");
             $keeper = new Keeper();
             $keeper->setPetSize($petSize);
             $keeper->setPrice($price);

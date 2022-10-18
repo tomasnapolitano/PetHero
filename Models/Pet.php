@@ -10,12 +10,12 @@ abstract class Pet
     private $petSpecies;
     private $video;
 
-    public function __construct($name=NULL,$picture = NULL,$petSpecies = NULL,  $vacPlan=NULL, $vacObs=NULL, $video=NULL)
+    public function __construct($name=NULL,$picture = NULL,$petSpecies = NULL, $video=NULL)
     {
         $this->name = $name;
         $this->species = $petSpecies;
-        $this->vacPlan = $vacPlan;
-        $this->vacObs = $vacObs;
+    
+        
         $this->picture = $picture;
         $this->video = $video;
     }

@@ -19,16 +19,18 @@
 <main class="container clear"> 
     <div class="content"> 
       <div id="comments" >
-        <h2>ADD NEW PET</h2>
-        <form action="<?php echo  FRONT_ROOT."Pet/Add "?>" method="post"  style="background-color: #EAEDED;padding: 2rem !important;">
+        <h2>ADD NEW DOG</h2>
+        <form action="<?php echo  FRONT_ROOT."Dog/Add "?>" method="post"  style="background-color: #EAEDED;padding: 2rem !important;">
           <table> 
             <thead>
               <tr>
-                <th>Pet Name</th>
+                <th>Dog Name</th>
                 <th>Species</th>
-                <th>Picture</th>
+                <th>Breed</th>
+                <th>Size</th>
                 <th>Vaccine Plan</th>
                 <th>Vaccine Plan Observations</th>
+                <th>Picture</th>
                 <th>Video</th>
               </tr>
             </thead>
@@ -38,19 +40,31 @@
                   <input type="text" name="name" size="20" required>
                 </td>
                 <td>
-                  <input type="select" name="petSpecies" required>
+                <select name="species" required>
+                    <option value="1">Dog</option> 
+                </select> 
                 </td>
                 <td>
-                  <input type="text" name="picture" size="3" required>
+                  <input type="text" name="breed" size="20" required>
                 </td>     
+                <td>
+                <select name="size" required>
+                    <option value="small">Small</option> 
+                    <option value="medium">Medium</option> 
+                    <option value="Large">Large</option>
+                </select> 
+                </td>
                 <td>
                   <input type="text" name="vacPlan" size="3" required>
                 </td>         
                 <td>
                 <textarea name="vacObs" cols="45" rows="3"></textarea>
-                </td>         
+                </td>   
                 <td>
-                  <input type="text" name="video" size="3" required>
+                  <input type="text" name="picture" size="3" >
+                </td>        
+                <td>
+                  <input type="text" name="video" size="3" >
                 </td>         
                       
               </tr>

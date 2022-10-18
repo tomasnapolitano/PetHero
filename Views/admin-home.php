@@ -27,20 +27,20 @@
 </div>
 
 
-<!-- Esta pagina seria como la main page. HomeController deberia redirigir aca -->
-<!-- Antes, deberia checkear si hay Session activa, sino redirigiría al login -->
-<!-- Acá habría 4 botones: "Add Pet", "Check Keepers", "Check My Pets", "Be a Keeper" -->
+<!-- Esta pagina seria como la main page pero para ADMIN -->
+<!-- Acá habría 4 botones: "Add PetType", "Add User Role", "Check all Users", "Check all Pets" -->
 
 
 <!-- #######################################################################3 -->
 <div class="wrapper row3 img-login">
   <div class="div-login"><br>
-    <h1 class="text-login">PetHero!</h1>
+    <h1 class="text-login">ADMIN VIEW</h1>
 </div>
   <div class="div-login">  
-    <a href="<?php echo FRONT_ROOT . "Dog/ShowAddView"?>">Add Pet</a>
-    <a href="<?php echo FRONT_ROOT . ""?>">Search Keepers</a>
-    <a href="<?php echo FRONT_ROOT . ""?>">View My Pets</a>
-    <a href="<?php echo FRONT_ROOT . ""?>">Be a Keeper!</a>
+    <form action="<?php echo FRONT_ROOT."Home/Login" ?>" method="post">
+        <input class="input-login" type="text" name="userName" placeholder="Nombre Usuario" required>
+        <input class="input-login" type="password" name="password" placeholder="Contraseña" required >
+        <button class="btn-login btn" type="submit" name="btnLogin">Ingresar</button>
+      </form>
   </div>
 </div>

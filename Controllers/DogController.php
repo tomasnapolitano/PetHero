@@ -3,34 +3,46 @@
 
     use Models\Pet as Pet;
     use Models\Dog as Dog;
-    //use DAO\PetDAO as PetDAO;
     use DAO\DogDAO as DogDAO;
+    use Controllers\OwnerController as OwnerController;
 use Models\Owner;
 
-    class PetController{
-        private $PetDAO;
+    class DogController{
+        private $dogDAO;
+        private $ownerController;
         
         function __construct()
         {
-            $this->PetDAO = new PetDAO();
+            $this->dogDAO = new DogDAO();
+            $this->ownerController = new OwnerController();
         }
 
-        public function AddPet($name,$petSpecies,$picture,$video)
+        public function ShowAddView(){
+            require_once(VIEWS_PATH."validate-session.php");
+            require_once(VIEWS_PATH."add-pet.php");
+        }
+
+        public function Add($name,$petSpecies,$breed,$size,$vacPlan,$vacObs = NULL,$picture = NULL, $video = NULL)
         {
             require_once(VIEWS_PATH."validate-session.php");
             $owner = new Owner();
             $owner = $_SESSION['loggedUser'];
             
-            $pet = new Pet();
-            $pet->setOwnerId($owner->getId());
-            $pet->setName($name);
-            $pet->setPetSpecies($petSpecies);
-            $pet->setPicture($picture);
-            $pet->setVideo($video);
+            $dog = new Dog();
+            $dog->setOwnerId($owner->getId());
+            $dog->setName($name);
+            $dog->setPetSpecies($petSpecies); //debería recibir lo elegido en el form
+                                         // y buscarlo por name en un json de petSpecies
+            $dog->setBreed($breed);
+            $dog->setSize($size);
+            $dog->setVacPlan($vacPlan);
+            $dog->setVacObs($vacObs);
+            $dog->setPicture($picture);
+            $dog->setVideo($video);
             
-            $this->PetDAO->Add($pet);
+            $this->DogDAO->Add($dog);
 
-            //$this->ShowAddView();
+            $this->ownerController->ShowHomeView();
 
         }
     }

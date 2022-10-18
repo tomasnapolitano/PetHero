@@ -13,7 +13,7 @@
 
         public function Add($email,$userName,$password,$name,$lastName,$avatar)
         {
-            require_once(VIEWS_PATH."validate-session.php");
+            //require_once(VIEWS_PATH."validate-session.php");
             $owner = new Owner();
             $owner->setUserName($userName);
             $owner->setEmail($email);
@@ -26,13 +26,27 @@
             
             $this->ownerDAO->Add($owner);
 
-            //$this->ShowAddView();
+            $this->ShowLoginView();
 
         }
 
-        public function ShowAddView(){
+        public function GetByUserName ($userName){
+            $this->ownerDAO->GetByUserName($userName);
+        }
+
+        public function ShowRegisterView(){
+            //require_once(VIEWS_PATH."validate-session.php");
+            require_once(VIEWS_PATH."register-owner.php");
+        }
+
+        public function ShowLoginView(){
+            require_once(VIEWS_PATH."login.php");
+        }
+
+        public function ShowHomeView()
+        {
             require_once(VIEWS_PATH."validate-session.php");
-            require_once(VIEWS_PATH."add-owner.php");
+            require_once(VIEWS_PATH."home.php");
         }
 
         public function addPet(){

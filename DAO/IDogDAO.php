@@ -4,7 +4,7 @@
     use Models\Pet as Pet;
     use Models\Dog as Dog;
 
-    interface IPetDAO
+    interface IDogDAO
     {
         function add(Dog $dog);
         function getAll();

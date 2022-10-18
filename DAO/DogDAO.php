@@ -1,11 +1,11 @@
 <?php 
     namespace DAO;
 
-    use DAO\IPetDAO as IPetDAO;
+    use DAO\IDogDAO as IDogDAO;
     use Models\Pet as Pet;
     use Models\Dog as Dog;
 
-    class DogDAO implements IPetDAO
+    class DogDAO implements IDogDAO
     {
         private $petList = array();
         private $filename = ROOT.'Data/pets.json';

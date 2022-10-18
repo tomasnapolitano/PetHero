@@ -2,7 +2,8 @@
     namespace DAO;
 
     use DAO\IOwnerDAO as IOwnerDAO;
-    use Models\Owner as Owner;
+use Models\Keeper;
+use Models\Owner as Owner;
     
     
     class OwnerDAO implements IOwnerDAO
@@ -39,7 +40,10 @@
  
                  foreach($jsonArray as $value)
                  {
+                    if($value['userRole'] == 1) //Owner Role
+
                      $newOwner = new Owner();
+                     $newOwner->setId($value['id']);
                      $newOwner->setUserName($value['userName']);
                      $newOwner->setEmail($value['email']);
                      $newOwner->setPassword($value['password']);
@@ -48,7 +52,20 @@
                      $newOwner->setAvatar($value['avatar']);
                      $newOwner->setUserRole($value['userRole']);
 
- 
+                     if ($newOwner->getUserRole() == 2) //Keeper Role
+                    {
+                     $newKeeper = new Keeper();
+                     $newKeeper->setId($value['id']);
+                     $newKeeper->setUserName($value['userName']);
+                     $newKeeper->setEmail($value['email']);
+                     $newKeeper->setPassword($value['password']);
+                     $newKeeper->setName($value['name']);
+                     $newKeeper->setLastName($value['lastName']);
+                     $newKeeper->setAvatar($value['avatar']);
+                     $newKeeper->setPetSize($value['petSize']);
+                     $newKeeper->setPrice($value['price']);
+                     $newKeeper->setAvailability($value['availability']);
+                    }
                      array_push($this->ownerList,$newOwner);
                      
                  }
@@ -62,6 +79,7 @@
             foreach($this->ownerList as $owner)
             {
                 $value = array();
+                $value['id'] = $owner->getId();
                 $value['userName'] = $owner->getUsername();
                 $value['email'] = $owner->getEmail();
                 $value['password'] = $owner->getPassword();
@@ -69,6 +87,13 @@
                 $value['lastName'] = $owner->getLastName();
                 $value['avatar'] = $owner->getAvatar();
                 $value['userRole'] = $owner->getUserRole();
+
+                if($owner->getUserRole() == 2)
+                {
+                    $value['petSize'] = $owner->getPetSize();
+                    $value['price'] = $owner->getPrice();
+                    $value['availability'] = $owner->getAvailability();
+                }
 
                 array_push($jsonArray,$value);
             }

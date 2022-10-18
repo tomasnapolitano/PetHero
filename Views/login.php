@@ -38,6 +38,8 @@
         <input class="input-login" type="text" name="userName" placeholder="Nombre Usuario" required>
         <input class="input-login" type="password" name="password" placeholder="Contraseña" required >
         <button class="btn-login btn" type="submit" name="btnLogin">Ingresar</button>
+        <br>
+        <a href="<?php echo FRONT_ROOT . "Owner/ShowRegisterView"?>">Register a New Account</a>
       </form>
   </div>
 </div>
