@@ -40,7 +40,7 @@
                   <input type="text" name="name" size="20" required>
                 </td>
                 <td>
-                <select name="species" required>
+                <select name="petSpecies" required>
                     <option value="1">Dog</option> 
                 </select> 
                 </td>

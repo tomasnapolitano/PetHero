@@ -40,7 +40,7 @@ use Models\Owner;
             $dog->setPicture($picture);
             $dog->setVideo($video);
             
-            $this->DogDAO->Add($dog);
+            $this->dogDAO->Add($dog);
 
             $this->ownerController->ShowHomeView();
 
