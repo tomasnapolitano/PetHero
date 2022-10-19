@@ -18,5 +18,15 @@
         "lastName": null,
         "avatar": "...",
         "userRole": 1
+    },
+    {
+        "id": 3,
+        "userName": "diego",
+        "email": "deigo@gmail.com",
+        "password": "123",
+        "name": "diego",
+        "lastName": "arzondo",
+        "avatar": "...",
+        "userRole": 1
     }
 ]

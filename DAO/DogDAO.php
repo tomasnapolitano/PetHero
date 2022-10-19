@@ -50,6 +50,7 @@
                      $newDog->setSize($value['size']);
                      $newDog->setVacPlan($value['vacPlan']);
                      $newDog->setVacObs($value['vacObs']);
+                     $newDog->setOwnerId($value['ownerId']);
 
  
                      array_push($this->petList,$newDog);
@@ -69,12 +70,13 @@
                 $value['picture'] = $pet->getPicture();
                 $value['petSpecies'] = $pet->getPetSpecies();
                 $value['video'] = $pet->getVideo();
-
+                $value['ownerId'] = $pet->getOwnerId();
                 if($pet->getPetSpecies() == 1){ // checkeo que sea de tipo Dog
                     $value['breed'] = $pet->getBreed();
                     $value['size'] = $pet->getSize();
                     $value['vacPlan'] = $pet->getVacPlan();
                     $value['vacObs'] = $pet->getVacObs();
+
                 }
                 array_push($jsonArray,$value);
             }

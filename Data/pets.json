@@ -1,0 +1,13 @@
+[
+    {
+        "name": "bingo",
+        "picture": "...",
+        "petSpecies": "1",
+        "video": "...",
+        "ownerId": 3,
+        "breed": "golden",
+        "size": "medium",
+        "vacPlan": "all",
+        "vacObs": "none"
+    }
+]

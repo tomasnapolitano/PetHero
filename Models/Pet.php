@@ -13,7 +13,7 @@ abstract class Pet
     public function __construct($name=NULL,$picture = NULL,$petSpecies = NULL, $video=NULL)
     {
         $this->name = $name;
-        $this->species = $petSpecies;
+        $this->petSpecies = $petSpecies;
     
         
         $this->picture = $picture;
