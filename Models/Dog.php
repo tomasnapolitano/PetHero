@@ -8,9 +8,9 @@ class Dog extends Pet
     private $vacPlan;
     private $vacObs;
 
-    public function _construct($race = NULL, $size = NULL)
+    public function _construct($breed = NULL, $size = NULL)
     {
-        $this->race = $race;
+        $this->breed = $breed;
         $this->size = $size;
     }
 

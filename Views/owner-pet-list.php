@@ -33,41 +33,32 @@
         <table style="text-align:center;">
           <thead>
             <tr>
-              <th style="width: 15%;">Code</th>
-              <th style="width: 30%;">Brand</th>
-              <th style="width: 30%;">Model</th>
-              <th style="width: 15%;">Price</th>
-              <th style="width: 10%;">Action</th>
+              <th style="width: 15%;">Name</th>
+              <th style="width: 30%;">Species</th>
+              <th style="width: 30%;">Breed</th>
+              <th style="width: 30%;">Size</th>
+              <th style="width: 15%;">VacPlan</th>
+              <th style="width: 10%;">VacObs</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-                <td>Value</td>
-                <td>Value</td>
-                <td>Value</td>
-                <td>Value</td>
-                <td>
-                  <button type="submit" class="btn" value=""> Remove </button>
-                </td>
-              </tr>
-              <tr>
-                <td>Value</td>
-                <td>Value</td>
-                <td>Value</td>
-                <td>Value</td>
-                <td>
-                  <button type="submit" class="btn" value=""> Remove </button>
-                </td>
-              </tr>
-              <tr>
-                <td>Value</td>
-                <td>Value</td>
-                <td>Value</td>
-                <td>Value</td>
-                <td>
-                  <button type="submit" class="btn" value=""> Remove </button>
-                </td>
-              </tr>
+          <?php foreach ($dogList as $dog) { 
+                              if($dog->getOwnerId() == $_SESSION['loggedUser']->getId()){?>
+                              <tr>
+                                   <td><?php echo $dog->getName() ?></td>
+                                   <td><?php echo $dog->getPetSpecies() ?></td>
+                                   <td><?php echo $dog->getBreed() ?></td>
+                                   <td><?php echo $dog->getSize() ?></td>
+                                   <td><?php echo $dog->getVacPlan() ?></td>
+                                   <td><?php echo $dog->getVacObs() ?></td>
+                                   <td>
+                                      <button type="submit" class="btn" value=""> Edit </button>
+                                  </td>
+                                  <td>
+                                      <button type="submit" class="btn" value=""> Remove </button>
+                                  </td>
+                              </tr>
+                         <?php }} ?>
           </tbody>
         </table></form> 
       </div>

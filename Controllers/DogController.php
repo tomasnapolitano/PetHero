@@ -22,6 +22,13 @@ use Models\Owner;
             require_once(VIEWS_PATH."add-pet.php");
         }
 
+        public function ShowPetList()
+        {
+            $dogList = $this->dogDAO->getAll();
+            require_once(VIEWS_PATH."validate-session.php");
+            require_once(VIEWS_PATH."owner-pet-list.php");
+        }
+
         public function Add($name,$petSpecies,$breed,$size,$vacPlan,$vacObs = NULL,$picture = NULL, $video = NULL)
         {
             require_once(VIEWS_PATH."validate-session.php");
@@ -40,7 +47,7 @@ use Models\Owner;
             $dog->setPicture($picture);
             $dog->setVideo($video);
             
-            $this->DogDAO->Add($dog);
+            $this->dogDAO->Add($dog);
 
             $this->ownerController->ShowHomeView();
 

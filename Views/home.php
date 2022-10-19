@@ -40,7 +40,7 @@
   <div class="div-login">  
     <a href="<?php echo FRONT_ROOT . "Dog/ShowAddView"?>">Add Pet</a>
     <a href="<?php echo FRONT_ROOT . ""?>">Search Keepers</a>
-    <a href="<?php echo FRONT_ROOT . ""?>">View My Pets</a>
+    <a href="<?php echo FRONT_ROOT . "Dog/ShowPetList"?>">View My Pets</a>
     <a href="<?php echo FRONT_ROOT . ""?>">Be a Keeper!</a>
   </div>
 </div>
