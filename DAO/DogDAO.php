@@ -42,6 +42,7 @@
                     if ($value['petSpecies'] == 1){ //checkeo que sea Dog
 
                      $newDog = new Dog();
+                     $newDog->setId($value['id']);
                      $newDog->setName($value['name']);
                      $newDog->setPicture($value['picture']);
                      $newDog->setPetSpecies($value['petSpecies']);
@@ -66,6 +67,7 @@
             foreach($this->petList as $pet)
             {
                 $value = array();
+                $value['id'] = $pet->getId();
                 $value['name'] = $pet->getName();
                 $value['picture'] = $pet->getPicture();
                 $value['petSpecies'] = $pet->getPetSpecies();

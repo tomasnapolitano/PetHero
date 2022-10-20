@@ -40,7 +40,7 @@ use Models\Owner as Owner;
  
                  foreach($jsonArray as $value)
                  {
-                    if($value['userRole'] == 1) //Owner Role
+                    if($value['userRole'] == 1){ //Owner Role
 
                      $newOwner = new Owner();
                      $newOwner->setId($value['id']);
@@ -51,20 +51,21 @@ use Models\Owner as Owner;
                      $newOwner->setLastName($value['lastName']);
                      $newOwner->setAvatar($value['avatar']);
                      $newOwner->setUserRole($value['userRole']);
-
-                     if ($newOwner->getUserRole() == 2) //Keeper Role
-                    {
-                     $newKeeper = new Keeper();
-                     $newKeeper->setId($value['id']);
-                     $newKeeper->setUserName($value['userName']);
-                     $newKeeper->setEmail($value['email']);
-                     $newKeeper->setPassword($value['password']);
-                     $newKeeper->setName($value['name']);
-                     $newKeeper->setLastName($value['lastName']);
-                     $newKeeper->setAvatar($value['avatar']);
-                     $newKeeper->setPetSize($value['petSize']);
-                     $newKeeper->setPrice($value['price']);
-                     $newKeeper->setAvailability($value['availability']);
+                    }
+                    if ($value['userRole'] == 2) //Keeper Role
+                     {
+                         $newOwner = new Keeper();
+                         $newOwner->setId($value['id']);
+                         $newOwner->setUserName($value['userName']);
+                         $newOwner->setEmail($value['email']);
+                         $newOwner->setPassword($value['password']);
+                         $newOwner->setName($value['name']);
+                         $newOwner->setLastName($value['lastName']);
+                         $newOwner->setAvatar($value['avatar']);
+                         $newOwner->setPetSize($value['petSize']);
+                         $newOwner->setPrice($value['price']);
+                         $newOwner->setAvailability($value['availability']);
+                         $newOwner->setUserRole($value['userRole']);
                     }
                      array_push($this->ownerList,$newOwner);
                      

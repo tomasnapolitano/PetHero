@@ -1,35 +1,14 @@
 [
     {
-        "name": "bingo",
-        "picture": "...",
+        "id": 1,
+        "name": "asd",
+        "picture": "asd",
         "petSpecies": "1",
-        "video": "...",
-        "ownerId": 3,
-        "breed": "golden",
-        "size": "medium",
-        "vacPlan": "all",
-        "vacObs": "none"
-    },
-    {
-        "name": "Eduardo",
-        "picture": "--",
-        "petSpecies": "1",
-        "video": "--",
-        "ownerId": 4,
-        "breed": "Golden",
-        "size": "medium",
-        "vacPlan": "si",
-        "vacObs": "nada que observar"
-    },
-    {
-        "name": "Marquitos",
-        "picture": ".",
-        "petSpecies": "1",
-        "video": ".",
-        "ownerId": 4,
-        "breed": "Bulldog",
+        "video": "asd",
+        "ownerId": 1,
+        "breed": "asd",
         "size": "small",
-        "vacPlan": "no",
-        "vacObs": "texto texto texto"
+        "vacPlan": "das",
+        "vacObs": "asd"
     }
 ]

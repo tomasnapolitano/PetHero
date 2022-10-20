@@ -1,42 +1,15 @@
 [
     {
         "id": 1,
-        "userName": "mariano19",
-        "email": "test@gmail.com",
+        "userName": "asd",
+        "email": "asd@asd",
         "password": "123123",
-        "name": "Mariano",
-        "lastName": null,
-        "avatar": "...",
-        "userRole": 1
-    },
-    {
-        "id": 2,
-        "userName": "mariano19",
-        "email": "test@gmail.com",
-        "password": "234234",
-        "name": "Mariano",
-        "lastName": null,
-        "avatar": "...",
-        "userRole": 1
-    },
-    {
-        "id": 3,
-        "userName": "diego",
-        "email": "deigo@gmail.com",
-        "password": "123",
-        "name": "diego",
-        "lastName": "arzondo",
-        "avatar": "...",
-        "userRole": 1
-    },
-    {
-        "id": 4,
-        "userName": "napocapo",
-        "email": "t97napolitano@gmail.com",
-        "password": "river11",
-        "name": "Tom\u00e1s",
-        "lastName": "Napolitano",
-        "avatar": "-",
-        "userRole": 1
+        "name": "asd",
+        "lastName": "asd",
+        "avatar": "d",
+        "userRole": 2,
+        "petSize": "small",
+        "price": "123123",
+        "availability": "asd"
     }
 ]
