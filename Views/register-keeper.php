@@ -32,7 +32,12 @@
             <tbody align="center">
               <tr>
                 <td style="max-width: 100px;">
-                  <input type="text" name="petSize" size="20" required>
+                  <!--<input type="text" name="petSize" size="20" required>-->
+                  <select name="petSize" required>
+                    <option value="small">Small</option> 
+                    <option value="medium">Medium</option> 
+                    <option value="Large">Large</option>
+                </select> 
                 </td>
                 <td>
                   <input type="text" name="price" size="15" required>
