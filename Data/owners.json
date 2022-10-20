@@ -28,5 +28,15 @@
         "lastName": "arzondo",
         "avatar": "...",
         "userRole": 1
+    },
+    {
+        "id": 4,
+        "userName": "napocapo",
+        "email": "t97napolitano@gmail.com",
+        "password": "river11",
+        "name": "Tom\u00e1s",
+        "lastName": "Napolitano",
+        "avatar": "-",
+        "userRole": 1
     }
 ]

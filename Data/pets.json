@@ -9,5 +9,27 @@
         "size": "medium",
         "vacPlan": "all",
         "vacObs": "none"
+    },
+    {
+        "name": "Eduardo",
+        "picture": "--",
+        "petSpecies": "1",
+        "video": "--",
+        "ownerId": 4,
+        "breed": "Golden",
+        "size": "medium",
+        "vacPlan": "si",
+        "vacObs": "nada que observar"
+    },
+    {
+        "name": "Marquitos",
+        "picture": ".",
+        "petSpecies": "1",
+        "video": ".",
+        "ownerId": 4,
+        "breed": "Bulldog",
+        "size": "small",
+        "vacPlan": "no",
+        "vacObs": "texto texto texto"
     }
 ]
