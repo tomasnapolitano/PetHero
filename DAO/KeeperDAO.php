@@ -2,7 +2,8 @@
     namespace DAO;
 
     use DAO\IKeeperDAO as IKeeperDAO;
-    use Models\Keeper as Keeper;
+use Models\Availability as Availability;
+use Models\Keeper as Keeper;
     use Models\Owner as Owner;
     
     
@@ -95,8 +96,14 @@
                          $newOwner->setAvatar($value['avatar']);
                          $newOwner->setPetSize($value['petSize']);
                          $newOwner->setPrice($value['price']);
-                         $newOwner->setAvailability($value['availability']);
                          $newOwner->setUserRole($value['userRole']);
+                         // building Availability:
+                         $availability = new Availability();
+                         $availability->setStartDate($value['startDate']);
+                         $availability->setEndDate($value['endDate']);
+                         $availability->setDaysOfWeek($value['daysOfWeek']);
+
+                         $newOwner->setAvailability($availability);
                     }
                      array_push($this->keeperList,$newOwner);
                      
@@ -123,7 +130,12 @@
                 if ($owner->getUserRole() == 2){ // checkeo si es keeper
                     $value['petSize'] = $owner->getPetSize();
                     $value['price'] = $owner->getPrice();
-                    $value['availability'] = $owner->getAvailability();
+
+                    // Availability:
+                    $availability = $owner->getAvailability();
+                    $value['startDate'] = $availability->getStartDate();
+                    $value['endDate'] = $availability->getEndDate();
+                    $value['daysOfWeek'] = $availability->getDaysOfWeek();
                 }
                 array_push($jsonArray,$value);
             }
