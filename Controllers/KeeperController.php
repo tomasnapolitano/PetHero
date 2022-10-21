@@ -27,8 +27,11 @@
             require_once(VIEWS_PATH."validate-session.php");
             $owner = new Owner();
             $owner = $_SESSION['loggedUser'];
+
+            $this->KeeperDAO->RemoveByUserName($owner->getUserName());
             $keeper = new Keeper();
             
+            $keeper->setId($owner->getId());
             $keeper->setUserName($owner->getUserName());
             $keeper->setEmail($owner->getEmail());
             $keeper->setPassword($owner->getPassword());
@@ -45,9 +48,14 @@
             
             $this->KeeperDAO->Add($keeper);
 
-            $this->ShowRegisterView();
+            $this->ShowHomeView();
 
         }
 
+        public function ShowHomeView()
+        {
+            require_once(VIEWS_PATH."validate-session.php");
+            require_once(VIEWS_PATH."home.php");
+        }
     }
 ?>
