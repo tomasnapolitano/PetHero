@@ -37,6 +37,7 @@
               <th style="width: 30%;">Species</th>
               <th style="width: 30%;">Breed</th>
               <th style="width: 30%;">Size</th>
+              <th style="width: 30%;">Picture</th>
               <th style="width: 15%;">VacPlan</th>
               <th style="width: 10%;">VacObs</th>
             </tr>
@@ -49,7 +50,8 @@
                                    <td><?php echo $dog->getPetSpecies() ?></td>
                                    <td><?php echo $dog->getBreed() ?></td>
                                    <td><?php echo $dog->getSize() ?></td>
-                                   <td><?php echo $dog->getVacPlan() ?></td>
+                                   <td><img src="<?php echo FRONT_ROOT.IMG_PATH.$dog->getPicture(); ?>" alt= "No hay imagen." style="width: 100px;"></td>
+                                   <td><img src="<?php echo FRONT_ROOT.IMG_PATH.$dog->getVacPlan(); ?>" alt= "No hay imagen." style="width: 100px;"></td>
                                    <td><?php echo $dog->getVacObs() ?></td>
                                    <td>
                                       <button type="submit" class="btn" value=""> Edit </button>

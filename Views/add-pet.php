@@ -20,7 +20,7 @@
     <div class="content"> 
       <div id="comments" >
         <h2>ADD NEW DOG</h2>
-        <form action="<?php echo  FRONT_ROOT."Dog/Add "?>" method="post"  style="background-color: #EAEDED;padding: 2rem !important;">
+        <form action="<?php echo  FRONT_ROOT."Dog/Add "?>" method="post" enctype="multipart/form-data" style="background-color: #EAEDED;padding: 2rem !important;">
           <table> 
             <thead>
               <tr>
@@ -55,13 +55,13 @@
                 </select> 
                 </td>
                 <td>
-                  <input type="text" name="vacPlan" size="3" required>
+                  <input type="file" name="vacPlan" />
                 </td>         
                 <td>
                 <textarea name="vacObs" cols="45" rows="3"></textarea>
                 </td>   
                 <td>
-                  <input type="text" name="picture" size="3" >
+                  <input type="file" name="picture" />
                 </td>        
                 <td>
                   <input type="text" name="video" size="3" >

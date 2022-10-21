@@ -10,5 +10,29 @@
         "size": "small",
         "vacPlan": "das",
         "vacObs": "asd"
+    },
+    {
+        "id": 2,
+        "name": "Marquitos",
+        "picture": null,
+        "petSpecies": "1",
+        "video": ".",
+        "ownerId": 1,
+        "breed": "Golden",
+        "size": "medium",
+        "vacPlan": null,
+        "vacObs": "nada que observar"
+    },
+    {
+        "id": 3,
+        "name": "Marquitos",
+        "picture": "asdMarquitos.jpg",
+        "petSpecies": "1",
+        "video": "asd",
+        "ownerId": 1,
+        "breed": "Golden",
+        "size": "medium",
+        "vacPlan": "asdMarquitos-VAC.jpg",
+        "vacObs": "asasd"
     }
 ]
