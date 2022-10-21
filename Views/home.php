@@ -39,7 +39,7 @@
 </div>
   <div class="div-login">  
     <a href="<?php echo FRONT_ROOT . "Dog/ShowAddView"?>">Add Pet</a>
-    <a href="<?php echo FRONT_ROOT . ""?>">Search Keepers</a>
+    <a href="<?php echo FRONT_ROOT . "Owner/ShowKeeperListView"?>">Search Keepers</a>
     <a href="<?php echo FRONT_ROOT . "Dog/ShowPetList"?>">View My Pets</a>
     <?php if ($_SESSION['loggedUser']->getUserRole()!=2) { ?>
     <a href="<?php echo FRONT_ROOT . "Keeper/ShowRegisterView"?>">Be a Keeper!</a>
