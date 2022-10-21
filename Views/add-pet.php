@@ -74,6 +74,12 @@
             <input type="submit" class="btn" value="Agregar" style="background-color:#DC8E47;color:white;"/>
           </div>
         </form>
+
+        <?php if ($message!==""){
+                echo $message;
+              }
+              ?>
+              
       </div>
     </div>
   </main>

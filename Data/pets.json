@@ -1,14 +1,14 @@
 [
     {
         "id": 1,
-        "name": "Jorge",
-        "picture": "bombita33Jorge.jpg",
+        "name": "Mariano",
+        "picture": "mariano19Mariano.jpg",
         "petSpecies": "1",
-        "video": "-",
-        "ownerId": 2,
+        "video": "asd",
+        "ownerId": 1,
         "breed": "Chihuahua",
         "size": "small",
-        "vacPlan": "bombita33Jorge-VAC.jpg",
-        "vacObs": "-"
+        "vacPlan": "mariano19Mariano-VAC.jpg",
+        "vacObs": "asd"
     }
 ]

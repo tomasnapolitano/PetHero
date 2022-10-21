@@ -7,46 +7,6 @@
         "name": "Mariano",
         "lastName": "Morales",
         "avatar": "...",
-        "userRole": 2,
-        "petSize": "small",
-        "price": "123123",
-        "startDate": "2022-10-21",
-        "endDate": "2022-10-28",
-        "daysOfWeek": []
-    },
-    {
-        "id": 2,
-        "userName": "bombita33",
-        "email": "asda@sd",
-        "password": "123123",
-        "name": "Benito",
-        "lastName": "Napolitano",
-        "avatar": "...",
-        "userRole": 2,
-        "petSize": "medium",
-        "price": "40222",
-        "startDate": "2022-10-22",
-        "endDate": "2022-11-02",
-        "daysOfWeek": [
-            "1"
-        ]
-    },
-    {
-        "id": 3,
-        "userName": "jorgito19",
-        "email": "dd@gam.com",
-        "password": "123123",
-        "name": "Jorge",
-        "lastName": "Alberto",
-        "avatar": "1",
-        "userRole": 2,
-        "petSize": "small",
-        "price": "2",
-        "startDate": "2022-10-21",
-        "endDate": "2022-10-22",
-        "daysOfWeek": [
-            "1",
-            "2"
-        ]
+        "userRole": 1
     }
 ]

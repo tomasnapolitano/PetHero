@@ -71,6 +71,7 @@ use Models\Availability;
         {
             if ($_POST){
                 $availability = new Availability();
+                
                 if(isset($_POST['startDate'])){
                     $availability->setStartDate($_POST['startDate']);
                 }
@@ -78,10 +79,6 @@ use Models\Availability;
                     $availability->setEndDate($_POST['endDate']);
                 }
                 if(($_POST['daysOfWeek'])){
-                    // $stringOfDays = implode();$_POST['daysOfWeek'];
-                    // str_replace("daysOfWeek=","",$stringOfDays);
-                    // $arrayOfDays = explode("&",$stringOfDays);
-                    
                     $availability->setDaysOfWeek($_POST['daysOfWeek']);
                 }
             }

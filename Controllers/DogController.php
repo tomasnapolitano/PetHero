@@ -5,19 +5,22 @@
     use Models\Dog as Dog;
     use DAO\DogDAO as DogDAO;
     use Controllers\OwnerController as OwnerController;
+    use Controllers\ValidationController as ValidationController;
 use Models\Owner;
 
     class DogController{
         private $dogDAO;
         private $ownerController;
+        private $validation;
         
         function __construct()
         {
             $this->dogDAO = new DogDAO();
             $this->ownerController = new OwnerController();
+            $this->validation = new ValidationController();
         }
 
-        public function ShowAddView(){
+        public function ShowAddView($message = ""){
             require_once(VIEWS_PATH."validate-session.php");
             require_once(VIEWS_PATH."add-pet.php");
         }
@@ -34,22 +37,32 @@ use Models\Owner;
             require_once(VIEWS_PATH."validate-session.php");
             $owner = new Owner();
             $owner = $_SESSION['loggedUser'];
+
+            if($this->validation->validateName($name))
+            {
+                $dog = new Dog();
+                $dog->setOwnerId($owner->getId());
+                $dog->setName($name);
+
+                if ($this->validation->validateName($breed))
+                {
+                    $dog->setPetSpecies($petSpecies); //debería recibir lo elegido en el form
+                                                 // y buscarlo por name en un json de petSpecies
+                    $dog->setBreed($breed);
+                    $dog->setSize($size);
+                    $dog->setVacObs($vacObs);
+                    
+                    $this->UploadFiles($owner,$dog);
+                    //$dog->setVacPlan($vacPlan);
+                    //$dog->setPicture($picture);
+                    $dog->setVideo($video);
+                    
+                    $this->dogDAO->Add($dog);
+
+                } else { $this->ShowAddView("Breed not valid. Try Again."); }
+
+            } else { $this->ShowAddView("Name not valid. Try Again."); }
             
-            $dog = new Dog();
-            $dog->setOwnerId($owner->getId());
-            $dog->setName($name);
-            $dog->setPetSpecies($petSpecies); //debería recibir lo elegido en el form
-                                         // y buscarlo por name en un json de petSpecies
-            $dog->setBreed($breed);
-            $dog->setSize($size);
-            $dog->setVacObs($vacObs);
-            
-            $this->UploadFiles($owner,$dog);
-            //$dog->setVacPlan($vacPlan);
-            //$dog->setPicture($picture);
-            $dog->setVideo($video);
-            
-            $this->dogDAO->Add($dog);
 
             $this->ownerController->ShowHomeView();
 
