@@ -18,27 +18,22 @@
 <main class="container clear"> 
     <div class="content"> 
       <div id="comments" >
-        <h2>BE A KEEPER!</h2>
+        <h2>SET AVAILABILITY</h2>
         <form action="<?php echo  FRONT_ROOT."Keeper/Add "?>" method="post"  style="background-color: #EAEDED;padding: 2rem !important;">
           <table> 
             <thead>
               <tr>
-                <th>Size</th>
-                <th>Price</th>
+                <th>Initial Date</th>
+                <th>Final Date</th>
               </tr>
             </thead>
             <tbody align="center">
               <tr>
                 <td style="max-width: 100px;">
-                  <!--<input type="text" name="petSize" size="20" required>-->
-                  <select name="petSize" required>
-                    <option value="small">Small</option> 
-                    <option value="medium">Medium</option> 
-                    <option value="Large">Large</option>
-                </select> 
+                  <input type="date" min ='<?php echo date('Y-m-d');?>' name="initialDate" size="20" required>
                 </td>
                 <td>
-                  <input type="text" name="price" size="15" required>
+                  <input type="date" name="finalDate" min ='<?php echo date('Y-m-d');?>' size="20" required>
                 </td>         
               </tr>
               </tbody>
