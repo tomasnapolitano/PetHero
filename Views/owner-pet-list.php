@@ -43,18 +43,16 @@
             </tr>
           </thead>
           <tbody>
-          <?php 
-          
-          if(empty($dogList))
-          { ?>
-            <tr>
-                <td colspan="7">You have not entered any Pets yet! Head over to "Add Pet" menu.</td>
-
-            </tr>           
           
           
-          <?php } foreach ($dogList as $dog) { 
-                              if($dog->getOwnerId() == $_SESSION['loggedUser']->getId()){?>
+                  
+          
+          
+          <?php foreach ($dogList as $dog) { 
+                              $counter = 0;
+                              if($dog->getOwnerId() == $_SESSION['loggedUser']->getId()){
+                                $counter++;
+                                ?>
                               <tr>
                                    <td><?php echo $dog->getName() ?></td>
                                    <!--<td><?php echo $dog->getPetSpecies() ?></td>-->
@@ -70,7 +68,14 @@
                                       <button type="submit" class="btn" value=""> Remove </button>
                                   </td>
                               </tr>
-                         <?php }} ?>
+                         <?php }}
+                         if($counter == 0)
+                         { ?>
+                           <tr>
+                               <td colspan="7">You have not entered any Pets yet! Head over to "Add Pet" menu.</td>
+                           </tr>   
+
+                         <?php } ?>
           </tbody>
         </table></form> 
       </div>

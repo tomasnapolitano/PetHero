@@ -37,5 +37,23 @@
             "Wednesday",
             "Friday"
         ]
+    },
+    {
+        "id": 4,
+        "userName": "mengano16",
+        "email": "mengano@gmail.com",
+        "password": "estropajo",
+        "name": "Menganium",
+        "lastName": "Maximo",
+        "avatar": "-",
+        "userRole": 2,
+        "petSize": "Large",
+        "price": "5000",
+        "startDate": "2022-11-01",
+        "endDate": "2022-11-30",
+        "daysOfWeek": [
+            "Saturday",
+            "Sunday"
+        ]
     }
 ]

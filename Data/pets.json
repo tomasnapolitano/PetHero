@@ -22,5 +22,17 @@
         "size": "small",
         "vacPlan": "napo97Jorge-VAC.jpg",
         "vacObs": "No tiene vacunas."
+    },
+    {
+        "id": 3,
+        "name": "Cris",
+        "picture": "mengano16Cris.jpg",
+        "petSpecies": "1",
+        "video": "-",
+        "ownerId": 4,
+        "breed": "San Bernardo",
+        "size": "Large",
+        "vacPlan": "mengano16Cris-VAC.jpg",
+        "vacObs": "Vacunas: Todas."
     }
 ]
