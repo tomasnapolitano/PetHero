@@ -61,7 +61,8 @@
                 <textarea name="vacObs" cols="45" rows="3"></textarea>
                 </td>   
                 <td>
-                  <input type="text" name="picture" size="3" >
+                <input type="file" name="fileToUpload" id="fileToUpload">
+                  <input type="submit" value="Upload Image" name="submit">
                 </td>        
                 <td>
                   <input type="text" name="video" size="3" >

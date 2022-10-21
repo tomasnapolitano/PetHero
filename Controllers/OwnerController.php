@@ -53,5 +53,13 @@
 
 
         }
+
+        public function ShowKeeperListView(){
+            require_once(VIEWS_PATH."validate-session.php");
+
+            $keepersList = $this->ownerDAO->getAll();
+
+            require_once(VIEWS_PATH."keeper-list.php");
+        }
     }
 ?>
