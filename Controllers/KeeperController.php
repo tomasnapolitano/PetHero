@@ -22,7 +22,19 @@
             require_once(VIEWS_PATH."register-keeper.php");
         }
 
-        public function Add($petSize,$price,$availability)
+        public function ShowKeeperHomeView()
+        {
+            require_once(VIEWS_PATH."validate-session.php");
+            require_once(VIEWS_PATH."keeper-home.php");
+        }
+
+        public function ShowKeeperSetAvailability()
+        {
+            require_once(VIEWS_PATH."validate-session.php");
+            require_once(VIEWS_PATH."keeper-availability.php");
+        }
+
+        public function Add($petSize,$price,$availability = NULL)
         {
             require_once(VIEWS_PATH."validate-session.php");
             $owner = new Owner();
@@ -48,7 +60,7 @@
             
             $this->KeeperDAO->Add($keeper);
 
-            $this->ShowHomeView();
+            $this->ShowKeeperHomeView();
 
         }
 
@@ -57,5 +69,6 @@
             require_once(VIEWS_PATH."validate-session.php");
             require_once(VIEWS_PATH."home.php");
         }
+
     }
 ?>
