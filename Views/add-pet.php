@@ -6,11 +6,11 @@
 <div class="wrapper row2 bgded" style="background-image:url('../images/demo/backgrounds/1.png');">
   <div class="overlay">
     <div id="breadcrumb" class="clear"> 
-      <ul>
+     <!-- <ul>
         <li><a href="#">Home</a></li>
-        <li><a href="#">Add</a></li>
+        <li><a href="#">Show</a></li>
         <li><a href="#">List - Remove</a></li>
-      </ul>
+      </ul> -->
     </div>
   </div>
 </div>
@@ -79,7 +79,7 @@
                 echo $message;
               }
               ?>
-              
+
       </div>
     </div>
   </main>

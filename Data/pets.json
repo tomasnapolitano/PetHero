@@ -1,14 +1,26 @@
 [
     {
         "id": 1,
-        "name": "Mariano",
-        "picture": "mariano19Mariano.jpg",
+        "name": "Benito",
+        "picture": "napo97Benito.jpg",
         "petSpecies": "1",
-        "video": "asd",
-        "ownerId": 1,
+        "video": "-",
+        "ownerId": 3,
         "breed": "Chihuahua",
         "size": "small",
-        "vacPlan": "mariano19Mariano-VAC.jpg",
-        "vacObs": "asd"
+        "vacPlan": "napo97Benito-VAC.jpg",
+        "vacObs": "Esta todo re vacunado."
+    },
+    {
+        "id": 2,
+        "name": "Jorge",
+        "picture": "napo97Jorge.jpg",
+        "petSpecies": "1",
+        "video": "-",
+        "ownerId": 3,
+        "breed": "Golden",
+        "size": "small",
+        "vacPlan": "napo97Jorge-VAC.jpg",
+        "vacObs": "No tiene vacunas."
     }
 ]

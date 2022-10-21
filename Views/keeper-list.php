@@ -10,11 +10,11 @@ use Models\Owner;
 <div class="wrapper row2 bgded" style="background-image:url('../images/demo/backgrounds/1.png');">
   <div class="overlay">
     <div id="breadcrumb" class="clear"> 
-      <ul>
+      <!--s<ul>
         <li><a href="#">Home</a></li>
         <li><a href="#">Add</a></li>
         <li><a href="#">List - Remove</a></li>
-      </ul>
+      </ul>-->
     </div>
   </div>
 </div>
@@ -53,7 +53,13 @@ use Models\Owner;
                   <td><?php echo $keeper->getLastName() ?></td>
                   <td><?php echo $keeper->getPetSize() ?></td>
                   <td><?php echo $keeper->getPrice() ?></td>
-                  <td><?php echo $keeper->getAvailability() ?></td>
+                  <td><?php echo $keeper->getAvailability()->getStartDate() ?>
+                  <?php echo $keeper->getAvailability()->getEndDate() ?>
+                  <?php foreach ($keeper->getAvailability()->getDaysOfWeek() as $day)
+                  {
+                    echo $day . " "; 
+                    
+                  }?></td>
                 <td>
                   <button type="submit" class="btn" value=""> Remove </button>
                 </td>

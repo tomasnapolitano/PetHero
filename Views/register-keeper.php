@@ -50,19 +50,19 @@
                   <input type="date" name="endDate" min="<?php echo date('Y-m-d') ?>" required>
                 </td>         
                 <td>
-                <input type="checkbox"  name="daysOfWeek[]" value="1" />
+                <input type="checkbox" id="monday" name="daysOfWeek[]" value="Monday" />
                 <label for="monday">Monday</label>
-                <input type="checkbox"  name="daysOfWeek[]" value="2" />
+                <input type="checkbox" id="tuesday" name="daysOfWeek[]" value="Tuesday" />
                 <label for="tuesday">Tuesday</label>
-                <input type="checkbox"  name="daysOfWeek[]" value="3" />
+                <input type="checkbox" id="wednesday" name="daysOfWeek[]" value="Wednesday" />
                 <label for="wednesday">Wednesday</label>
-                <input type="checkbox"  name="daysOfWeek[]" value="4" />
+                <input type="checkbox" id="thursday" name="daysOfWeek[]" value="Thursday" />
                 <label for="thursday">Thursday</label>
-                <input type="checkbox"  name="daysOfWeek[]" value="5" />
+                <input type="checkbox" id="friday" name="daysOfWeek[]" value="Friday" />
                 <label for="friday">Friday</label>
-                <input type="checkbox" name="daysOfWeek[]" value="6" />
+                <input type="checkbox" id="saturday" name="daysOfWeek[]" value="Saturday" />
                 <label for="saturday">Saturday</label>
-                <input type="checkbox" name="daysOfWeek[]" value="0" />
+                <input type="checkbox" id="sunday" name="daysOfWeek[]" value="Sunday" />
                 <label for="sunday">Sunday</label>
 
 

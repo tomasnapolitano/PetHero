@@ -1,12 +1,13 @@
 <?php 
     include_once('header.php');
+    include_once('nav-bar.php');
 ?>
 <div class="wrapper row1">
   <header id="header" class="clear"> 
-    <div id="logo" class="fl_left">
+    <!-- <div id="logo" class="fl_left">
       <h1>PetHero</h1>
     </div>
-    <!-- <nav id="mainav" class="fl_right">
+    <nav id="mainav" class="fl_right">
       <ul class="clear">
         <li class="active"><a class="drop" href="#">Actions</a>
           <ul>
@@ -40,7 +41,7 @@
   <div class="div-login">  
     <a class="" href="<?php echo FRONT_ROOT . "Dog/ShowAddView"?>">Add Pet</a>
     <?php echo "|"?>  
-    <a href="<?php echo FRONT_ROOT . ""?>">Search Keepers</a>
+    <a href="<?php echo FRONT_ROOT . "Owner/ShowKeeperListView"?>">Search Keepers</a>
     <?php echo "|"?>  
     <a href="<?php echo FRONT_ROOT . "Dog/ShowPetList"?>">View My Pets</a>
     <?php if ($_SESSION['loggedUser']->getUserRole()!=2) { ?>

@@ -1,12 +1,41 @@
 [
     {
         "id": 1,
+        "userName": "napocapo",
+        "email": "t97napolitano@gmail.com",
+        "password": "123123",
+        "name": "Tomas",
+        "lastName": "Napolitano",
+        "avatar": "-",
+        "userRole": 1
+    },
+    {
+        "id": 2,
         "userName": "mariano19",
         "email": "test@gmail.com",
-        "password": "123123",
+        "password": "asdasd123",
         "name": "Mariano",
         "lastName": "Morales",
         "avatar": "...",
         "userRole": 1
+    },
+    {
+        "id": 3,
+        "userName": "napo97",
+        "email": "napocapo97@gmail.com",
+        "password": "tutuca123",
+        "name": "Napo",
+        "lastName": "Capo",
+        "avatar": "-",
+        "userRole": 2,
+        "petSize": "medium",
+        "price": "123123",
+        "startDate": "2022-10-21",
+        "endDate": "2022-11-04",
+        "daysOfWeek": [
+            "Monday",
+            "Wednesday",
+            "Friday"
+        ]
     }
 ]

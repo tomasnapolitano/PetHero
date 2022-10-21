@@ -4,7 +4,7 @@
 
         public function validateUserName($userName)
         {
-            if(preg_match('/^[a-z][0-9a-z_.]{6,23}[0-9a-z]$/', $userName))
+            if(preg_match('/^[a-z][0-9a-z_.]{4,23}[0-9a-z]$/', $userName))
             { /* valida:
                 - que comience con letra
                 - que solo contenga números, letras minusculas, _ ó .
@@ -26,7 +26,7 @@
 
         public function validateName($name)
         {
-            if(preg_match('/^[a-zA-Z][a-zA-Z ]{4,25}[a-z]$/', $name))
+            if(preg_match('/^[a-zA-Z][a-zA-Z ]{0,25}[a-z]$/', $name))
             { /* valida:
                 - que comience con letra min o mayus
                 - que solo contenga letras y espacios
