@@ -41,7 +41,20 @@ include('nav-bar.php');
                 <td><?php echo $_SESSION['loggedUser']->getLastName() ?></td>
                 <td><?php echo $_SESSION['loggedUser']->getPetSize() ?></td>
                 <td><?php echo $_SESSION['loggedUser']->getPrice() ?></td>
-                <td><?php echo $_SESSION['loggedUser']->getAvailability() ?></td>
+                <td><?php if ($_SESSION['loggedUser']->getAvailability() !== null)
+                {
+                  echo "Start Date: ";
+                  echo $_SESSION['loggedUser']->getAvailability()->getStartDate(); 
+                  echo ". End Date: ";
+                  echo $_SESSION['loggedUser']->getAvailability()->getEndDate();
+                  echo ". Days of Week: ";
+                $arrayOfDays = $_SESSION['loggedUser']->getAvailability()->getDaysOfWeek();
+                foreach($arrayOfDays as $day)
+                {
+                  echo $day . " ";
+                }
+              }
+                else{ echo "There is no Availability set yet!";} ?></td>
               </tr>
             </tbody>
           </table>

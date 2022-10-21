@@ -20,7 +20,7 @@
   <div class="overlay">
     <div id="breadcrumb" class="clear"> 
       <ul>
-        <li><a href="#">WELCOME</a></li>
+        <li>Be the Hero this city wants AND needs!</li>
       </ul>
     </div>
   </div>
@@ -38,10 +38,13 @@
     <h1 class="text-login">PetHero!</h1>
 </div>
   <div class="div-login">  
-    <a href="<?php echo FRONT_ROOT . "Dog/ShowAddView"?>">Add Pet</a>
+    <a class="" href="<?php echo FRONT_ROOT . "Dog/ShowAddView"?>">Add Pet</a>
+    <?php echo "|"?>  
     <a href="<?php echo FRONT_ROOT . ""?>">Search Keepers</a>
+    <?php echo "|"?>  
     <a href="<?php echo FRONT_ROOT . "Dog/ShowPetList"?>">View My Pets</a>
     <?php if ($_SESSION['loggedUser']->getUserRole()!=2) { ?>
+      <?php echo "|"?>  
     <a href="<?php echo FRONT_ROOT . "Keeper/ShowRegisterView"?>">Be a Keeper!</a>
     <?php } ?>
   </div>

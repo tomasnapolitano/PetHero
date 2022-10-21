@@ -1,38 +1,14 @@
 [
     {
         "id": 1,
-        "name": "asd",
-        "picture": "asd",
+        "name": "Jorge",
+        "picture": "bombita33Jorge.jpg",
         "petSpecies": "1",
-        "video": "asd",
-        "ownerId": 1,
-        "breed": "asd",
+        "video": "-",
+        "ownerId": 2,
+        "breed": "Chihuahua",
         "size": "small",
-        "vacPlan": "das",
-        "vacObs": "asd"
-    },
-    {
-        "id": 2,
-        "name": "Marquitos",
-        "picture": null,
-        "petSpecies": "1",
-        "video": ".",
-        "ownerId": 1,
-        "breed": "Golden",
-        "size": "medium",
-        "vacPlan": null,
-        "vacObs": "nada que observar"
-    },
-    {
-        "id": 3,
-        "name": "Marquitos",
-        "picture": "asdMarquitos.jpg",
-        "petSpecies": "1",
-        "video": "asd",
-        "ownerId": 1,
-        "breed": "Golden",
-        "size": "medium",
-        "vacPlan": "asdMarquitos-VAC.jpg",
-        "vacObs": "asasd"
+        "vacPlan": "bombita33Jorge-VAC.jpg",
+        "vacObs": "-"
     }
 ]

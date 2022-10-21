@@ -3,6 +3,7 @@
 
     use DAO\IOwnerDAO as IOwnerDAO;
 use Models\Keeper;
+use Models\Availability;
 use Models\Owner as Owner;
     
     
@@ -54,18 +55,24 @@ use Models\Owner as Owner;
                     }
                     if ($value['userRole'] == 2) //Keeper Role
                      {
-                         $newOwner = new Keeper();
-                         $newOwner->setId($value['id']);
-                         $newOwner->setUserName($value['userName']);
-                         $newOwner->setEmail($value['email']);
-                         $newOwner->setPassword($value['password']);
-                         $newOwner->setName($value['name']);
-                         $newOwner->setLastName($value['lastName']);
-                         $newOwner->setAvatar($value['avatar']);
-                         $newOwner->setPetSize($value['petSize']);
-                         $newOwner->setPrice($value['price']);
-                         $newOwner->setAvailability($value['availability']);
-                         $newOwner->setUserRole($value['userRole']);
+                        $newOwner = new Keeper();
+                        $newOwner->setId($value['id']);
+                        $newOwner->setUserName($value['userName']);
+                        $newOwner->setEmail($value['email']);
+                        $newOwner->setPassword($value['password']);
+                        $newOwner->setName($value['name']);
+                        $newOwner->setLastName($value['lastName']);
+                        $newOwner->setAvatar($value['avatar']);
+                        $newOwner->setPetSize($value['petSize']);
+                        $newOwner->setPrice($value['price']);
+                        $newOwner->setUserRole($value['userRole']);
+                        // building Availability:
+                        $availability = new Availability();
+                        $availability->setStartDate($value['startDate']);
+                        $availability->setEndDate($value['endDate']);
+                        $availability->setDaysOfWeek($value['daysOfWeek']);
+
+                        $newOwner->setAvailability($availability);
                     }
                      array_push($this->ownerList,$newOwner);
                      
@@ -93,7 +100,12 @@ use Models\Owner as Owner;
                 {
                     $value['petSize'] = $owner->getPetSize();
                     $value['price'] = $owner->getPrice();
-                    $value['availability'] = $owner->getAvailability();
+
+                    // Availability:
+                    $availability = $owner->getAvailability();
+                    $value['startDate'] = $availability->getStartDate();
+                    $value['endDate'] = $availability->getEndDate();
+                    $value['daysOfWeek'] = $availability->getDaysOfWeek();
                 }
 
                 array_push($jsonArray,$value);

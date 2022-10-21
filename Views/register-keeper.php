@@ -25,6 +25,9 @@
               <tr>
                 <th>Size</th>
                 <th>Price</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Days of Week</th>
               </tr>
             </thead>
             <tbody align="center">
@@ -39,6 +42,40 @@
                 </td>
                 <td>
                   <input type="text" name="price" size="15" required>
+                </td>         
+                <td>
+                  <input type="date" name="startDate" min="<?php echo date('Y-m-d') ?>" required>
+                </td>         
+                <td>
+                  <input type="date" name="endDate" min="<?php echo date('Y-m-d') ?>" required>
+                </td>         
+                <td>
+                <input type="checkbox"  name="daysOfWeek[]" value="1" />
+                <label for="monday">Monday</label>
+                <input type="checkbox"  name="daysOfWeek[]" value="2" />
+                <label for="tuesday">Tuesday</label>
+                <input type="checkbox"  name="daysOfWeek[]" value="3" />
+                <label for="wednesday">Wednesday</label>
+                <input type="checkbox"  name="daysOfWeek[]" value="4" />
+                <label for="thursday">Thursday</label>
+                <input type="checkbox"  name="daysOfWeek[]" value="5" />
+                <label for="friday">Friday</label>
+                <input type="checkbox" name="daysOfWeek[]" value="6" />
+                <label for="saturday">Saturday</label>
+                <input type="checkbox" name="daysOfWeek[]" value="0" />
+                <label for="sunday">Sunday</label>
+
+
+                <!-- Code below does not render the select list properly in Chrome or IE -->
+                  <!--<select name="daysOfWeek[]" id="daysOfWeek" multiple="multiple" required>Days of Week
+                  <option value="monday">Monday</option>
+                  <option value="tuesday">Tuesday</option>
+                  <option value="wednesday">Wednesday</option>
+                  <option value="thursday">Thursday</option>
+                  <option value="friday">Friday</option>
+                  <option value="saturday">Saturday</option>
+                  <option value="sunday">Sunday</option>-->
+                  </select>
                 </td>         
               </tr>
               </tbody>

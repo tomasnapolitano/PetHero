@@ -5,6 +5,7 @@
     use Models\Keeper as Keeper;
     use DAO\KeeperDAO as KeeperDAO;
     use Controllers\OwnerController as OwnerController;
+use Models\Availability;
 
     class KeeperController{
         private $KeeperDAO;
@@ -34,7 +35,7 @@
             require_once(VIEWS_PATH."keeper-availability.php");
         }
 
-        public function Add($petSize,$price,$availability = NULL)
+        public function Add($petSize,$price)
         {
             require_once(VIEWS_PATH."validate-session.php");
             $owner = new Owner();
@@ -56,12 +57,36 @@
             
             $keeper->setPetSize($petSize);
             $keeper->setPrice($price);
-            $keeper->setAvailability($availability);
+            
+            $keeper->setAvailability($this->BuildAvailability());
             
             $this->KeeperDAO->Add($keeper);
+            $_SESSION['loggedUser'] = $keeper;
 
             $this->ShowKeeperHomeView();
 
+        }
+
+        private function BuildAvailability()
+        {
+            if ($_POST){
+                $availability = new Availability();
+                if(isset($_POST['startDate'])){
+                    $availability->setStartDate($_POST['startDate']);
+                }
+                if(isset($_POST['endDate'])){
+                    $availability->setEndDate($_POST['endDate']);
+                }
+                if(($_POST['daysOfWeek'])){
+                    // $stringOfDays = implode();$_POST['daysOfWeek'];
+                    // str_replace("daysOfWeek=","",$stringOfDays);
+                    // $arrayOfDays = explode("&",$stringOfDays);
+                    
+                    $availability->setDaysOfWeek($_POST['daysOfWeek']);
+                }
+            }
+
+            return $availability;
         }
 
         public function ShowHomeView()
