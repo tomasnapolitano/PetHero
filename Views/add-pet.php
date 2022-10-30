@@ -19,12 +19,12 @@
 <main class="container clear"> 
     <div class="content"> 
       <div id="comments" >
-        <h2>ADD NEW DOG</h2>
-        <form action="<?php echo  FRONT_ROOT."Dog/Add "?>" method="post" enctype="multipart/form-data" style="background-color: #EAEDED;padding: 2rem !important;">
+        <h2>ADD NEW PET</h2>
+        <form action="<?php echo  FRONT_ROOT."Pet/Add "?>" method="post" enctype="multipart/form-data" style="background-color: #EAEDED;padding: 2rem !important;">
           <table> 
             <thead>
               <tr>
-                <th>Dog Name</th>
+                <th>Pet Name</th>
                 <th>Species</th>
                 <th>Breed</th>
                 <th>Size</th>
@@ -42,6 +42,7 @@
                 <td>
                 <select name="petSpecies" required>
                     <option value="1">Dog</option> 
+                    <option value="2">Cat</option> 
                 </select> 
                 </td>
                 <td>

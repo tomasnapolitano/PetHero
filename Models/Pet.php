@@ -1,7 +1,7 @@
 <?php 
 namespace Models;
 
-abstract class Pet
+class Pet
 {
     private $id;
     private $ownerId;
@@ -9,16 +9,20 @@ abstract class Pet
     private $picture;
     private $petSpecies;
     private $video;
+    private $breed;
+    private $size;
+    private $vacPlan;
+    private $vacObs;
 
-    public function __construct($name=NULL,$picture = NULL,$petSpecies = NULL, $video=NULL)
-    {
-        $this->name = $name;
-        $this->petSpecies = $petSpecies;
+    // public function __construct($name=NULL,$picture = NULL,$petSpecies = NULL, $video=NULL)
+    // {
+    //     $this->name = $name;
+    //     $this->petSpecies = $petSpecies;
     
         
-        $this->picture = $picture;
-        $this->video = $video;
-    }
+    //     $this->picture = $picture;
+    //     $this->video = $video;
+    // }
 
     public function getName(){ return $this->name; }
     public function setName($name){ $this->name = $name;}
@@ -85,6 +89,86 @@ abstract class Pet
     public function setOwnerId($ownerId)
     {
         $this->ownerId = $ownerId;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of breed
+     */ 
+    public function getBreed()
+    {
+        return $this->breed;
+    }
+
+    /**
+     * Set the value of breed
+     *
+     * @return  self
+     */ 
+    public function setBreed($breed)
+    {
+        $this->breed = $breed;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of size
+     */ 
+    public function getSize()
+    {
+        return $this->size;
+    }
+
+    /**
+     * Set the value of size
+     *
+     * @return  self
+     */ 
+    public function setSize($size)
+    {
+        $this->size = $size;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of vacPlan
+     */ 
+    public function getVacPlan()
+    {
+        return $this->vacPlan;
+    }
+
+    /**
+     * Set the value of vacPlan
+     *
+     * @return  self
+     */ 
+    public function setVacPlan($vacPlan)
+    {
+        $this->vacPlan = $vacPlan;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of vacObs
+     */ 
+    public function getVacObs()
+    {
+        return $this->vacObs;
+    }
+
+    /**
+     * Set the value of vacObs
+     *
+     * @return  self
+     */ 
+    public function setVacObs($vacObs)
+    {
+        $this->vacObs = $vacObs;
 
         return $this;
     }
