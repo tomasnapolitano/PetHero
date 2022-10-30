@@ -64,9 +64,8 @@
                   <input type="file" name="picture" />
                 </td>        
                 <td>
-                  <input type="text" name="video" size="3" >
+                  <input type="file" name="video" />
                 </td>         
-                      
               </tr>
               </tbody>
           </table>

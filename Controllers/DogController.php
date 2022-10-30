@@ -32,7 +32,7 @@ use Models\Owner;
             require_once(VIEWS_PATH."owner-pet-list.php");
         }
 
-        public function Add($name,$petSpecies,$breed,$size,$vacObs = NULL, $video = NULL)
+        public function Add($name,$petSpecies,$breed,$size,$vacObs = NULL)
         {
             require_once(VIEWS_PATH."validate-session.php");
             $owner = new Owner();
@@ -55,7 +55,7 @@ use Models\Owner;
                     $this->UploadFiles($owner,$dog);
                     //$dog->setVacPlan($vacPlan);
                     //$dog->setPicture($picture);
-                    $dog->setVideo($video);
+                    //$dog->setVideo($video);
                     
                     $this->dogDAO->Add($dog);
 
@@ -96,6 +96,20 @@ use Models\Owner;
                     }else{echo 'ERROR: Could not move VacPlan file. ';}
                 }else{echo 'ERROR: Could not upload VacPlan file. ';}
             }else{echo 'ERROR: Could not find VacPlan file. ';}
+
+            if (isset($_FILES['video'])){
+                if($_FILES['video']['error']==0){
+                    $dir = IMG_PATH;
+                    $filename = $owner->getUserName() . $dog->getName() . "-VID.gif"; // debería ser por Id de pet, no nombre
+
+                    $fileToAdd = $dir . $filename;
+
+                    if(move_uploaded_file($_FILES['video']['tmp_name'], $fileToAdd)){
+                        echo $_FILES['video']['name'] . ' was uploaded and saved as '. $filename . '</br>';
+                        $dog->setVideo($filename);
+                    }else{echo 'ERROR: Could not move video file. ';}
+                }else{echo 'ERROR: Could not upload video file. ';}
+            }else{echo 'ERROR: Could not find video file. ';}
         }
     }
 ?>
