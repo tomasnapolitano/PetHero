@@ -39,6 +39,7 @@
               <th style="width: 30%;">Size</th>
               <th style="width: 30%;">Picture</th>
               <th style="width: 15%;">VacPlan</th>
+              <th style="width: 50%;">Video</th>
               <th style="width: 10%;">VacObs</th>
             </tr>
           </thead>
@@ -60,6 +61,7 @@
                                    <td><?php echo $dog->getSize() ?></td>
                                    <td><img src="<?php echo FRONT_ROOT.IMG_PATH.$dog->getPicture(); ?>" alt= "No hay imagen." style="width: 100px;"></td>
                                    <td><img src="<?php echo FRONT_ROOT.IMG_PATH.$dog->getVacPlan(); ?>" alt= "No hay imagen." style="width: 100px;"></td>
+                                   <td><img src="<?php echo FRONT_ROOT.IMG_PATH.$dog->getVideo(); ?>" alt= "No hay imagen." style="width: 100px;"></td>
                                    <td><?php echo $dog->getVacObs() ?></td>
                                    <td>
                                       <button type="submit" class="btn" value=""> Edit </button>
