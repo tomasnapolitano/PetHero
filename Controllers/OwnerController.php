@@ -18,8 +18,8 @@
         {
             //require_once(VIEWS_PATH."validate-session.php");
 
-            if ($this->GetByUserName($userName) !== null)
-            {
+           // if ($this->GetByUserName($userName) !== null)
+            // {
             if ($this->validation->validateUserName($userName))
                 {
                     $owner = new Owner();
@@ -46,7 +46,7 @@
 
                 } else { $this->ShowRegisterView("Username is not valid. Try again.");}
 
-            } else { $this->ShowRegisterView("Username is already taken. Try a different one."); }
+           // } else { $this->ShowRegisterView("Username is already taken. Try a different one."); }
 
             $this->ShowLoginView();
 
