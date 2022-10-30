@@ -10,5 +10,17 @@
         "size": "small",
         "vacPlan": "mariano19Benito-VAC.jpg",
         "vacObs": "asdasd"
+    },
+    {
+        "id": 2,
+        "name": "Jorge",
+        "picture": "napocapoJorge.jpg",
+        "petSpecies": "1",
+        "video": "napocapoJorge-VID.gif",
+        "ownerId": 2,
+        "breed": "Chihuahua",
+        "size": "small",
+        "vacPlan": "napocapoJorge-VAC.jpg",
+        "vacObs": "vaccinated completely"
     }
 ]
