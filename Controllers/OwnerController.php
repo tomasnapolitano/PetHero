@@ -71,11 +71,6 @@
             require_once(VIEWS_PATH."home.php");
         }
 
-        public function addPet(){
-
-
-        }
-
         public function ShowKeeperListView(){
             require_once(VIEWS_PATH."validate-session.php");
 

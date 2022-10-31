@@ -3,8 +3,10 @@
 
     use Models\Owner as Owner;
     use Models\Keeper as Keeper;
+    use Models\Date as Date;
     use DAO\KeeperDAO as KeeperDAO;
     use Controllers\OwnerController as OwnerController;
+    use Controllers\DateController as DateController;
 use Models\Availability;
 
     class KeeperController{
@@ -16,6 +18,7 @@ use Models\Availability;
         {
             $this->KeeperDAO = new KeeperDAO();
             $this->ownerController = new OwnerController();
+            $this->dateController = new DateController();
         }
 
         public function ShowRegisterView(){
@@ -58,7 +61,10 @@ use Models\Availability;
             $keeper->setPetSize($petSize);
             $keeper->setPrice($price);
             
+            // building Availability:
             $keeper->setAvailability($this->BuildAvailability());
+            // building Dates:
+            
             
             $this->KeeperDAO->Add($keeper);
             $_SESSION['loggedUser'] = $keeper;
