@@ -154,6 +154,18 @@ use Models\Keeper as Keeper;
 
             $this->SaveData();
         }
+
+        public function GetByUserName($userName)
+        {
+            $this->RetrieveData();
+
+            $keepers = array_filter($this->keeperList, function($keeper) use($userName){
+                return $keeper->getUserName() === $userName;});
+
+                $keepers = array_values($keepers);
+
+                return (count($keepers) > 0) ? $keepers[0] : null;
+        }
     }
 
 

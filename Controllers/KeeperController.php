@@ -12,6 +12,7 @@ use Models\Availability;
     class KeeperController{
         private $KeeperDAO;
         private $ownerController;
+        private $dateController;
 
 
         function __construct()
@@ -54,7 +55,7 @@ use Models\Availability;
             $keeper->setName($owner->getName());
             $keeper->setLastName($owner->getLastName());
             $keeper->setAvatar($owner->getAvatar());
-            $keeper->setPetList(array());
+            $keeper->setPetList(array()); // Hacer que busque sus Pets actuales y no las pise con un array vacio (guarda con el nuevo ID)
             $keeper->setUserRole(2);
 
             
@@ -63,8 +64,15 @@ use Models\Availability;
             
             // building Availability:
             $keeper->setAvailability($this->BuildAvailability());
-            // building Dates:
+
+            // saving keeper to and searching in DAO to get new ID correctly.
+            $this->KeeperDAO->Add($keeper);
+            $_SESSION['loggedUser'] = $this->KeeperDAO->GetByUserName($keeper->getUserName());
             
+            // building Dates:
+            $this->dateController->AddFromAvailability($keeper->getAvailability(),$keeper->getId());
+
+
             // Deberíamos recibir lo elegido en el POST de Keeper-register 
             // y comparar cada fecha a partir (inclusive) de la fecha startDate y hasta
             // (inclusive) la fecha endDate con los días de la semana elegidos en DaysOfWeek.
@@ -74,8 +82,6 @@ use Models\Availability;
 
 
             
-            $this->KeeperDAO->Add($keeper);
-            $_SESSION['loggedUser'] = $keeper;
 
             $this->ShowKeeperHomeView();
 

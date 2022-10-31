@@ -7,6 +7,14 @@
         "name": "Mariano",
         "lastName": "Morales",
         "avatar": "...",
-        "userRole": 1
+        "userRole": 2,
+        "petSize": "small",
+        "price": "1000",
+        "startDate": "2022-11-01",
+        "endDate": "2022-11-11",
+        "daysOfWeek": [
+            "Friday",
+            "Saturday"
+        ]
     }
 ]
