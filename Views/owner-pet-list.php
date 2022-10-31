@@ -33,14 +33,14 @@
         <table style="text-align:center;">
           <thead>
             <tr>
-              <th style="width: 15%;">Name</th>
-              <!--<th style="width: 30%;">Species</th>-->
-              <th style="width: 30%;">Breed</th>
-              <th style="width: 30%;">Size</th>
-              <th style="width: 30%;">Picture</th>
-              <th style="width: 15%;">VacPlan</th>
-              <th style="width: 50%;">Video</th>
-              <th style="width: 10%;">VacObs</th>
+              <th style="width: 10%;">Name</th>
+              <th style="width: 10%;">Species</th>
+              <th style="width: 10%;">Breed</th>
+              <th style="width: 10%;">Size</th>
+              <th style="width: 12%;">Picture</th>
+              <th style="width: 12%;">VacPlan</th>
+              <th style="width: 12%;">VacObs</th>
+              <th style="width: 12%;">Video</th>
             </tr>
           </thead>
           <tbody>
@@ -49,29 +49,29 @@
                   
           
           
-          <?php foreach ($dogList as $dog) { 
+          <?php foreach ($petList as $pet) { 
                               $counter = 0;
-                              if($dog->getOwnerId() == $_SESSION['loggedUser']->getId()){
+                              if($pet->getOwnerId() == $_SESSION['loggedUser']->getId()){
                                 $counter++;
                                 ?>
                               <tr>
-                                   <td><?php echo $dog->getName() ?></td>
-                                   <!--<td><?php echo $dog->getPetSpecies() ?></td>-->
-                                   <td><?php echo $dog->getBreed() ?></td>
-                                   <td><?php echo $dog->getSize() ?></td>
-                                   <td><img src="<?php echo FRONT_ROOT.IMG_PATH.$dog->getPicture(); ?>" alt= "No hay imagen." style="width: 100px;"></td>
-                                   <td><img src="<?php echo FRONT_ROOT.IMG_PATH.$dog->getVacPlan(); ?>" alt= "No hay imagen." style="width: 100px;"></td>
-                                   <td><img src="<?php echo FRONT_ROOT.IMG_PATH.$dog->getVideo(); ?>" alt= "No hay imagen." style="width: 100px;"></td>
-                                   <td><?php echo $dog->getVacObs() ?></td>
-                                   <td>
+                                   <td><?php echo $pet->getName() ?></td>
+                                   <td><?php echo $pet->getPetSpecies() ?></td>
+                                   <td><?php echo $pet->getBreed() ?></td>
+                                   <td><?php echo $pet->getSize() ?></td>
+                                   <td><img src="<?php echo FRONT_ROOT.IMG_PATH.$pet->getPicture(); ?>" alt= "No hay imagen." style="width: 100px;"></td>
+                                   <td><img src="<?php echo FRONT_ROOT.IMG_PATH.$pet->getVacPlan(); ?>" alt= "No hay imagen." style="width: 100px;"></td>
+                                   <td><?php echo $pet->getVacObs() ?></td>
+                                   <td><img src="<?php echo FRONT_ROOT.IMG_PATH.$pet->getVideo(); ?>" alt= "No hay video." style="width: 200px;"></td>
+                                   <!-- <td>
                                       <button type="submit" class="btn" value=""> Edit </button>
                                   </td>
                                   <td>
                                       <button type="submit" class="btn" value=""> Remove </button>
-                                  </td>
+                                  </td> -->
                               </tr>
                          <?php }}
-                         if($counter == 0)
+                         if(!isset($counter) || $counter == 0)
                          { ?>
                            <tr>
                                <td colspan="7">You have not entered any Pets yet! Head over to "Add Pet" menu.</td>

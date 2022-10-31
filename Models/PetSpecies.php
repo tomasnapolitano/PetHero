@@ -1,7 +1,7 @@
 <?php
     namespace Models;
 
-    class UserRole {
+    class PetSpecies {
         
         private $speciesId;
         private $speciesName;

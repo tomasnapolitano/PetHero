@@ -8,15 +8,5 @@
         "lastName": "Morales",
         "avatar": "...",
         "userRole": 1
-    },
-    {
-        "id": 2,
-        "userName": "napocapo",
-        "email": "napocapo97@gmail.com",
-        "password": "123123",
-        "name": "napo",
-        "lastName": "capo",
-        "avatar": "...",
-        "userRole": 1
     }
 ]

@@ -39,11 +39,11 @@
     <h1 class="text-login">PetHero!</h1>
 </div>
   <div class="div-login">  
-    <a class="" href="<?php echo FRONT_ROOT . "Dog/ShowAddView"?>">Add Pet</a>
+    <a class="" href="<?php echo FRONT_ROOT . "Pet/ShowAddView"?>">Add Pet</a>
     <?php echo "|"?>  
     <a href="<?php echo FRONT_ROOT . "Owner/ShowKeeperListView"?>">Search Keepers</a>
     <?php echo "|"?>  
-    <a href="<?php echo FRONT_ROOT . "Dog/ShowPetList"?>">View My Pets</a>
+    <a href="<?php echo FRONT_ROOT . "Pet/ShowPetList"?>">View My Pets</a>
     <?php if ($_SESSION['loggedUser']->getUserRole()!=2) { ?>
       <?php echo "|"?>  
     <a href="<?php echo FRONT_ROOT . "Keeper/ShowRegisterView"?>">Be a Keeper!</a>

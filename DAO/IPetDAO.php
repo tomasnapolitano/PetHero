@@ -2,11 +2,10 @@
     namespace DAO;
 
     use Models\Pet as Pet;
-    use Models\Dog as Dog;
 
-    interface IDogDAO
+    interface IPetDAO
     {
-        function add(Dog $dog);
+        function add(Pet $pet);
         function getAll();
     }
 

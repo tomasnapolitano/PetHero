@@ -3,24 +3,12 @@
         "id": 1,
         "name": "Benito",
         "picture": "mariano19Benito.jpg",
-        "petSpecies": "1",
+        "petSpecies": "2",
         "video": "mariano19Benito-VID.gif",
         "ownerId": 1,
-        "breed": "Chihuahua",
+        "breed": "Siames",
         "size": "small",
         "vacPlan": "mariano19Benito-VAC.jpg",
-        "vacObs": "asdasd"
-    },
-    {
-        "id": 2,
-        "name": "Jorge",
-        "picture": "napocapoJorge.jpg",
-        "petSpecies": "1",
-        "video": "napocapoJorge-VID.gif",
-        "ownerId": 2,
-        "breed": "Chihuahua",
-        "size": "small",
-        "vacPlan": "napocapoJorge-VAC.jpg",
-        "vacObs": "vaccinated completely"
+        "vacObs": "recontra vacuna2"
     }
 ]
