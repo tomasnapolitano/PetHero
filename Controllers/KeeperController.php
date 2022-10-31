@@ -65,6 +65,14 @@ use Models\Availability;
             $keeper->setAvailability($this->BuildAvailability());
             // building Dates:
             
+            // Deberíamos recibir lo elegido en el POST de Keeper-register 
+            // y comparar cada fecha a partir (inclusive) de la fecha startDate y hasta
+            // (inclusive) la fecha endDate con los días de la semana elegidos en DaysOfWeek.
+            // con cada dia que coincida, crear un objeto Date y sumarlo con el DateDAO, con
+            // su respectivo keeperId para identificar cada Date con un keeper.
+
+
+
             
             $this->KeeperDAO->Add($keeper);
             $_SESSION['loggedUser'] = $keeper;
