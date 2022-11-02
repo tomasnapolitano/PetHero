@@ -44,8 +44,8 @@ use Models\Availability;
             require_once(VIEWS_PATH."validate-session.php");
             $owner = new Owner();
             $owner = $_SESSION['loggedUser'];
-
             $this->KeeperDAO->RemoveByUserName($owner->getUserName());
+
             $keeper = new Keeper();
             
             $keeper->setId($owner->getId());
@@ -57,17 +57,17 @@ use Models\Availability;
             $keeper->setAvatar($owner->getAvatar());
             $keeper->setPetList(array()); // Hacer que busque sus Pets actuales y no las pise con un array vacio (guarda con el nuevo ID)
             $keeper->setUserRole(2);
-
+            
             
             $keeper->setPetSize($petSize);
             $keeper->setPrice($price);
             
             // building Availability:
             $keeper->setAvailability($this->BuildAvailability());
-
-            // saving keeper to and searching in DAO to get new ID correctly.
+            
+            // saving keeper to DAO and setting them to active user:
             $this->KeeperDAO->Add($keeper);
-            $_SESSION['loggedUser'] = $this->KeeperDAO->GetByUserName($keeper->getUserName());
+            $_SESSION['loggedUser'] = $keeper;
             
             // building Dates:
             $this->dateController->AddFromAvailability($keeper->getAvailability(),$keeper->getId());

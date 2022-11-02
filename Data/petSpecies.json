@@ -1,0 +1,12 @@
+[
+    {
+        "speciesId": 1,
+        "speciesName": "Dog",
+        "description": "Human's best friend!"
+    },
+    {
+        "speciesId": 2,
+        "speciesName": "Cat",
+        "description": "Adorable balls of fur!"
+    }
+]
