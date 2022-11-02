@@ -53,6 +53,7 @@ use Models\Availability as Availability;
 
             $beginDate = new DateTime($availability->getStartDate());
             $endDate = new DateTime($availability->getEndDate());
+            date_add($endDate, date_interval_create_from_date_string("1 day")); // adding 1 day to correctly include last day as a date.
 
             $interval = DateInterval::createFromDateString('1 day');
             $period = new DatePeriod($beginDate,$interval,$endDate);
