@@ -42,7 +42,7 @@ use Models\Owner;
 
     <div class="content"> 
       <div class="scrollable">
-      <form action="<?php echo FRONT_ROOT . "Owner/ShowKeeperListView" ?>" method="get">
+      <form action="<?php echo FRONT_ROOT . "Owner/ShowKeeperListView" ?>" method="post">
 
 
      <section class="container">
@@ -51,11 +51,11 @@ use Models\Owner;
             <div class="row form-group">
                 <label for="date" class="col-sm-1.5 col-form-label">Select Dates</label>
                 <div class="col-sm-4">
-                    <div class="input-group date" id="datepicker">
-                        <input type="text" class="form-control">
+                    <div class="input-group date"  name="date" id="datepicker">
+                        <input type="text"  name="date" class="form-control">
                         <span class="input-group-append">
                             <span class="input-group-text bg-white">
-                                <i class="fa fa-calendar"></i>
+                                <i class="fa fa-calendar"  name="date"></i>
                             </span>
                         </span>
                     </div>
@@ -63,8 +63,8 @@ use Models\Owner;
                     <br>
 
                 <div class="row form-group">
-                  <label for="pets" class="col-sm-1.5 col-form-label">Select Pet Species:</label>
-                  <div class="input-group petSpecies">
+                  <label for="pets" class="col-sm-1.5 col-form-label">Select Pet:</label>
+                  <div class="input-group pets">
                     <select name="pets" required>
 
                     <?php 
@@ -75,7 +75,7 @@ use Models\Owner;
                         {
                           $counter++; ?>
 
-                          <option value="<?php echo $counter; ?>"> <?php echo $pet->GetName() . '(' . $pet->getPetSpecies() .')'; ?> </option>
+                          <option value="<?php echo $pet->GetId()?>"> <?php echo $pet->GetName() . ' (' . $pet->getPetSpecies() .')'; ?> </option>
                         <?php
                         }
                       }
@@ -89,10 +89,13 @@ use Models\Owner;
                   </div>
                 </div>
                 </div>
+                <button type="submit" class="btn" value=""> Search! </button>
             </div>
         </form>
     </section>
 
+    <?php echo $_POST['date'];?>
+    <?php echo $_POST['pets'];?>
     <script type="text/javascript">
         $(function() {
             $('#datepicker').datepicker({
@@ -107,31 +110,31 @@ use Models\Owner;
           <thead>
             <tr>
               <th style="width: 15%;">Name</th>
-              <th style="width: 30%;">Last Name</th>
-              <th style="width: 30%;">Pet Size</th>
+              <th style="width: 10%;">Pet Size</th>
               <th style="width: 15%;">Price</th>
-              <th style="width: 10%;">Availability</th>
+              <th style="width: 30%;">Availability</th>
             </tr>
           </thead>
           <tbody>
           <?php
             foreach ($keepersList as $keeper) {
-              if($keeper->getUserRole() == 2){  
+              if($keeper->getUserRole() == 2){
+          
+                
           ?>    <tr>
-                  <td><?php echo $keeper->getname() ?></td>
-                  <td><?php echo $keeper->getLastName() ?></td>
+                  <td><?php echo $keeper->getname() . ' ' . $keeper->getLastName()?></td>
                   <td><?php echo $keeper->getPetSize() ?></td>
                   <td><?php echo $keeper->getPrice() ?></td>
-                  <td><?php echo $keeper->getAvailability()->getStartDate() ?>
+                  <td><?php echo $keeper->getAvailability()->getStartDate() . ' to ' ?>
                   <?php echo $keeper->getAvailability()->getEndDate() ?>
                   <?php foreach ($keeper->getAvailability()->getDaysOfWeek() as $day)
                   {
                     echo $day . " "; 
                     
                   }?></td>
-                <td>
+                <!-- <td>
                   <button type="submit" class="btn" value=""> Remove </button>
-                </td>
+                </td> -->
               </tr><?php
               }
             }?> 
