@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "name": "Patricio",
+        "picture": "napocapoPatricio.jpg",
+        "petSpecies": "1",
+        "video": "napocapoPatricio-VID.gif",
+        "ownerId": 1,
+        "breed": "Chihuahua",
+        "size": "small",
+        "vacPlan": "napocapoPatricio-VAC.jpg",
+        "vacObs": "asdasd"
+    },
+    {
+        "id": 2,
+        "name": "Tomas",
+        "picture": "napocapoTomas.jpg",
+        "petSpecies": "2",
+        "video": "napocapoTomas-VID.gif",
+        "ownerId": 1,
+        "breed": "Siames",
+        "size": "medium",
+        "vacPlan": "napocapoTomas-VAC.jpg",
+        "vacObs": "asdasdasd"
+    }
+]

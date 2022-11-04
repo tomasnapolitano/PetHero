@@ -24,6 +24,11 @@ use Models\Owner;
             require_once(VIEWS_PATH."add-pet.php");
         }
 
+        public function GetPetList()
+        {
+            return $this->petDAO->getAll();
+        }
+        
         public function ShowPetList()
         {
             $petList = $this->petDAO->getAll();

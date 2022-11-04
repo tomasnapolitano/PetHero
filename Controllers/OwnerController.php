@@ -2,15 +2,23 @@
     namespace Controllers;
 
     use Models\Owner as Owner;
+    use Models\Pet as Pet;
     use DAO\OwnerDAO as OwnerDAO;
+    use DAO\PetDAO as PetDAO;
+    
     use Controllers\ValidationController as ValidationController;
+    use Controllers\PetController as PetController;
     class OwnerController{
         private $ownerDAO;
+        private $petDAO;
         private $validation;
+        //private $petController;
         
         function __construct()
         {
             $this->ownerDAO = new OwnerDAO();
+            $this->petDAO = new PetDAO();
+            //$this->petController = new PetController(); creates a Loop because of constructors in PetController and OwnerController.
             $this->validation = new ValidationController();
         }
 
@@ -75,7 +83,7 @@
             require_once(VIEWS_PATH."validate-session.php");
 
             $keepersList = $this->ownerDAO->getAll();
-
+            $petList = $this->petDAO->getAll();
             require_once(VIEWS_PATH."keeper-list.php");
         }
     }

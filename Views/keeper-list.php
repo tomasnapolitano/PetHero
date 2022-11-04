@@ -49,7 +49,7 @@ use Models\Owner;
         <h3 class="pt-4 pb-2">Search Keepers!</h3>
         <form>
             <div class="row form-group">
-                <label for="date" class="col-sm-1 col-form-label">Date</label>
+                <label for="date" class="col-sm-1.5 col-form-label">Select Dates</label>
                 <div class="col-sm-4">
                     <div class="input-group date" id="datepicker">
                         <input type="text" class="form-control">
@@ -59,6 +59,35 @@ use Models\Owner;
                             </span>
                         </span>
                     </div>
+
+                    <br>
+
+                <div class="row form-group">
+                  <label for="pets" class="col-sm-1.5 col-form-label">Select Pet Species:</label>
+                  <div class="input-group petSpecies">
+                    <select name="pets" required>
+
+                    <?php 
+                    $counter = 0;
+                      foreach ($petList as $pet)
+                      {
+                        if ($pet->GetOwnerId() == $_SESSION['loggedUser']->GetId())
+                        {
+                          $counter++; ?>
+
+                          <option value="<?php echo $counter; ?>"> <?php echo $pet->GetName() . '(' . $pet->getPetSpecies() .')'; ?> </option>
+                        <?php
+                        }
+                      }
+                      if ($counter == 0)
+                      {
+                        ?> <option value="0"> <?php echo "You haven't added any pets yet!"; ?> </option> <?php
+                      }
+                    ?>
+                    
+                    </select> 
+                  </div>
+                </div>
                 </div>
             </div>
         </form>
