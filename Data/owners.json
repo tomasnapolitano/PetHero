@@ -6,10 +6,10 @@
         "password": "123123",
         "name": "Napo",
         "lastName": "Capo",
-        "avatar": "...",
+        "avatar": "..",
         "userRole": 2,
         "petSize": "small",
-        "price": "123123",
+        "price": "1000",
         "startDate": "2022-11-10",
         "endDate": "2022-11-24",
         "daysOfWeek": [

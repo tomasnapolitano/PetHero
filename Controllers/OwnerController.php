@@ -82,11 +82,57 @@
         public function ShowKeeperListView(){
             require_once(VIEWS_PATH."validate-session.php");
 
-            $keepersList = $this->ownerDAO->getAll();
-            $keepersList = array_filter($keepersList, function($keeper){
-                return $keeper->getUserRole() == 2;
+
+         // ---------------------------------------- If a date and pet are entered: (filters keepers by date)
+          $keepersToShow = array();
+          $keepersList = $this->ownerDAO->getAll();
+
+          if (isset($_POST['date']) && isset($_POST['pets']))
+          {
+            //echo $_POST['date'];
+            //echo $_POST['pets'];
+
+            $pet = $this->petDAO->searchById($_POST['pets']);
+            $string = $_POST['date'];
+
+            $dateStringArray = explode(',',$string);
+
+            foreach ($keepersList as $keeper) {
+              if($keeper->getUserRole() == 2){
+                $counterAux=0;
+                foreach ($dateStringArray as $dateString) // cycling through the chosen dates to search
+                {
+                  $flag = 0;
+                  foreach ($keeper->getDateArray() as $date)
+                  {
+                    if ($date->getDate() === $dateString && $date->getStatus() === 'Available' && ($date->getPetSpecies() == $pet->getPetSpecies() || $date->getPetSpecies() == null))
+                    {
+                      $flag = 1;
+                      $counterAux++;
+                      break;
+                    }
+                  }
+                  if ($flag=0)
+                  {
+                    break;
+                  }
+                }
+                if ($counterAux == count($dateStringArray)){
+                  array_push($keepersToShow,$keeper);
+          
+              }}
+            }
+
+          }else{ // ---------------------------------------- if no date or pet is entered: (shows all keepers)
+
+            $keepersToShow = array_filter($keepersList,function($keeperToShow) {
+                return $keeperToShow->getUserRole() == 2;
             });
+            
+        }
+
             $petList = $this->petDAO->getAll();
+
             require_once(VIEWS_PATH."keeper-list.php");
         }
     }

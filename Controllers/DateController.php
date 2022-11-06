@@ -19,12 +19,13 @@ use Models\Availability as Availability;
             //$this->validation = new ValidationController();
         }
 
-        public function Add($date, $status, $keeperId) {
+        public function Add($date, $status, $keeperId, $petSpecies = null) {
 
             $newDate = new Date();
             $newDate->setDate($date);
             $newDate->setStatus($status);
             $newDate->setKeeperId($keeperId);
+            $newDate->setPetSpecies($petSpecies);
 
             $this->dateDAO->Add($newDate);
         }
@@ -66,6 +67,7 @@ use Models\Availability as Availability;
                     $newDate->setDate(date_format($day,'Y-m-d'));
                     $newDate->setStatus("Available");
                     $newDate->setKeeperId($keeperId);
+                    $newDate->setPetSpecies(null);
 
                     $this->dateDAO->Add($newDate);
                 }

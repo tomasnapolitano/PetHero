@@ -27,6 +27,20 @@
         }
 
 
+        public function searchById($id){
+
+            $this->RetrieveData();
+
+            $pets = array_filter($this->petList, function($pet) use($id){
+                return $pet->getId() == $id;
+            });
+
+            $pets = array_values($pets);
+
+            return (count($pets) > 0) ? $pets[0] : null;
+        }
+
+
         public function RetrieveData()
         {
              if(file_exists($this->filename))

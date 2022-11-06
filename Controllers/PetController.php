@@ -19,6 +19,13 @@ use Models\Owner;
             $this->validation = new ValidationController();
         }
 
+        public function SearchById($id)
+        {
+            $pet = $this->petDAO->SearchById($id);
+
+            return $pet;
+        }
+
         public function ShowAddView($message = ""){
             require_once(VIEWS_PATH."validate-session.php");
             require_once(VIEWS_PATH."add-pet.php");

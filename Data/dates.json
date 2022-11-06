@@ -3,42 +3,49 @@
         "id": 1,
         "date": "2022-11-10",
         "status": "Available",
-        "keeperId": 1
+        "keeperId": 1,
+        "petSpecies": null
     },
     {
         "id": 2,
         "date": "2022-11-14",
         "status": "Available",
-        "keeperId": 1
+        "keeperId": 1,
+        "petSpecies": null
     },
     {
         "id": 3,
         "date": "2022-11-16",
         "status": "Available",
-        "keeperId": 1
+        "keeperId": 1,
+        "petSpecies": null
     },
     {
         "id": 4,
         "date": "2022-11-17",
         "status": "Available",
-        "keeperId": 1
+        "keeperId": 1,
+        "petSpecies": null
     },
     {
         "id": 5,
         "date": "2022-11-21",
         "status": "Available",
-        "keeperId": 1
+        "keeperId": 1,
+        "petSpecies": null
     },
     {
         "id": 6,
         "date": "2022-11-23",
         "status": "Available",
-        "keeperId": 1
+        "keeperId": 1,
+        "petSpecies": null
     },
     {
         "id": 7,
         "date": "2022-11-24",
         "status": "Available",
-        "keeperId": 1
+        "keeperId": 1,
+        "petSpecies": null
     }
 ]

@@ -117,41 +117,11 @@ use Models\Owner;
             </tr>
           </thead>
           <tbody>
-          <?php // ---------------------------------------- If a date and pet are entered: (filters keepers by date)
-          $keepersToShow = 0;
-
-          if (isset($_POST['date']) && isset($_POST['pets']))
-          {
-            echo $_POST['date'];
-            echo $_POST['pets'];
-
-            $string = $_POST['date'];
-
-            $dateStringArray = explode(',',$string);
-
-            foreach ($keepersList as $keeper) {
-              if($keeper->getUserRole() == 2){
-                $counterAux=0;
-                foreach ($dateStringArray as $dateString) // cycling through the chosen dates to search
-                {
-                  $flag = 0;
-                  foreach ($keeper->getDateArray() as $date)
-                  {
-                    if ($date->getDate() === $dateString && $date->getStatus() === 'Available')
-                    {
-                      $flag = 1;
-                      $counterAux++;
-                      break;
-                    }
-                  }
-                  if ($flag=0)
-                  {
-                    break;
-                  }
-                }
-                if ($counterAux == count($dateStringArray)){
-                  $keepersToShow++;
-          ?>    <tr>
+          <?php 
+          
+          foreach ($keepersToShow as $keeper)
+          { ?>
+            <tr>
                   <td><?php echo $keeper->getname() . ' ' . $keeper->getLastName()?></td>
                   <td><?php echo $keeper->getPetSize() ?></td>
                   <td><?php echo $keeper->getPrice() ?></td>
@@ -165,34 +135,10 @@ use Models\Owner;
                 <!-- <td>
                   <button type="submit" class="btn" value=""> Remove </button>
                 </td> -->
-              </tr><?php
-              }}
-            }
-
-          }else{ // ---------------------------------------- if no date or pet is entered: (shows all keepers)
-            foreach ($keepersList as $keeper) {
-              if($keeper->getUserRole() == 2){
-                $keepersToShow++;
-                
-          ?>    <tr>
-                  <td><?php echo $keeper->getname() . ' ' . $keeper->getLastName()?></td>
-                  <td><?php echo $keeper->getPetSize() ?></td>
-                  <td><?php echo $keeper->getPrice() ?></td>
-                  <td><?php echo $keeper->getAvailability()->getStartDate() . ' to ' ?>
-                  <?php echo $keeper->getAvailability()->getEndDate() ?>
-                  <?php foreach ($keeper->getAvailability()->getDaysOfWeek() as $day)
-                  {
-                    echo $day . " "; 
-                    
-                  }?></td>
-                <!-- <td>
-                  <button type="submit" class="btn" value=""> Remove </button>
-                </td> -->
-              </tr><?php
-              }
-            }}
+              </tr> <?php
+          }
             
-            if ($keepersToShow == 0)
+            if (count($keepersToShow) == 0)
             { ?>
               <tr>
                   <td colspan="4">There are no Keepers available right now :(</td>
