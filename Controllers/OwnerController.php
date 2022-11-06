@@ -28,34 +28,35 @@
 
            // if ($this->GetByUserName($userName) !== null)
             // {
-            if ($this->validation->validateUserName($userName))
-                {
-                    $owner = new Owner();
-                    $owner->setUserName($userName);
+            if ($this->validation->validateEmailExists($email)){
+              if ($this->validation->validateUserName($userName))
+                  {
+                      $owner = new Owner();
+                      $owner->setUserName($userName);
 
-                    if($this->validation->validatePassword($password))
-                        {
-                            $owner->setPassword($password);
-                            
-                            if($this->validation->validateName($name) && $this->validation->validateName($lastName))
-                                {
-                                    $owner->setName($name);
-                                    $owner->setLastName($lastName);
-                                    $owner->setEmail($email);
-                                    $owner->setAvatar($avatar);
-                                    $owner->setPetList(array());
-                                    $owner->setUserRole(1);
+                      if($this->validation->validatePassword($password))
+                          {
+                              $owner->setPassword($password);
+
+                              if($this->validation->validateName($name) && $this->validation->validateName($lastName))
+                                  {
+                                      $owner->setName($name);
+                                      $owner->setLastName($lastName);
+                                      $owner->setEmail($email);
+                                     $owner->setAvatar($avatar);
+                                      $owner->setPetList(array());
+                                      $owner->setUserRole(1);
                 
-                                    $this->ownerDAO->Add($owner);
-                
-                                } else { $this->ShowRegisterView("Name or Lastname not valid. Try again."); }
+                                      $this->ownerDAO->Add($owner);
+                                    
+                                 } else { $this->ShowRegisterView("Name or Lastname not valid. Try again."); }
                                 
-                        } else { $this->ShowRegisterView("Password not valid. Try again."); }
+                         } else { $this->ShowRegisterView("Password not valid. Try again."); }
 
-                } else { $this->ShowRegisterView("Username is not valid. Try again.");}
+                  } else { $this->ShowRegisterView("Username is not valid. Try again.");}
 
-           // } else { $this->ShowRegisterView("Username is already taken. Try a different one."); }
-
+             // } else { $this->ShowRegisterView("Username is already taken. Try a different one."); }
+                } else { $this->ShowRegisterView("Email already registered.");}
             $this->ShowLoginView();
 
         }
@@ -134,6 +135,11 @@
             $petList = $this->petDAO->getAll();
 
             require_once(VIEWS_PATH."keeper-list.php");
+        }
+
+        public function GetAll()
+        {
+          return $this->ownerDAO->getAll();
         }
     }
 ?>

@@ -1,6 +1,16 @@
 <?php
     namespace Controllers;
+
+    use Controllers\OwnerController as OwnerController;
+
     class ValidationController {
+
+        private $ownerController;
+
+        function __construct()
+        {
+            $this->ownerController = new OwnerController();
+        }
 
         public function validateUserName($userName)
         {
@@ -34,6 +44,17 @@
               */  
               return true;
             }else{ return false; };
+        }
+
+        public fuction validateEmailExists($email){
+            $ownerList = $this->OwnerController->GetAll();
+
+            foreach($ownerList as $owner){
+                if($email == $owner->getEmail()){
+                    return true
+                }
+            }
+            return false
         }
     }
 ?>
