@@ -166,6 +166,18 @@ use Models\Keeper as Keeper;
 
                 return (count($keepers) > 0) ? $keepers[0] : null;
         }
+
+        public function GetById($id)
+        {
+            $this->RetrieveData();
+
+            $keepers = array_filter($this->keeperList, function($keeper) use($id){
+                return $keeper->getId() == $id;});
+
+                $keepers = array_values($keepers);
+
+                return (count($keepers) > 0) ? $keepers[0] : null;
+        }
     }
 
 

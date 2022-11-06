@@ -11,10 +11,6 @@
         private $filename = ROOT.'Data/Reservations.json';
         private $ReservationDAO;
 
-        function __construct()
-        {
-            $this->ReservationDAO = new ReservationDAO();
-        }
 
         public function add(Reservation $reservation){
            

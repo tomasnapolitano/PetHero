@@ -80,13 +80,19 @@
             require_once(VIEWS_PATH."home.php");
         }
 
-        public function ShowKeeperListView(){
+        public function GetAll()
+        {
+          return $this->ownerDAO->getAll();
+        }
+
+        public function ShowKeeperListView($message = ""){
             require_once(VIEWS_PATH."validate-session.php");
 
 
          // ---------------------------------------- If a date and pet are entered: (filters keepers by date)
           $keepersToShow = array();
           $keepersList = $this->ownerDAO->getAll();
+
 
           if (isset($_POST['date']) && isset($_POST['pets']))
           {
