@@ -2,7 +2,7 @@
     namespace DAO;
 
     use DAO\IReservationDAO as IReservationDAO;
-    use DAO\ReservationDAO as ReservationDAO;
+    //use DAO\ReservationDAO as ReservationDAO;
     use Models\Reservation as Reservation;
     
     

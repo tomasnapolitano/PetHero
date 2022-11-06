@@ -141,7 +141,7 @@ use Models\Owner;
             if (count($keepersToShow) == 0)
             { ?>
               <tr>
-                  <td colspan="4">There are no Keepers available right now :(</td>
+                  <td colspan="4">There are no Keepers available right now :( . Consider changing the selected dates, or try again later!</td>
               </tr> 
                            <?php
             }
