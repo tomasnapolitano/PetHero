@@ -42,12 +42,12 @@ use Models\Owner;
 
     <div class="content"> 
       <div class="scrollable">
-      <form action="<?php echo FRONT_ROOT . "Owner/ShowKeeperListView" ?>" method="post">
+      <form autocomplete="off" action="<?php echo FRONT_ROOT . "Owner/ShowKeeperListView" ?>" method="post">
 
 
      <section class="container">
         <h3 class="pt-4 pb-2">Search Keepers!</h3>
-        <form>
+        <form >
             <div class="row form-group">
                 <label for="date" class="col-sm-1.5 col-form-label">Select Dates</label>
                 <div class="col-sm-4">
@@ -94,8 +94,9 @@ use Models\Owner;
         </form>
     </section>
 
-    <?php echo $_POST['date'];?>
-    <?php echo $_POST['pets'];?>
+    <!-- <?php echo $_POST['date'];?>
+    <?php echo $_POST['pets'];?> -->
+
     <script type="text/javascript">
         $(function() {
             $('#datepicker').datepicker({
@@ -116,7 +117,51 @@ use Models\Owner;
             </tr>
           </thead>
           <tbody>
-          <?php
+          <?php // ---------------------------------------- If a date and pet are entered: (filters keepers by date)
+          if (isset($_POST['date']) && isset($_POST['pets']))
+          {
+            $string = $_POST['date'];
+
+            $dateStringArray = explode(',',$string);
+
+            foreach ($keepersList as $keeper) {
+              if($keeper->getUserRole() == 2){
+                foreach ($dateStringArray as $dateString) // cycling through the chosen dates to search
+                {
+                  $flag = 0;
+                  foreach ($keeper->getDateArray() as $date)
+                  {
+                    if ($date->getDate() === $dateString && $date->getStatus() === 'Available')
+                    {
+                      $flag = 1;
+                      break;
+                    }
+                  }
+                  if ($flag=0)
+                  {
+                    break;
+                  }
+                }
+                
+          ?>    <tr>
+                  <td><?php echo $keeper->getname() . ' ' . $keeper->getLastName()?></td>
+                  <td><?php echo $keeper->getPetSize() ?></td>
+                  <td><?php echo $keeper->getPrice() ?></td>
+                  <td><?php echo $keeper->getAvailability()->getStartDate() . ' to ' ?>
+                  <?php echo $keeper->getAvailability()->getEndDate() ?>
+                  <?php foreach ($keeper->getAvailability()->getDaysOfWeek() as $day)
+                  {
+                    echo $day . " "; 
+                    
+                  }?></td>
+                <!-- <td>
+                  <button type="submit" class="btn" value=""> Remove </button>
+                </td> -->
+              </tr><?php
+              }
+            }
+
+          }else{ // ---------------------------------------- if no date or pet is entered: (shows all keepers)
             foreach ($keepersList as $keeper) {
               if($keeper->getUserRole() == 2){
           
@@ -137,7 +182,7 @@ use Models\Owner;
                 </td> -->
               </tr><?php
               }
-            }?> 
+            }}?> 
           </tbody>
         </table></form> 
       </div>

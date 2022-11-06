@@ -83,6 +83,9 @@
             require_once(VIEWS_PATH."validate-session.php");
 
             $keepersList = $this->ownerDAO->getAll();
+            $keepersList = array_filter($keepersList, function($keeper){
+                return $keeper->getUserRole() == 2;
+            });
             $petList = $this->petDAO->getAll();
             require_once(VIEWS_PATH."keeper-list.php");
         }
