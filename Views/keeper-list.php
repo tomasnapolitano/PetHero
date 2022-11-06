@@ -132,10 +132,18 @@ use Models\Owner;
                     echo $day . " "; 
                     
                   }?></td>
-                <!-- <td>
-                  <button type="submit" class="btn" value=""> Remove </button>
-                </td> -->
-              </tr> <?php
+                  <?php if (isset($_POST['pets']) && isset($_POST['date']))
+                    { ?>
+                    <td>
+                 <form action="<?php echo FRONT_ROOT . "Reservation/ShowCreateReservationView" ?>" method="post">
+                  <input type="hidden" value="<?php echo $keeper->getId(); ?>" name="keeperId"/>
+                  <input type="hidden" value="<?php echo $_POST['pets'];?>" name="petId"/>
+                  <input type="hidden" value="<?php echo $_POST['date'];?>" name="reservationDate"/>
+                  <button type="submit" class="btn" value=""> Reserve </button>
+                </form></td>
+                </tr> 
+              
+              <?php }
           }
             
             if (count($keepersToShow) == 0)
@@ -148,6 +156,10 @@ use Models\Owner;
             ?> 
           </tbody>
         </table></form> 
+        <?php if ($message!==""){
+                echo $message;
+              }
+              ?>
       </div>
     </div>
     <!-- / main body -->

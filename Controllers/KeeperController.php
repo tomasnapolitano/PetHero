@@ -106,6 +106,11 @@ use Models\Availability;
             return $availability;
         }
 
+        public function GetById($id)
+        {
+           return $this->KeeperDAO->GetById($id);
+        }
+        
         public function ShowHomeView()
         {
             require_once(VIEWS_PATH."validate-session.php");

@@ -3,7 +3,7 @@ namespace Models;
 
 class Reservation
 {
-    private $id
+    private $id;
     private $owner;
     private $keeper;
     private $pet;
