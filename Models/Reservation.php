@@ -3,6 +3,7 @@ namespace Models;
 
 class Reservation
 {
+    private $id
     private $owner;
     private $keeper;
     private $pet;
@@ -19,6 +20,9 @@ class Reservation
         $this->amount = $amount;
         $this->isAccepted = $isAccepted;
     }
+
+    public function getId(){ return $this->id; }
+    public function setId($id): self { $this->id = $id; return $this; }
 
     public function getOwner(){ return $this->owner; }
     public function setOwner($owner): self { $this->owner = $owner; return $this; }
