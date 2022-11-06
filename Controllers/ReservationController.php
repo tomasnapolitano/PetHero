@@ -19,15 +19,21 @@
 			$reservation = new Reservation();
             $owner = $_SESSION['loggedUser'];
             $isAccepted = null;
+            $amount = calculateTotalPrice($keeper, $dateList)
 
 			$reservation->setOwner($owner->getId());
 			$reservation->setKeeper($keeper);
 			
 			$reservation->setPet($pet);
-			$reservation->setAmount($keeper->getPrice());
+			$reservation->setAmount($amount);
 			$reservation->setIsAccepted($isAccepted);	
 
             $this->ReservationDAO->Add($reservation);
+		}
+
+        public function calculateTotalPrice($keeper, $dateList)
+		{
+			return count($dateList) * $keeper->getPrice();
 		}
     }
  ?>
