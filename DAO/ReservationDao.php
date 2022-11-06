@@ -20,6 +20,8 @@
            
             $this->RetrieveData();
 
+            $reservation->setId($this->getNextId());
+
             array_push($this->reservationList, $reservation);
             
             $this->SaveData();
@@ -76,5 +78,19 @@
             $content = json_encode($jsonArray,JSON_PRETTY_PRINT);
             file_put_contents($this->filename,$content);
         }
+
+        private function getNextId()
+        {
+            $id = 0;
+            
+            foreach($this->reservationList as $reservation)
+            {
+                $id = ($reservation->getId() > $id) ? $reservation->getId() : $id;
+
+            }   
+            
+            return $id+1;
+        }
     }
+
 ?>

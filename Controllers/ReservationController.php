@@ -27,6 +27,7 @@
 			$reservation->setAmount($keeper->getPrice());
 			$reservation->setIsAccepted($isAccepted);	
 
+            $this->ReservationDAO->Add($reservation);
 		}
     }
  ?>
