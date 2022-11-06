@@ -7,6 +7,7 @@
         private $date;
         private $status;
         private $keeperId;
+        private $petSpecies;
 
 
         /**
@@ -85,6 +86,26 @@
         public function setKeeperId($keeperId)
         {
                 $this->keeperId = $keeperId;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of petSpecies
+         */ 
+        public function getPetSpecies()
+        {
+                return $this->petSpecies;
+        }
+
+        /**
+         * Set the value of petSpecies
+         *
+         * @return  self
+         */ 
+        public function setPetSpecies($petSpecies)
+        {
+                $this->petSpecies = $petSpecies;
 
                 return $this;
         }

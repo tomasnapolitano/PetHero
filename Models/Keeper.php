@@ -7,12 +7,14 @@ class Keeper extends Owner
     private $petSize;
     private $price;
     private Availability $availability;
+    private $dateArray;
 
     public function _construct($petSize = NULL, $price = NULL, $availability = NULL)
     {
         $this->petSize = $petSize;
         $this->price = $price;
         $this->availability = $availability;
+        $this->dateArray = array();
     }
 
     public function getPetSize(){return $this->petSize;}
@@ -39,6 +41,26 @@ class Keeper extends Owner
     public function setAvailability(Availability $availability)
     {
         $this->availability = $availability;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of dateArray
+     */ 
+    public function getDateArray()
+    {
+        return $this->dateArray;
+    }
+
+    /**
+     * Set the value of dateArray
+     *
+     * @return  self
+     */ 
+    public function setDateArray($dateArray)
+    {
+        $this->dateArray = $dateArray;
 
         return $this;
     }

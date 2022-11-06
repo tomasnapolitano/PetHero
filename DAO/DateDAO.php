@@ -43,6 +43,7 @@
                     $newDate->setDate($value['date']);
                     $newDate->setStatus($value['status']);
                     $newDate->setKeeperId($value['keeperId']);
+                    $newDate->setPetSpecies($value['petSpecies']);
 
  
                       array_push($this->dateList,$newDate);
@@ -60,6 +61,7 @@
                 $value['date'] = $date->getDate();
                 $value['status'] = $date->getStatus();
                 $value['keeperId'] = $date->getKeeperId();
+                $value['petSpecies'] = $date->getPetSpecies();
 
                 array_push($jsonArray,$value);
             }

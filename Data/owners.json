@@ -1,0 +1,21 @@
+[
+    {
+        "id": 1,
+        "userName": "napocapo",
+        "email": "napocapo97@gmail.com",
+        "password": "123123",
+        "name": "Napo",
+        "lastName": "Capo",
+        "avatar": "..",
+        "userRole": 2,
+        "petSize": "small",
+        "price": "1000",
+        "startDate": "2022-11-10",
+        "endDate": "2022-11-24",
+        "daysOfWeek": [
+            "Monday",
+            "Wednesday",
+            "Thursday"
+        ]
+    }
+]

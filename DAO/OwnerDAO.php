@@ -2,6 +2,8 @@
     namespace DAO;
 
     use DAO\IOwnerDAO as IOwnerDAO;
+    use DAO\DateDAO as DateDAO;
+    use Models\Date;
 use Models\Keeper;
 use Models\Availability;
 use Models\Owner as Owner;
@@ -11,6 +13,12 @@ use Models\Owner as Owner;
     {
         private $ownerList = array();
         private $filename = ROOT.'Data/owners.json';
+        private $dateDAO;
+
+        function __construct()
+        {
+            $this->dateDAO = new DateDAO();
+        }
 
         public function add(Owner $owner){
            
@@ -38,6 +46,9 @@ use Models\Owner as Owner;
                  $jsonToDecode = file_get_contents($this->filename);
  
                  $jsonArray = ($jsonToDecode) ? json_decode($jsonToDecode,true) : array();
+
+                 //populate array of all dates:
+                 $dateArray = $this->dateDAO->getAll();
  
                  foreach($jsonArray as $value)
                  {
@@ -73,6 +84,12 @@ use Models\Owner as Owner;
                         $availability->setDaysOfWeek($value['daysOfWeek']);
 
                         $newOwner->setAvailability($availability);
+
+                        $auxId = $newOwner->getId();
+                        $keeperDateArray = array_filter($dateArray,function ($date) use($auxId){
+                            return $date->getKeeperId() == $auxId;
+                        });
+                        $newOwner->setDateArray($keeperDateArray);
                     }
                      array_push($this->ownerList,$newOwner);
                      
