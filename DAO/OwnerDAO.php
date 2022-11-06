@@ -13,7 +13,12 @@ use Models\Owner as Owner;
     {
         private $ownerList = array();
         private $filename = ROOT.'Data/owners.json';
-        private $dateDAO = new DateDAO();
+        private $dateDAO;
+
+        function __construct()
+        {
+            $this->dateDAO = new DateDAO();
+        }
 
         public function add(Owner $owner){
            

@@ -100,7 +100,7 @@ use Models\Owner;
     <script type="text/javascript">
         $(function() {
             $('#datepicker').datepicker({
-                format: 'dd-M-yyyy',
+                format: 'yyyy-mm-dd',
                 lan:'en',
                 multidate: true
             });
@@ -118,14 +118,20 @@ use Models\Owner;
           </thead>
           <tbody>
           <?php // ---------------------------------------- If a date and pet are entered: (filters keepers by date)
+          $keepersToShow = 0;
+
           if (isset($_POST['date']) && isset($_POST['pets']))
           {
+            echo $_POST['date'];
+            echo $_POST['pets'];
+
             $string = $_POST['date'];
 
             $dateStringArray = explode(',',$string);
 
             foreach ($keepersList as $keeper) {
               if($keeper->getUserRole() == 2){
+                $counterAux=0;
                 foreach ($dateStringArray as $dateString) // cycling through the chosen dates to search
                 {
                   $flag = 0;
@@ -134,6 +140,7 @@ use Models\Owner;
                     if ($date->getDate() === $dateString && $date->getStatus() === 'Available')
                     {
                       $flag = 1;
+                      $counterAux++;
                       break;
                     }
                   }
@@ -142,7 +149,8 @@ use Models\Owner;
                     break;
                   }
                 }
-                
+                if ($counterAux == count($dateStringArray)){
+                  $keepersToShow++;
           ?>    <tr>
                   <td><?php echo $keeper->getname() . ' ' . $keeper->getLastName()?></td>
                   <td><?php echo $keeper->getPetSize() ?></td>
@@ -158,13 +166,13 @@ use Models\Owner;
                   <button type="submit" class="btn" value=""> Remove </button>
                 </td> -->
               </tr><?php
-              }
+              }}
             }
 
           }else{ // ---------------------------------------- if no date or pet is entered: (shows all keepers)
             foreach ($keepersList as $keeper) {
               if($keeper->getUserRole() == 2){
-          
+                $keepersToShow++;
                 
           ?>    <tr>
                   <td><?php echo $keeper->getname() . ' ' . $keeper->getLastName()?></td>
@@ -182,7 +190,16 @@ use Models\Owner;
                 </td> -->
               </tr><?php
               }
-            }}?> 
+            }}
+            
+            if ($keepersToShow == 0)
+            { ?>
+              <tr>
+                  <td colspan="4">There are no Keepers available right now :(</td>
+              </tr> 
+                           <?php
+            }
+            ?> 
           </tbody>
         </table></form> 
       </div>
