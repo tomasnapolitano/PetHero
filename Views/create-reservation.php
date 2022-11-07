@@ -19,7 +19,7 @@
 <main class="container clear"> 
     <div class="content"> 
       <div id="comments" >
-        <h2>ADD NEW PET</h2>
+        <h2>Creating Reservation</h2>
         <form action="<?php echo  FRONT_ROOT."Reservation/Add"?>" method="post" enctype="multipart/form-data" style="background-color: #EAEDED;padding: 2rem !important;">
           <table> 
             <thead>
@@ -55,9 +55,9 @@
                 </td>   
                 <td>
                   <form action="Reservation/add" method="post">
-                  <input type="hidden" value="<?php echo $keeper; ?>" name="keeper"/>
-                  <input type="hidden" value="<?php echo $pet;?>" name="pet"/>
-                  <input type="hidden" value="<?php echo $dateStringArray;?>" name="dateStringArray"/>
+                  <input type="hidden" value="<?php echo $keeper->GetId(); ?>" name="keeperId"/>
+                  <input type="hidden" value="<?php echo $pet->GetId();?>" name="petId"/>
+                  <input type="hidden" value="<?php echo implode(",",$dateStringArray);?>" name="dateString"/>
                   
                   <button type="submit" class="btn" value=""> Confirm Reservation </button>
                   </form>
@@ -69,7 +69,7 @@
           
         </form>
 
-        <?php if ($message!==""){
+        <?php if ($message!=="" && $message!==1 && $message!==2 && strpos($message,"-")!==false){
                 echo $message;
               }
               ?>

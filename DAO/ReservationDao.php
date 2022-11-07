@@ -61,10 +61,10 @@
             foreach($this->reservationList as $reservation)
             {
                 $value = array();
-                $value['ownerId'] = $reservation->getOwner();
-                $value['keeperId'] = $reservation->getKeeper();
-                $value['petId'] = $reservation->getPet();
-                $value['dateIdList'] = $reservation->getDateList();
+                $value['ownerId'] = $reservation->getOwnerId();
+                $value['keeperId'] = $reservation->getKeeperId();
+                $value['petId'] = $reservation->getPetId();
+                $value['dateIdList'] = $reservation->getDateIdList();
                 $value['amount'] = $reservation->getAmount();
                 $value['isAccepted'] = $reservation->getIsAccepted();
 

@@ -27,12 +27,15 @@
             $this->homeController = new homeController();
 		}
 
-        public function add($keeper, $pet, $dateStringArray)
+        public function add($keeperId, $petId, $dateString)
 		{
 			require_once(VIEWS_PATH . "validate-session.php");
 			$reservation = new Reservation();
             $owner = $_SESSION['loggedUser'];
             $isAccepted = null;
+            $keeper = $this->keeperController->GetById($keeperId);
+            $pet = $this->petController->SearchById($petId);
+            $dateStringArray = explode(",",$dateString);
 
 			$reservation->setOwnerId($owner->GetId());
 			$reservation->setKeeperId($keeper->GetId());
