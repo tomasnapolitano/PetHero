@@ -134,7 +134,7 @@ use Models\Owner;
                   }?></td>
                   <?php if (isset($_POST['pets']) && isset($_POST['date']))
                     { ?>
-                    <td>
+                    <td style="width: 10%;">
                  <form action="<?php echo FRONT_ROOT . "Reservation/ShowCreateReservationView" ?>" method="post">
                   <input type="hidden" value="<?php echo $keeper->getId(); ?>" name="keeperId"/>
                   <input type="hidden" value="<?php echo $_POST['pets'];?>" name="petId"/>
