@@ -156,7 +156,7 @@ use Models\Owner;
             ?> 
           </tbody>
         </table></form> 
-        <?php if ($message!==""){
+        <?php if ($message!=="" && $message!==1 && $message!==2 && strpos($message,"-")==false){
                 echo $message;
               }
               ?>

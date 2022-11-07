@@ -49,4 +49,8 @@
     <a href="<?php echo FRONT_ROOT . "Keeper/ShowRegisterView"?>">Be a Keeper!</a>
     <?php } ?>
   </div>
+  <?php if ($message!=="" && $message!==1 && $message!==2 && strpos($message,"-")==false){
+                echo $message;
+              }
+              ?>
 </div>
