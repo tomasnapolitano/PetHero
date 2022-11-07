@@ -54,8 +54,11 @@
                   <?php echo $keeper->getPrice() * count($dateStringArray)?>
                 </td>   
                 <td>
-                  <form action="" method="post">
-
+                  <form action="Reservation/add" method="post">
+                  <input type="hidden" value="<?php echo $keeper; ?>" name="keeper"/>
+                  <input type="hidden" value="<?php echo $pet;?>" name="pet"/>
+                  <input type="hidden" value="<?php echo $dateStringArray;?>" name="dateStringArray"/>
+                  
                   <button type="submit" class="btn" value=""> Confirm Reservation </button>
                   </form>
                 </td>        
