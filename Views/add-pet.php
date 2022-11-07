@@ -31,7 +31,7 @@
                 <th>Vaccine Plan</th>
                 <th>Vaccine Plan Observations</th>
                 <th>Picture</th>
-                <th>Video</th>
+                <th>Gif Video</th>
               </tr>
             </thead>
             <tbody align="center">

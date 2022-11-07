@@ -132,7 +132,7 @@ use Models\Owner;
                     echo $day . " "; 
                     
                   }?></td>
-                  <?php if (isset($_POST['pets']) && isset($_POST['date']))
+                  <?php if (isset($_POST['pets']) && isset($_POST['date']) && $_POST['pets']!=="0")
                     { ?>
                     <td style="width: 10%;">
                  <form action="<?php echo FRONT_ROOT . "Reservation/ShowCreateReservationView" ?>" method="post">

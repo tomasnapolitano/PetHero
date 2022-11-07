@@ -22,7 +22,7 @@
             $this->validation = new ValidationController();
         }
 
-        public function Add($email,$userName,$password,$name,$lastName,$avatar)
+        public function Add($email,$userName,$password,$name,$lastName,$avatar = null)
         {
             //require_once(VIEWS_PATH."validate-session.php");
 
@@ -73,7 +73,7 @@
             require_once(VIEWS_PATH."login.php");
         }
 
-        public function ShowHomeView()
+        public function ShowHomeView($message = "")
         {
             require_once(VIEWS_PATH."validate-session.php");
             require_once(VIEWS_PATH."home.php");
@@ -93,7 +93,7 @@
           $keepersList = $this->ownerDAO->getAll();
 
 
-          if (isset($_POST['date']) && isset($_POST['pets']))
+          if (isset($_POST['date']) && isset($_POST['pets']) && $_POST['pets']!=="0")
           {
             //echo $_POST['date'];
             //echo $_POST['pets'];
@@ -132,7 +132,7 @@
           }else{ // ---------------------------------------- if no date or pet is entered: (shows all keepers)
 
             $keepersToShow = array_filter($keepersList,function($keeperToShow) {
-                return $keeperToShow->getUserRole() == 2;
+                return ($keeperToShow->getUserRole() == 2 && $keeperToShow->GetId() !== $_SESSION['loggedUser']->GetId());
             });
             
         }

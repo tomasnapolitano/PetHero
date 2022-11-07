@@ -40,7 +40,7 @@
               <th style="width: 12%;">Picture</th>
               <th style="width: 12%;">VacPlan</th>
               <th style="width: 12%;">VacObs</th>
-              <th style="width: 12%;">Video</th>
+              <th style="width: 12%;">Gif Video</th>
             </tr>
           </thead>
           <tbody>
@@ -74,7 +74,7 @@
                          if(!isset($counter) || $counter == 0)
                          { ?>
                            <tr>
-                               <td colspan="7">You have not entered any Pets yet! Head over to "Add Pet" menu.</td>
+                               <td colspan="8">You have not entered any Pets yet! Head over to "Add Pet" menu.</td>
                            </tr>   
 
                          <?php } ?>
