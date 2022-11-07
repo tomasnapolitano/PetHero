@@ -9,7 +9,7 @@
     class ReservationDAO implements IReservationDAO {
         private $reservationList = array();
         private $filename = ROOT.'Data/Reservations.json';
-        private $ReservationDAO;
+        
 
 
         public function add(Reservation $reservation){
@@ -42,12 +42,12 @@
                  foreach($jsonArray as $value)
                  {
                     $newReservation = new Reservation();
-                    $newReservation->setOwner($value['Owner']);
-                    $newReservation->setKeeper($value['Keeper']);
-                    $newReservation->setPet($value['Pet']);
-                    $newReservation->setDateList($value['DateList']);
-                    $newReservation->setAmount($value['Amount']);
-                    $newReservation->setIsAccepted($value['IsAccepted']);
+                    $newReservation->setOwnerId($value['ownerId']);
+                    $newReservation->setKeeperId($value['keeperId']);
+                    $newReservation->setPetId($value['petId']);
+                    $newReservation->setDateIdList($value['dateIdList']);
+                    $newReservation->setAmount($value['amount']);
+                    $newReservation->setIsAccepted($value['isAccepted']);
                 
                     array_push($this->reservationList,$newReservation);
                  }
@@ -61,12 +61,12 @@
             foreach($this->reservationList as $reservation)
             {
                 $value = array();
-                $value['Owner'] = $reservation->getOwner();
-                $value['Keeper'] = $reservation->getKeeper();
-                $value['Pet'] = $reservation->getPet();
-                $value['DateList'] = $reservation->getDateList();
-                $value['Amount'] = $reservation->getAmount();
-                $value['IsAccepted'] = $reservation->getIsAccepted();
+                $value['ownerId'] = $reservation->getOwner();
+                $value['keeperId'] = $reservation->getKeeper();
+                $value['petId'] = $reservation->getPet();
+                $value['dateIdList'] = $reservation->getDateList();
+                $value['amount'] = $reservation->getAmount();
+                $value['isAccepted'] = $reservation->getIsAccepted();
 
                 array_push($jsonArray,$value);
             }
