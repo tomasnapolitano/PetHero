@@ -104,7 +104,7 @@
             $dateStringArray = explode(',',$string);
 
             foreach ($keepersList as $keeper) {
-              if($keeper->getUserRole() == 2){
+              if($keeper->getUserRole() == 2 && $keeper->getId() !== $_SESSION['loggedUser']->GetId()){
                 $counterAux=0;
                 foreach ($dateStringArray as $dateString) // cycling through the chosen dates to search
                 {
