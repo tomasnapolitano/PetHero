@@ -33,6 +33,7 @@
 			$reservation = new Reservation();
             $owner = $_SESSION['loggedUser'];
             $isAccepted = null;
+
             $keeper = $this->keeperController->GetById($keeperId);
             $pet = $this->petController->SearchById($petId);
             $dateStringArray = explode(",",$dateString);
@@ -40,8 +41,10 @@
 			$reservation->setOwnerId($owner->GetId());
 			$reservation->setKeeperId($keeper->GetId());
 			
+
 			$reservation->setPetId($pet->GetId());
 			$reservation->setAmount($keeper->getPrice()*count($dateStringArray));
+
 			$reservation->setIsAccepted($isAccepted);	
 
             $this->reservationDAO->Add($reservation);
