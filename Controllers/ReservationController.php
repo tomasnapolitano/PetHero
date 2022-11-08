@@ -38,11 +38,11 @@
             $pet = $this->petController->SearchById($petId);
             $dateStringArray = explode(",",$dateString);
 
-			$reservation->setOwnerId($owner->GetId());
-			$reservation->setKeeperId($keeper->GetId());
+			$reservation->setOwner($owner);
+			$reservation->setKeeper($keeper);
 			
 
-			$reservation->setPetId($pet->GetId());
+			$reservation->setPet($pet);
 			$reservation->setAmount($keeper->getPrice()*count($dateStringArray));
 
 			$reservation->setIsAccepted($isAccepted);	

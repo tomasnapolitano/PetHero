@@ -82,5 +82,17 @@
         "size": "medium",
         "vacPlan": "mariano19Augusto-VAC.jpg",
         "vacObs": "Tiene todas las vacunas"
+    },
+    {
+        "id": 8,
+        "name": "Uvedoble",
+        "picture": "pepitronixUvedoble.jpg",
+        "petSpecies": "1",
+        "video": "pepitronixUvedoble-VID.gif",
+        "ownerId": 4,
+        "breed": "Chihuahua",
+        "size": "small",
+        "vacPlan": "pepitronixUvedoble-VAC.jpg",
+        "vacObs": "observaciones magicas"
     }
 ]

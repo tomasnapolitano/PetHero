@@ -4,18 +4,18 @@ namespace Models;
 class Reservation
 {
     private $id;
-    private $ownerId;
-    private $keeperId;
-    private $petId;
+    private $owner;
+    private $keeper;
+    private $pet;
     private $dateIdList;
     private $amount;
     private $isAccepted;
 
-    public function _construct($ownerId = NULL, $keeperId = NULL, $petId = NULL, $dateIdList = NULL, $amount = NULL, $isAccepted = null)
+    public function _construct($owner = NULL, $keeper = NULL, $pet = NULL, $dateIdList = NULL, $amount = NULL, $isAccepted = null)
     {
-        $this->ownerId = $ownerId;
-        $this->keeperId = $keeperId;
-        $this->petId = $petId;
+        $this->owner = $owner;
+        $this->keeper = $keeper;
+        $this->pet = $pet;
         $this->dateIdList = $dateIdList;
         $this->amount = $amount;
         $this->isAccepted = $isAccepted;
@@ -24,14 +24,14 @@ class Reservation
     public function getId(){ return $this->id; }
     public function setId($id): self { $this->id = $id; return $this; }
 
-    public function getOwnerId(){ return $this->ownerId; }
-    public function setOwnerId($ownerId): self { $this->ownerId = $ownerId; return $this; }
+    public function getOwner(){ return $this->owner; }
+    public function setOwner($owner): self { $this->owner = $owner; return $this; }
 
-    public function getKeeperId(){ return $this->keeperId; }
-    public function setKeeperId($keeperId): self { $this->keeperId = $keeperId; return $this; }
+    public function getKeeper(){ return $this->keeper; }
+    public function setKeeper($keeper): self { $this->keeper = $keeper; return $this; }
 
-    public function getPetId(){ return $this->petId; }
-    public function setPetId($petId): self { $this->petId = $petId; return $this; }
+    public function getPet(){ return $this->pet; }
+    public function setPet($pet): self { $this->pet = $pet; return $this; }
 
     public function getDateIdList(){ return $this->dateIdList; }
     public function setDateIdList($dateIdList): self { $this->dateIdList = $dateIdList; return $this; }
