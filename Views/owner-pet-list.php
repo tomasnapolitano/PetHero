@@ -56,7 +56,7 @@
                                 ?>
                               <tr>
                                    <td><?php echo $pet->getName() ?></td>
-                                   <td><?php echo $pet->getPetSpecies() ?></td>
+                                   <td><?php if($pet->getPetSpecies() == 1){echo "Dog";}else if ($pet->getPetSpecies() == 2){echo "Cat";} ?></td>
                                    <td><?php echo $pet->getBreed() ?></td>
                                    <td><?php echo $pet->getSize() ?></td>
                                    <td><img src="<?php echo FRONT_ROOT.IMG_PATH.$pet->getPicture(); ?>" alt= "No hay imagen." style="width: 100px;"></td>

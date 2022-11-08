@@ -70,5 +70,17 @@
         "size": "Large",
         "vacPlan": "testinsonUranio-VAC.jpg",
         "vacObs": "vaccinated"
+    },
+    {
+        "id": 7,
+        "name": "Augusto",
+        "picture": "mariano19Augusto.jpg",
+        "petSpecies": "2",
+        "video": "mariano19Augusto-VID.gif",
+        "ownerId": 3,
+        "breed": "gris",
+        "size": "medium",
+        "vacPlan": "mariano19Augusto-VAC.jpg",
+        "vacObs": "Tiene todas las vacunas"
     }
 ]

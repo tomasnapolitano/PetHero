@@ -26,15 +26,40 @@
         "name": "Johnny",
         "lastName": "Test",
         "avatar": null,
-        "userRole": 1
+        "userRole": 2,
+        "petSize": "medium",
+        "price": "1500",
+        "startDate": "2022-11-09",
+        "endDate": "2022-11-10",
+        "daysOfWeek": [
+            "Wednesday"
+        ]
     },
     {
         "id": 3,
         "userName": "mariano19",
-        "email": "asda@sd.com",
+        "email": "dd@gam.com",
         "password": "123123",
         "name": "Mariano",
         "lastName": "Morales",
+        "avatar": null,
+        "userRole": 2,
+        "petSize": "small",
+        "price": "2000",
+        "startDate": "2022-11-09",
+        "endDate": "2022-11-30",
+        "daysOfWeek": [
+            "Wednesday",
+            "Saturday"
+        ]
+    },
+    {
+        "id": 4,
+        "userName": "pepitronix",
+        "email": "asda@sd.com",
+        "password": "123123",
+        "name": "Pepi",
+        "lastName": "pepsi",
         "avatar": null,
         "userRole": 1
     }
