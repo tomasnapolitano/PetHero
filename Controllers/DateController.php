@@ -59,10 +59,12 @@ use Models\Availability as Availability;
             $interval = DateInterval::createFromDateString('1 day');
             $period = new DatePeriod($beginDate,$interval,$endDate);
 
+            $counter = 0;
             foreach ($period as $day)
             {
                 if(!empty($availability->getDaysOfWeek()) && in_array(date_format($day,'l'),$availability->getDaysOfWeek()))
                 {
+                    $counter++;
                     $newDate = new Date();
                     $newDate->setDate(date_format($day,'Y-m-d'));
                     $newDate->setStatus("Available");
@@ -73,6 +75,10 @@ use Models\Availability as Availability;
                 }
             }
 
+            if ($counter==0)
+            {
+                return false;
+            }
         }
     }
 ?>
