@@ -106,5 +106,17 @@
         "size": "small",
         "vacPlan": "andromeda102Gato-VAC.jpg",
         "vacObs": "Todas las vacunas"
+    },
+    {
+        "id": 10,
+        "name": "Pepo",
+        "picture": "cris333Pepo.jpg",
+        "petSpecies": "2",
+        "video": "cris333Pepo-VID.gif",
+        "ownerId": 9,
+        "breed": "Siames",
+        "size": "small",
+        "vacPlan": "cris333Pepo-VAC.jpg",
+        "vacObs": "Todas las vacunas.-"
     }
 ]

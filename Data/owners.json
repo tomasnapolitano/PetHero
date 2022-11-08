@@ -129,5 +129,15 @@
         "lastName": "Medini",
         "avatar": null,
         "userRole": 1
+    },
+    {
+        "id": 9,
+        "userName": "cris333",
+        "email": "crishalm@gmail.com",
+        "password": "123123",
+        "name": "Cris",
+        "lastName": "Halm",
+        "avatar": null,
+        "userRole": 1
     }
 ]
