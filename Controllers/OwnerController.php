@@ -28,7 +28,7 @@
 
            // if ($this->GetByUserName($userName) !== null)
             // {
-            if ($this->validation->validateEmailExists($email)){
+            if (!$this->validateEmailExists($email)){
               if ($this->validation->validateUserName($userName))
                   {
                       $owner = new Owner();
@@ -43,7 +43,7 @@
                                       $owner->setName($name);
                                       $owner->setLastName($lastName);
                                       $owner->setEmail($email);
-                                     $owner->setAvatar($avatar);
+                                      $owner->setAvatar($avatar);
                                       $owner->setPetList(array());
                                       $owner->setUserRole(1);
                 
@@ -56,7 +56,7 @@
                   } else { $this->ShowRegisterView("Username is not valid. Try again.");}
 
              // } else { $this->ShowRegisterView("Username is already taken. Try a different one."); }
-                } else { $this->ShowRegisterView("Email already registered.");}
+            } else { $this->ShowRegisterView("Email already registered.");}
             $this->ShowLoginView();
 
         }
@@ -143,9 +143,15 @@
             require_once(VIEWS_PATH."keeper-list.php");
         }
 
-        public function GetAll()
-        {
-          return $this->ownerDAO->getAll();
-        }
+        public function validateEmailExists($email){
+          $ownerList = $this->GetAll();
+
+          foreach($ownerList as $owner){
+              if($email == $owner->getEmail()){
+                  return true;
+              }
+          }
+          return false;
+      }
     }
 ?>

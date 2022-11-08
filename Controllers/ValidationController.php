@@ -5,13 +5,6 @@
 
     class ValidationController {
 
-        private $ownerController;
-
-        function __construct()
-        {
-            $this->ownerController = new OwnerController();
-        }
-
         public function validateUserName($userName)
         {
             if(preg_match('/^[a-z][0-9a-z_.]{4,23}[0-9a-z]$/', $userName))
@@ -44,17 +37,6 @@
               */  
               return true;
             }else{ return false; };
-        }
-
-        public fuction validateEmailExists($email){
-            $ownerList = $this->OwnerController->GetAll();
-
-            foreach($ownerList as $owner){
-                if($email == $owner->getEmail()){
-                    return true
-                }
-            }
-            return false
         }
     }
 ?>
