@@ -26,9 +26,10 @@
         {
             //require_once(VIEWS_PATH."validate-session.php");
 
-           // if ($this->GetByUserName($userName) !== null)
-            // {
-            if (!$this->validateEmailExists($email)){
+          if (!$this->validateEmailExists($email))
+          {
+           if ($this->GetByUserName($userName) == null)
+            {
               if ($this->validation->validateUserName($userName))
                   {
                       $owner = new Owner();
@@ -55,14 +56,14 @@
 
                   } else { $this->ShowRegisterView("Username is not valid. Try again.");}
 
-             // } else { $this->ShowRegisterView("Username is already taken. Try a different one."); }
-            } else { $this->ShowRegisterView("Email already registered.");}
+            } else { $this->ShowRegisterView("Username is already taken. Try a different one."); }
+          } else { $this->ShowRegisterView("Email already registered.");}
             $this->ShowLoginView();
 
         }
 
         public function GetByUserName ($userName){
-            $this->ownerDAO->GetByUserName($userName);
+            return $this->ownerDAO->GetByUserName($userName);
         }
 
         public function ShowRegisterView($message = ""){
@@ -147,7 +148,7 @@
           $ownerList = $this->GetAll();
 
           foreach($ownerList as $owner){
-              if($email == $owner->getEmail()){
+              if($email === $owner->getEmail()){
                   return true;
               }
           }

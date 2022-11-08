@@ -27,5 +27,15 @@
         "lastName": "Test",
         "avatar": null,
         "userRole": 1
+    },
+    {
+        "id": 3,
+        "userName": "mariano19",
+        "email": "asda@sd.com",
+        "password": "123123",
+        "name": "Mariano",
+        "lastName": "Morales",
+        "avatar": null,
+        "userRole": 1
     }
 ]
