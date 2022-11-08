@@ -1,6 +1,7 @@
 <?php 
  include('header.php');
  include('nav-bar.php');
+ $counter = 0;
 ?>
 <!-- ################################################################################################ -->
 <div class="wrapper row2 bgded" style="background-image:url('../images/demo/backgrounds/1.png');">
@@ -49,8 +50,7 @@
                   
           
           
-          <?php foreach ($petList as $pet) { 
-                              $counter = 0;
+          <?php foreach ($petList as $pet) {
                               if($pet->getOwnerId() == $_SESSION['loggedUser']->getId()){
                                 $counter++;
                                 ?>
