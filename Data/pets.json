@@ -22,5 +22,53 @@
         "size": "medium",
         "vacPlan": "napocapoTomas-VAC.jpg",
         "vacObs": "asdasdasd"
+    },
+    {
+        "id": 3,
+        "name": "Jorge",
+        "picture": "testinsonJorge.jpg",
+        "petSpecies": "1",
+        "video": "testinsonJorge-VID.gif",
+        "ownerId": 2,
+        "breed": "Golden Retriever",
+        "size": "Large",
+        "vacPlan": "testinsonJorge-VAC.jpg",
+        "vacObs": "Tiene todas las vacunas."
+    },
+    {
+        "id": 4,
+        "name": "Benito",
+        "picture": "testinsonBenito.jpg",
+        "petSpecies": "2",
+        "video": "testinsonBenito-VID.gif",
+        "ownerId": 2,
+        "breed": "Siames",
+        "size": "small",
+        "vacPlan": "testinsonBenito-VAC.jpg",
+        "vacObs": "No tiene ninguna."
+    },
+    {
+        "id": 5,
+        "name": "Eduardo",
+        "picture": "testinsonEduardo.jpg",
+        "petSpecies": "2",
+        "video": "testinsonEduardo-VID.gif",
+        "ownerId": 2,
+        "breed": "Canion",
+        "size": "small",
+        "vacPlan": "testinsonEduardo-VAC.jpg",
+        "vacObs": "Vacunado 100%"
+    },
+    {
+        "id": 6,
+        "name": "Uranio",
+        "picture": "testinsonUranio.jpg",
+        "petSpecies": "2",
+        "video": "testinsonUranio-VID.gif",
+        "ownerId": 2,
+        "breed": "Garfield",
+        "size": "Large",
+        "vacPlan": "testinsonUranio-VAC.jpg",
+        "vacObs": "vaccinated"
     }
 ]

@@ -8,6 +8,7 @@
     use Controllers\KeeperController;
     use Controllers\PetController;
     use Controllers\OwnerController;
+    use Controllers\homeController;
     use DAO\ReservationDAO;
 
     class ReservationController {
@@ -15,6 +16,7 @@
         private $keeperController;
         private $ownerController;
         private $petController;
+        private $homeController;
 
         public function __construct()
 		{
@@ -22,29 +24,38 @@
             $this->keeperController = new KeeperController();
             $this->petController = new PetController();
             $this->ownerController = new OwnerController();
+            $this->homeController = new homeController();
 		}
 
-        public function add($keeper, $pet, $dateList)
+        public function add($keeperId, $petId, $dateString)
 		{
 			require_once(VIEWS_PATH . "validate-session.php");
 			$reservation = new Reservation();
             $owner = $_SESSION['loggedUser'];
             $isAccepted = null;
-            $amount = calculateTotalPrice($keeper, $dateList)
 
-			$reservation->setOwner($owner->getId());
-			$reservation->setKeeper($keeper);
+            $keeper = $this->keeperController->GetById($keeperId);
+            $pet = $this->petController->SearchById($petId);
+            $dateStringArray = explode(",",$dateString);
+
+			$reservation->setOwnerId($owner->GetId());
+			$reservation->setKeeperId($keeper->GetId());
 			
-			$reservation->setPet($pet);
-			$reservation->setAmount($amount);
+
+			$reservation->setPetId($pet->GetId());
+			$reservation->setAmount($keeper->getPrice()*count($dateStringArray));
+
 			$reservation->setIsAccepted($isAccepted);	
 
-            $this->ReservationDAO->Add($reservation);
+            $this->reservationDAO->Add($reservation);
+
+            $this->homeController->ShowHomeView("Reservation placed succesfully! Remember: Reservation must be confirmed by keeper.");
 		}
 
         public function ShowCreateReservationView($message = "")
         {
             require_once(VIEWS_PATH . "validate-session.php");
+
 
             if (isset($_POST['keeperId']) && isset($_POST['petId']) && isset($_POST['reservationDate'])){
           
@@ -61,6 +72,13 @@
                 $this->ownerController->ShowKeeperListView("Error en el envio de datos!");
             }
 
+        }
+
+        public function ShowReservationListView()
+        {
+            $reservationList = $this->reservationDAO->getAll();
+            require_once(VIEWS_PATH."validate-session.php");
+            require_once(VIEWS_PATH."reservation-list.php");
         }
     }
  ?>

@@ -18,7 +18,7 @@
         }        
 
 
-        public function ShowHomeView()
+        public function ShowHomeView($message = "")
         {
             require_once(VIEWS_PATH."validate-session.php");
             require_once(VIEWS_PATH."home.php");

@@ -19,7 +19,7 @@
 <main class="container clear"> 
     <div class="content"> 
       <div id="comments" >
-        <h2>ADD NEW PET</h2>
+        <h2>Creating Reservation</h2>
         <form action="<?php echo  FRONT_ROOT."Reservation/Add"?>" method="post" enctype="multipart/form-data" style="background-color: #EAEDED;padding: 2rem !important;">
           <table> 
             <thead>
@@ -36,45 +36,40 @@
             <tbody align="center">
               <tr>
                 <td style="max-width: 100px;">
-                  <input type="text" name="name" size="20" required>
+                  <?php echo $pet->GetName()?>
                 </td>
                 <td>
-                <select name="petSpecies" required>
-                    <option value="1">Dog</option> 
-                    <option value="2">Cat</option> 
-                </select> 
+                <?php echo $pet->getPetSpecies()?> 
                 </td>
                 <td>
-                  <input type="text" name="breed" size="20" required>
+                  <?php echo $pet->getBreed()?>
                 </td>     
                 <td>
-                <select name="size" required>
-                    <option value="small">Small</option> 
-                    <option value="medium">Medium</option> 
-                    <option value="Large">Large</option>
-                </select> 
+                <?php echo $pet->getSize()?>
                 </td>
                 <td>
-                  <input type="file" name="vacPlan" />
+                  <?php echo $keeper->getName() . " " . $keeper->getLastName()?>
                 </td>         
                 <td>
-                <textarea name="vacObs" cols="45" rows="3"></textarea>
+                  <?php echo $keeper->getPrice() * count($dateStringArray)?>
                 </td>   
                 <td>
-                  <input type="file" name="picture" />
+                  <form action="Reservation/add" method="post">
+                  <input type="hidden" value="<?php echo $keeper->GetId(); ?>" name="keeperId"/>
+                  <input type="hidden" value="<?php echo $pet->GetId();?>" name="petId"/>
+                  <input type="hidden" value="<?php echo implode(",",$dateStringArray);?>" name="dateString"/>
+                  
+                  <button type="submit" class="btn" value=""> Confirm Reservation </button>
+                  </form>
                 </td>        
-                <td>
-                  <input type="file" name="video" />
-                </td>         
+                     
               </tr>
               </tbody>
           </table>
-          <div>
-            <input type="submit" class="btn" value="Agregar" style="background-color:#DC8E47;color:white;"/>
-          </div>
+          
         </form>
 
-        <?php if ($message!==""){
+        <?php if ($message!=="" && $message!==1 && $message!==2 && strpos($message,"-")!==false){
                 echo $message;
               }
               ?>

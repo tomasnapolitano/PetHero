@@ -44,9 +44,15 @@
     <a href="<?php echo FRONT_ROOT . "Owner/ShowKeeperListView"?>">Search Keepers</a>
     <?php echo "|"?>  
     <a href="<?php echo FRONT_ROOT . "Pet/ShowPetList"?>">View My Pets</a>
+    <?php echo "|"?>  
+    <a href="<?php echo FRONT_ROOT . "Reservation/ShowReservationListView"?>">View My Reservations!</a>
     <?php if ($_SESSION['loggedUser']->getUserRole()!=2) { ?>
       <?php echo "|"?>  
     <a href="<?php echo FRONT_ROOT . "Keeper/ShowRegisterView"?>">Be a Keeper!</a>
     <?php } ?>
   </div>
+  <?php if ($message!=="" && $message!==1 && $message!==2){
+                echo $message;
+              }
+              ?>
 </div>

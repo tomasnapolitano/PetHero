@@ -132,9 +132,9 @@ use Models\Owner;
                     echo $day . " "; 
                     
                   }?></td>
-                  <?php if (isset($_POST['pets']) && isset($_POST['date']))
+                  <?php if (isset($_POST['pets']) && isset($_POST['date']) && $_POST['pets']!=="0")
                     { ?>
-                    <td>
+                    <td style="width: 10%;">
                  <form action="<?php echo FRONT_ROOT . "Reservation/ShowCreateReservationView" ?>" method="post">
                   <input type="hidden" value="<?php echo $keeper->getId(); ?>" name="keeperId"/>
                   <input type="hidden" value="<?php echo $_POST['pets'];?>" name="petId"/>
@@ -151,12 +151,12 @@ use Models\Owner;
               <tr>
                   <td colspan="4">There are no Keepers available right now :( . Consider changing the selected dates, or try again later!</td>
               </tr> 
-                           <?php
+            <?php
             }
             ?> 
           </tbody>
         </table></form> 
-        <?php if ($message!==""){
+        <?php if ($message!=="" && $message!==1 && $message!==2 && strpos($message,"-")==false){
                 echo $message;
               }
               ?>

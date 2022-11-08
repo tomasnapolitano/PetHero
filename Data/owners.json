@@ -17,5 +17,15 @@
             "Wednesday",
             "Thursday"
         ]
+    },
+    {
+        "id": 2,
+        "userName": "testinson",
+        "email": "test@gmail.com",
+        "password": "123123",
+        "name": "Johnny",
+        "lastName": "Test",
+        "avatar": null,
+        "userRole": 1
     }
 ]

@@ -63,7 +63,7 @@ use Models\Owner;
                     $pet->setSize($size);
                     $pet->setVacObs($vacObs);
                     
-                    $this->UploadFiles($owner,$pet);
+                    $message = $this->UploadFiles($owner,$pet);
                     //$dog->setVacPlan($vacPlan);
                     //$dog->setPicture($picture);
                     //$dog->setVideo($video);
@@ -75,14 +75,17 @@ use Models\Owner;
             } else { $this->ShowAddView("Name not valid. Try Again."); }
             
 
-            $this->ownerController->ShowHomeView();
+            $this->ownerController->ShowHomeView($message);
 
         }
 
 
         // todos los mensajes con ECHO hay que cambiarlos, para que se pasen por parámetro a la vista
         // para no romper con el modelo de capas.
-        private function UploadFiles(Owner $owner,Pet $pet){  
+        private function UploadFiles(Owner $owner,Pet $pet){ 
+            
+            $message = "";
+
             if (isset($_FILES['picture'])){
                 if($_FILES['picture']['error']==0){
                     $dir = IMG_PATH;
@@ -91,11 +94,11 @@ use Models\Owner;
                     $fileToAdd = $dir . $filename;
 
                     if(move_uploaded_file($_FILES['picture']['tmp_name'], $fileToAdd)){
-                        echo $_FILES['picture']['name'] . ' was uploaded and saved as '. $filename . '</br>';
+                        $message = $message . $_FILES['picture']['name'] . ' was uploaded and saved as '. $filename . '</br>';
                         $pet->setPicture($filename);
-                    }else{echo 'ERROR: Could not move Picture file. ';}
-                }else{echo 'ERROR: Could not upload Picture file. ';}
-            }else{echo 'ERROR: Could not find Picture file. ';}
+                    }else{$message = $message . 'ERROR: Could not move Picture file. ';}
+                }else{$message = $message .  'ERROR: Could not upload Picture file. ';}
+            }else{$message = $message .  'ERROR: Could not find Picture file. ';}
 
             if (isset($_FILES['vacPlan'])){
                 if($_FILES['vacPlan']['error']==0){
@@ -105,11 +108,11 @@ use Models\Owner;
                     $fileToAdd = $dir . $filename;
 
                     if(move_uploaded_file($_FILES['vacPlan']['tmp_name'], $fileToAdd)){
-                        echo $_FILES['vacPlan']['name'] . ' was uploaded and saved as '. $filename . '</br>';
+                        $message = $message .  $_FILES['vacPlan']['name'] . ' was uploaded and saved as '. $filename . '</br>';
                         $pet->setVacPlan($filename);
-                    }else{echo 'ERROR: Could not move VacPlan file. ';}
-                }else{echo 'ERROR: Could not upload VacPlan file. ';}
-            }else{echo 'ERROR: Could not find VacPlan file. ';}
+                    }else{$message = $message .  'ERROR: Could not move VacPlan file. ';}
+                }else{$message = $message .  'ERROR: Could not upload VacPlan file. ';}
+            }else{$message = $message .  'ERROR: Could not find VacPlan file. ';}
 
             if (isset($_FILES['video'])){
                 if($_FILES['video']['error']==0){
@@ -119,11 +122,13 @@ use Models\Owner;
                     $fileToAdd = $dir . $filename;
 
                     if(move_uploaded_file($_FILES['video']['tmp_name'], $fileToAdd)){
-                        echo $_FILES['video']['name'] . ' was uploaded and saved as '. $filename . '</br>';
+                        $message = $message .  $_FILES['video']['name'] . ' was uploaded and saved as '. $filename . '</br>';
                         $pet->setVideo($filename);
-                    }else{echo 'ERROR: Could not move video file. ';}
-                }else{echo 'ERROR: Could not upload video file. ';}
-            }else{echo 'ERROR: Could not find video file. ';}
+                    }else{$message = $message .  'ERROR: Could not move video file. ';}
+                }else{$message = $message .  'ERROR: Could not upload video file. ';}
+            }else{$message = $message .  'ERROR: Could not find video file. ';}
+            
+            return $message;
         }
     }
 ?>
