@@ -70,5 +70,12 @@
             }
 
         }
+
+        public function ShowReservationListView()
+        {
+            $reservationList = $this->reservationDAO->getAll();
+            require_once(VIEWS_PATH."validate-session.php");
+            require_once(VIEWS_PATH."reservation-list.php");
+        }
     }
  ?>
