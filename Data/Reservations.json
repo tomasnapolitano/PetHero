@@ -14,5 +14,13 @@
         "dateIdList": null,
         "amount": 1000,
         "isAccepted": null
+    },
+    {
+        "ownerId": 8,
+        "keeperId": 7,
+        "petId": 9,
+        "dateIdList": null,
+        "amount": 2000,
+        "isAccepted": null
     }
 ]

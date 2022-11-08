@@ -94,5 +94,17 @@
         "size": "small",
         "vacPlan": "pepitronixUvedoble-VAC.jpg",
         "vacObs": "observaciones magicas"
+    },
+    {
+        "id": 9,
+        "name": "Gato",
+        "picture": "andromeda102Gato.jpg",
+        "petSpecies": "2",
+        "video": "andromeda102Gato-VID.gif",
+        "ownerId": 8,
+        "breed": "Callejero",
+        "size": "small",
+        "vacPlan": "andromeda102Gato-VAC.jpg",
+        "vacObs": "Todas las vacunas"
     }
 ]

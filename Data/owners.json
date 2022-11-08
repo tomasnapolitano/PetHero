@@ -119,5 +119,15 @@
             "Tuesday",
             "Wednesday"
         ]
+    },
+    {
+        "id": 8,
+        "userName": "andromeda102",
+        "email": "andromeda@gmail.com",
+        "password": "123123",
+        "name": "Andro",
+        "lastName": "Medini",
+        "avatar": null,
+        "userRole": 1
     }
 ]
