@@ -62,5 +62,62 @@
         "lastName": "pepsi",
         "avatar": null,
         "userRole": 1
+    },
+    {
+        "id": 5,
+        "userName": "marmota44",
+        "email": "m@accenture.com",
+        "password": "123123",
+        "name": "Marmota",
+        "lastName": "Wisconsin",
+        "avatar": null,
+        "userRole": 2,
+        "petSize": "small",
+        "price": "1000",
+        "startDate": "2022-11-09",
+        "endDate": "2022-11-30",
+        "daysOfWeek": [
+            "Monday",
+            "Wednesday",
+            "Saturday"
+        ]
+    },
+    {
+        "id": 6,
+        "userName": "tucson33",
+        "email": "yy@gmail.com",
+        "password": "123123",
+        "name": "Tucan",
+        "lastName": "Williams",
+        "avatar": null,
+        "userRole": 2,
+        "petSize": "small",
+        "price": "1000",
+        "startDate": "2022-11-09",
+        "endDate": "2022-12-01",
+        "daysOfWeek": [
+            "Monday",
+            "Wednesday",
+            "Thursday"
+        ]
+    },
+    {
+        "id": 7,
+        "userName": "emicapa45",
+        "email": "emi@yahoo.com",
+        "password": "123123",
+        "name": "Emilia",
+        "lastName": "Capini",
+        "avatar": null,
+        "userRole": 2,
+        "petSize": "small",
+        "price": "1000",
+        "startDate": "2022-11-09",
+        "endDate": "2022-12-10",
+        "daysOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday"
+        ]
     }
 ]

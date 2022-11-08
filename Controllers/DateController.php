@@ -79,6 +79,7 @@ use Models\Availability as Availability;
             {
                 return false;
             }
+            return true;
         }
     }
 ?>

@@ -64,7 +64,7 @@ use Models\Availability;
             // building Availability:
             if($keeper->setAvailability($this->BuildAvailability()) !== null) 
             {
-                if($this->dateController->AddFromAvailability($keeper->getAvailability(),$keeper->getId()) != false)
+                if($this->dateController->AddFromAvailability($keeper->getAvailability(),$keeper->getId()) !== false)
                 {
                     $this->KeeperDAO->RemoveByUserName($owner->getUserName());
                     // saving keeper to DAO and setting them to active user:
