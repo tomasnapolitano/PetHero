@@ -4,9 +4,11 @@
     use DAO\IOwnerDAO as IOwnerDAO;
     use DAO\DateDAO as DateDAO;
     use Models\Date;
-use Models\Keeper;
-use Models\Availability;
-use Models\Owner as Owner;
+    use Models\Keeper;
+    use Models\Availability;
+    use Models\Owner as Owner;
+    use DAO\Connection as Connection;
+    use \Exception as Exception;
     
     
     class OwnerDAO implements IOwnerDAO
@@ -14,6 +16,8 @@ use Models\Owner as Owner;
         private $ownerList = array();
         private $filename = ROOT.'Data/owners.json';
         private $dateDAO;
+        //private $connection;
+        //private $tableName = "owner";
 
         function __construct()
         {
@@ -161,9 +165,64 @@ use Models\Owner as Owner;
             return (count($owners) > 0) ? $owners[0] : null;
         }
 
-    }
 
+                /*public function add(Owner $owner)
+        {
+            try
+                {
+                    $query = "INSERT INTO ".$this->tableName." (email, userName, password, name, lastName, avatar, userRole) VALUES (:userName, :email, :password, :name, :lastName :avatar :userRole);";
+                    
+                    $parameters["email"] = $owner->getEmail();
+                    $parameters["userName"] = $owner->getUserName();
+                    $parameters["password"] = $owner->getPassword();
+                    $parameters["name"] = $owner->getname();
+                    $parameters["lastname"] = $owner->getLastName();
+                    $parameters["avatar"] = $owner->getAvatar();
+                    $parameters["userRole"] = $owner->getUserRole();
+                    
     
+                    $this->connection = Connection::GetInstance();
+                    $this->connection->ExecuteNonQuery($query, $parameters);
+                }
+                catch(Exception $ex)
+                {
+                    throw $ex;
+                }
+        }
+    
+            public function getAll()
+        {
+            try
+            {
+                $ownerList = array();
+                $query = "SELECT * FROM ".$this->tableName;
+                $this->connection = Connection::GetInstance();
+                $resultSet = $this->connection->Execute($query);
+                
+                foreach ($resultSet as $row)
+                {                
+                    $owner = new Owner();
+                    $owner->setId($row["ownerId"]);
+                    $owner->setUserName($row["userName"]);
+                    $owner->setEmail($row["email"]);
+                    $owner->setPassword($row["password"]);
+                    $owner->setName($row["name"]);
+                    $owner->setLastName($row["lastName"]);
+                    $owner->setAvatar($row["avatar"]);
+                    $owner->setUserRole($row["userRole"]);
+    
+                    array_push($ownerList, $owner);
+                }
+    
+                return $ownerList;
+            }
+            catch(Exception $ex)
+            {
+                throw $ex;
+            }
+        }   */
 
+
+    }
 
 ?>
