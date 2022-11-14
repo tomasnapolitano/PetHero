@@ -166,6 +166,8 @@
         }
 
 
+        //BASE DE DATOS
+
                 /*public function add(Owner $owner)
         {
             try
@@ -220,7 +222,57 @@
             {
                 throw $ex;
             }
-        }   */
+        }   
+
+        public function remove($ownerId)
+        {
+            try
+            {
+                $remove = "DELETE FROM $this->tableName WHERE ownerId = '$ownerId'"; 
+                $this->connection = Connection::GetInstance();
+                $this->connection->ExecuteNonQuery($remove);
+            }
+            catch(Exception $ex)
+            {
+                throw $ex;
+            }
+        }
+
+        public function search($ownerId)
+        {
+            try
+            {
+                $search = "SELECT * FROM $this->tableName WHERE ownerId = '$ownerId'";
+                $this->connection = Connection::GetInstance();
+                $resultSet = $this->connection->Execute($search);
+                
+                foreach ($resultSet as $row)
+                {                
+                    $owner = new Owner();
+                    $owner->setEmail($row["email"]);
+                    $owner->setUserName($row["userName"]);
+                    $owner->setName($row["name"]);
+                    $owner->setLastName($row["lastName"]);
+                }
+
+                return $owner;
+            }
+            catch(Exception $ex)
+            {
+                throw $ex;
+            }
+        }
+
+        public function update($email, $userName, $name, $lastName, $ownerId)
+        {
+            $update = "UPDATE  $this->tableName 
+            SET enamil='$email', userName='$userName', name='$name', lastName='$lastName'
+            WHERE ownerId = '$ownerId'";
+
+            $this->connection = Connection::GetInstance();
+
+            $resultSet = $this->connection->ExecuteNonQuery($update);
+        }*/
 
 
     }
