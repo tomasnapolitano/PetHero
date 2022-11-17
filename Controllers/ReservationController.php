@@ -33,15 +33,18 @@
 			$reservation = new Reservation();
             $owner = $_SESSION['loggedUser'];
             $isAccepted = null;
+
             $keeper = $this->keeperController->GetById($keeperId);
             $pet = $this->petController->SearchById($petId);
             $dateStringArray = explode(",",$dateString);
 
-			$reservation->setOwnerId($owner->GetId());
-			$reservation->setKeeperId($keeper->GetId());
+			$reservation->setOwner($owner);
+			$reservation->setKeeper($keeper);
 			
-			$reservation->setPetId($pet->GetId());
+
+			$reservation->setPet($pet);
 			$reservation->setAmount($keeper->getPrice()*count($dateStringArray));
+
 			$reservation->setIsAccepted($isAccepted);	
 
             $this->reservationDAO->Add($reservation);
@@ -49,7 +52,7 @@
             $this->homeController->ShowHomeView("Reservation placed succesfully! Remember: Reservation must be confirmed by keeper.");
 		}
 
-        public function ShowCreateReservationView($message = "")
+        public function ShowCreateReservationView($keeperId, $petId, $reservationDate, $message = "")
         {
             require_once(VIEWS_PATH . "validate-session.php");
 
@@ -76,6 +79,41 @@
             $reservationList = $this->reservationDAO->getAll();
             require_once(VIEWS_PATH."validate-session.php");
             require_once(VIEWS_PATH."reservation-list.php");
+        }
+
+        public function ConfirmReservation($petId)
+        {
+
+            $reservationList = $this->reservationDAO->getAll();
+            foreach($reservationList as $reservation){
+
+            if ($_SESSION['loggedUser']->getId() == $reservation->getKeeper()->GetId() && $petId == $reservation->getPet()->getId())
+            {              
+                $reservation->setIsAccepted(1);
+                $this->reservationDAO->SaveData();   
+                require_once(VIEWS_PATH."reservation-list.php");          
+            }
+            }
+            
+           
+        }
+
+        public function RejectReservation($petId)
+        {
+        
+            $reservationList = $this->reservationDAO->getAll();
+            foreach($reservationList as $reservation){
+
+            if ($_SESSION['loggedUser']->getId() == $reservation->getKeeper()->GetId() && $petId == $reservation->getPet()->getId())
+            {
+                
+                $reservation->setIsAccepted(0);
+                $this->reservationDAO->SaveData();
+                
+            }
+            }
+            
+
         }
     }
  ?>

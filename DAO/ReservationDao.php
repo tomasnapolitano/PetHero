@@ -3,14 +3,25 @@
 
     use DAO\IReservationDAO as IReservationDAO;
     //use DAO\ReservationDAO as ReservationDAO;
+    use DAO\PetDAO as PetDAO;
+    use DAO\OwnerDAO as OwnerDAO;
+    use DAO\KeeperDAO as KeeperDAO;
     use Models\Reservation as Reservation;
     
     
     class ReservationDAO implements IReservationDAO {
         private $reservationList = array();
         private $filename = ROOT.'Data/Reservations.json';
+        private $petDAO;
+        private $ownerDAO;
+        private $keeperDAO;
         
-
+        function __construct()
+        {
+            $this->petDAO = new PetDAO();
+            $this->ownerDAO = new OwnerDAO();
+            $this->keeperDAO = new KeeperDAO();
+        }
 
         public function add(Reservation $reservation){
            
@@ -42,9 +53,9 @@
                  foreach($jsonArray as $value)
                  {
                     $newReservation = new Reservation();
-                    $newReservation->setOwnerId($value['ownerId']);
-                    $newReservation->setKeeperId($value['keeperId']);
-                    $newReservation->setPetId($value['petId']);
+                    $newReservation->setOwner($this->keeperDAO->GetById($value['ownerId']));
+                    $newReservation->setKeeper($this->keeperDAO->GetById($value['keeperId']));
+                    $newReservation->setPet($this->petDAO->searchById($value['petId']));
                     $newReservation->setDateIdList($value['dateIdList']);
                     $newReservation->setAmount($value['amount']);
                     $newReservation->setIsAccepted($value['isAccepted']);
@@ -61,9 +72,9 @@
             foreach($this->reservationList as $reservation)
             {
                 $value = array();
-                $value['ownerId'] = $reservation->getOwnerId();
-                $value['keeperId'] = $reservation->getKeeperId();
-                $value['petId'] = $reservation->getPetId();
+                $value['ownerId'] = $reservation->getOwner()->getId();
+                $value['keeperId'] = $reservation->getKeeper()->getId();
+                $value['petId'] = $reservation->getPet()->getId();
                 $value['dateIdList'] = $reservation->getDateIdList();
                 $value['amount'] = $reservation->getAmount();
                 $value['isAccepted'] = $reservation->getIsAccepted();

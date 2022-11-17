@@ -22,7 +22,7 @@ use Models\Availability;
             $this->dateController = new DateController();
         }
 
-        public function ShowRegisterView(){
+        public function ShowRegisterView($message = ""){
             require_once(VIEWS_PATH."validate-session.php");
             require_once(VIEWS_PATH."register-keeper.php");
         }
@@ -39,13 +39,12 @@ use Models\Availability;
             require_once(VIEWS_PATH."keeper-availability.php");
         }
 
-        public function Add($petSize,$price)
+        public function Add($petSize,$price, $startDate, $endDate, $daysOfWeek)
         {
             require_once(VIEWS_PATH."validate-session.php");
             $owner = new Owner();
             $owner = $_SESSION['loggedUser'];
-            $this->KeeperDAO->RemoveByUserName($owner->getUserName());
-
+            
             $keeper = new Keeper();
             
             $keeper->setId($owner->getId());
@@ -63,15 +62,16 @@ use Models\Availability;
             $keeper->setPrice($price);
             
             // building Availability:
-            $keeper->setAvailability($this->BuildAvailability());
-            
-            // saving keeper to DAO and setting them to active user:
-            $this->KeeperDAO->Add($keeper);
-            $_SESSION['loggedUser'] = $keeper;
-            
-            // building Dates:
-            $this->dateController->AddFromAvailability($keeper->getAvailability(),$keeper->getId());
-
+            if($keeper->setAvailability($this->BuildAvailability()) !== null) 
+            {
+                if($this->dateController->AddFromAvailability($keeper->getAvailability(),$keeper->getId()) !== false)
+                {
+                    $this->KeeperDAO->RemoveByUserName($owner->getUserName());
+                    // saving keeper to DAO and setting them to active user:
+                    $this->KeeperDAO->Add($keeper);
+                    $_SESSION['loggedUser'] = $keeper;
+                } else {$this->ShowRegisterView("Selected Weekdays are not included in date range.");}
+            }
 
             // Deberíamos recibir lo elegido en el POST de Keeper-register 
             // y comparar cada fecha a partir (inclusive) de la fecha startDate y hasta
@@ -94,13 +94,13 @@ use Models\Availability;
                 
                 if(isset($_POST['startDate'])){
                     $availability->setStartDate($_POST['startDate']);
-                }
+                } else {$this->ShowRegisterView("Please select a Starting Date!"); return null;}
                 if(isset($_POST['endDate'])){
                     $availability->setEndDate($_POST['endDate']);
-                }
-                if(($_POST['daysOfWeek'])){
+                } else {$this->ShowRegisterView("Please select an End Date!"); return null;}
+                if(isset($_POST['daysOfWeek'])){
                     $availability->setDaysOfWeek($_POST['daysOfWeek']);
-                }
+                } else {$this->ShowRegisterView("Please select at least one Day of the Week!"); return null;}
             }
 
             return $availability;

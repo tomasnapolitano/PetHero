@@ -26,42 +26,44 @@
         {
             //require_once(VIEWS_PATH."validate-session.php");
 
-           // if ($this->GetByUserName($userName) !== null)
-            // {
-            if ($this->validation->validateUserName($userName))
-                {
-                    $owner = new Owner();
-                    $owner->setUserName($userName);
+          if (!$this->validateEmailExists($email))
+          {
+           if ($this->GetByUserName($userName) == null)
+            {
+              if ($this->validation->validateUserName($userName))
+                  {
+                      $owner = new Owner();
+                      $owner->setUserName($userName);
 
-                    if($this->validation->validatePassword($password))
-                        {
-                            $owner->setPassword($password);
-                            
-                            if($this->validation->validateName($name) && $this->validation->validateName($lastName))
-                                {
-                                    $owner->setName($name);
-                                    $owner->setLastName($lastName);
-                                    $owner->setEmail($email);
-                                    $owner->setAvatar($avatar);
-                                    $owner->setPetList(array());
-                                    $owner->setUserRole(1);
+                      if($this->validation->validatePassword($password))
+                          {
+                              $owner->setPassword($password);
+
+                              if($this->validation->validateName($name) && $this->validation->validateName($lastName))
+                                  {
+                                      $owner->setName($name);
+                                      $owner->setLastName($lastName);
+                                      $owner->setEmail($email);
+                                      $owner->setAvatar($avatar);
+                                      $owner->setPetList(array());
+                                      $owner->setUserRole(1);
                 
-                                    $this->ownerDAO->Add($owner);
-                
-                                } else { $this->ShowRegisterView("Name or Lastname not valid. Try again."); }
+                                      $this->ownerDAO->Add($owner);
+                                    
+                                 } else { $this->ShowRegisterView("Name or Lastname not valid. Try again."); }
                                 
-                        } else { $this->ShowRegisterView("Password not valid. Try again."); }
+                         } else { $this->ShowRegisterView("Password not valid. Try again."); }
 
-                } else { $this->ShowRegisterView("Username is not valid. Try again.");}
+                  } else { $this->ShowRegisterView("Username is not valid. Try again.");}
 
-           // } else { $this->ShowRegisterView("Username is already taken. Try a different one."); }
-
+            } else { $this->ShowRegisterView("Username is already taken. Try a different one."); }
+          } else { $this->ShowRegisterView("Email already registered.");}
             $this->ShowLoginView();
 
         }
 
         public function GetByUserName ($userName){
-            $this->ownerDAO->GetByUserName($userName);
+            return $this->ownerDAO->GetByUserName($userName);
         }
 
         public function ShowRegisterView($message = ""){
@@ -84,7 +86,7 @@
           return $this->ownerDAO->getAll();
         }
 
-        public function ShowKeeperListView($message = ""){
+        public function ShowKeeperListView($date=NULL,$pets=NULL,$message = ""){
             require_once(VIEWS_PATH."validate-session.php");
 
 
@@ -141,5 +143,16 @@
 
             require_once(VIEWS_PATH."keeper-list.php");
         }
+
+        public function validateEmailExists($email){
+          $ownerList = $this->GetAll();
+
+          foreach($ownerList as $owner){
+              if($email === $owner->getEmail()){
+                  return true;
+              }
+          }
+          return false;
+      }
     }
 ?>
