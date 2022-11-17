@@ -39,7 +39,7 @@
                   <?php echo $pet->GetName()?>
                 </td>
                 <td>
-                <?php echo $pet->getPetSpecies()?> 
+                <?php if($pet->getPetSpecies() == 1){echo "Dog";}else if ($pet->getPetSpecies() == 2){echo "Cat";}?> 
                 </td>
                 <td>
                   <?php echo $pet->getBreed()?>

@@ -1,5 +1,8 @@
 <?php
     namespace Controllers;
+
+    use Controllers\OwnerController as OwnerController;
+
     class ValidationController {
 
         public function validateUserName($userName)
