@@ -43,7 +43,7 @@ use Models\Owner;
             require_once(VIEWS_PATH."owner-pet-list.php");
         }
 
-        public function Add($name,$petSpecies,$breed,$size,$vacObs = NULL)
+        public function Add($name,$petSpecies,$breed,$size,$vacPlan,$picture,$video,$vacObs = NULL)
         {
             require_once(VIEWS_PATH."validate-session.php");
             $owner = new Owner();

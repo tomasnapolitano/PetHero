@@ -86,7 +86,7 @@
           return $this->ownerDAO->getAll();
         }
 
-        public function ShowKeeperListView($message = ""){
+        public function ShowKeeperListView($date=NULL,$pets=NULL,$message = ""){
             require_once(VIEWS_PATH."validate-session.php");
 
 

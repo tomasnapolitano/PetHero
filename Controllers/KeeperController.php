@@ -39,7 +39,7 @@ use Models\Availability;
             require_once(VIEWS_PATH."keeper-availability.php");
         }
 
-        public function Add($petSize,$price)
+        public function Add($petSize,$price, $startDate, $endDate, $daysOfWeek)
         {
             require_once(VIEWS_PATH."validate-session.php");
             $owner = new Owner();
