@@ -83,7 +83,7 @@
 
         public function ConfirmReservation($petId)
         {
-
+            require_once(VIEWS_PATH."validate-session.php");
             $reservationList = $this->reservationDAO->getAll();
             foreach($reservationList as $reservation){
 
@@ -91,7 +91,7 @@
             {              
                 $reservation->setIsAccepted(1);
                 $this->reservationDAO->SaveData();   
-                require_once(VIEWS_PATH."reservation-list.php");          
+                        
             }
             }
             
@@ -100,7 +100,7 @@
 
         public function RejectReservation($petId)
         {
-        
+            require_once(VIEWS_PATH."validate-session.php");
             $reservationList = $this->reservationDAO->getAll();
             foreach($reservationList as $reservation){
 
@@ -109,7 +109,7 @@
                 
                 $reservation->setIsAccepted(0);
                 $this->reservationDAO->SaveData();
-                
+                      
             }
             }
             
