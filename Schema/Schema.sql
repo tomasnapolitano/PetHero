@@ -10,7 +10,7 @@ CREATE TABLE petSpecies
 
     CONSTRAINT pk_species_id PRIMARY KEY (speciesId),
     CONSTRAINT unq_species_name UNIQUE (speciesName)
-)Engine=InnoDB;
+)Engine=InnoDB;  -- --------------------------------------------------- CARGAR las 2 especies al inicio de la bd.
 
 CREATE TABLE userRole
 (
@@ -20,7 +20,7 @@ CREATE TABLE userRole
 
     CONSTRAINT pk_role_id PRIMARY KEY (roleId),
     CONSTRAINT unq_role_name UNIQUE (roleName)
-)Engine=InnoDB;
+)Engine=InnoDB;  -- --------------------------------------------------- CARGAR los 2 roles al inicio de la bd.
 
 CREATE TABLE daysOfWeek
 (
@@ -28,7 +28,7 @@ CREATE TABLE daysOfWeek
     dayName VARCHAR(15),
     
     constraint pk_daysOfWeek primary key (dayOfWeekId)
-)Engine=InnoDB;
+)Engine=InnoDB; -- --------------------------------------------------- CARGAR los 7 dias al inicio de la bd.
 
 CREATE TABLE owner
 (
