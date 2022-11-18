@@ -33,14 +33,30 @@
                                 $counter++;
                                 ?>
                               <tr>
+                                
                                    <td><?php echo $reservation->getOwner()->getName() . " " . $reservation->getOwner()->getLastName() ?></td>
                                    <td><?php echo $reservation->getPet()->getName() ?></td>
-                                   <td><?php echo $reservation->getAmount() ?></td>
-                                  <form action="Reservation/ShowReservationListView" method="">
-                                  <td style="width: 10%;">
-                                      <button type="submit" class="btn" value=""> Confirm </button>
+                                   <td><?php echo $reservation->getAmount() ?></td> 
+                                   <td style="width: 10%;">
+                                      <?php if($reservation->getIsAccepted() == 1)
+                                            {echo "Reservation Accepted";}
+                                            elseif($reservation->getIsAccepted() == NULL)
+                                            {echo "Pending";} ?>
+                                    </td>   
+
+                                   <?php if($reservation->getIsAccepted() == NULL){?> 
+                                  <td style="width: 0%;">
+                                  <form action="<?php echo FRONT_ROOT."Reservation/ConfirmReservation" ?>" method="post">
+                                    <button type="submit" class="btn" name = "petId" value=<?php echo $reservation->getPet()->getId() ?> > Confirm </button>  
+                                    <form>                              
                                   </td>
+
+                                  <td style="width: 0%;">
+                                  <form action="<?php echo FRONT_ROOT."Reservation/RejectReservation" ?>" method="post">
+                                    <button type="submit" class="btn" name = "petId" value=<?php echo $reservation->getPet()->getId() ?>> Reject </button>
                                   </form>
+                                  </td>
+                                  <?php } ?>
                               </tr>
                          <?php }
                                
