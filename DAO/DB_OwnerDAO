@@ -3,6 +3,7 @@
 
 use Models\Owner;
 use DAO\Connection;
+use DAO\DB_DateDAO;
 use Models\Availability;
 use Models\Keeper;
 
@@ -13,7 +14,7 @@ use Models\Keeper;
 
         public function add(Owner $owner)
         {
-            $sql = "INSERT INTO owner (email,userName,password,name,lastName,avatar,userRole) VALUES (:email,:userName,:password,:name,:lastName,:avatar,:userRole)";
+            $sql = "INSERT INTO " . $this->tableName . " (email,userName,password,name,lastName,avatar,userRole) VALUES (:email,:userName,:password,:name,:lastName,:avatar,:userRole)";
 
             $parameters['email'] = $owner->getEmail();
             $parameters['userName'] = $owner->getUserName();
@@ -23,6 +24,7 @@ use Models\Keeper;
             $parameters['avatar'] = $owner->getAvatar();
             $parameters['userRole'] = $owner->getUserRole();
 
+            // agregar checkeo si es keeper o no, y completar la db como corresponda
 
             try {
                 $this->connection = Connection::GetInstance();
@@ -97,22 +99,25 @@ use Models\Keeper;
                     try{
                         $this->connection = Connection::GetInstance();
                         $result = $this->connection->Execute($sql,$parameters);
-        
+
+                        $arrayOfDays = array_map(function($d){return $d['dayName'];},$result);
+                        $availability->setDaysOfWeek($arrayOfDays);
                     }
                     catch(\PDOException $e){
                         throw $e;
                     }
 
-                    $arrayOfDays = array_map(function($d){return $d['dayName'];},$result);
-                    $availability->setDaysOfWeek($arrayOfDays);
-
                     $owner->setAvailability($availability);
 
-                    // WIP: build date array for each keeper. need DB_DateDAO for this.
-                    // set an array of all dates (using DB_DateDAO GetAll()) and filter it by keeperId.
+                    // building Date array of all keeper dates
+                    $db_dateDAO = new DB_DateDAO();
+                    $owner->setDateArray($db_dateDAO->getByKeeperId($owner->getId()));
+
                 }
                 return $owner;
-            },$value)
+            },$value);
+
+            return count($resp) > 1 ? $resp : $resp['0'];
         }
 
     }
