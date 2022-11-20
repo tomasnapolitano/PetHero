@@ -4,6 +4,7 @@
     use Models\Owner as Owner;
     use Models\Pet as Pet;
     use DAO\OwnerDAO as OwnerDAO;
+    use DAO\DB_OwnerDAO as DB_OwnerDAO;
     use DAO\PetDAO as PetDAO;
     
     use Controllers\ValidationController as ValidationController;
@@ -16,7 +17,7 @@
         
         function __construct()
         {
-            $this->ownerDAO = new OwnerDAO();
+            $this->ownerDAO = new DB_OwnerDAO();
             $this->petDAO = new PetDAO();
             //$this->petController = new PetController(); creates a Loop because of constructors in PetController and OwnerController.
             $this->validation = new ValidationController();
@@ -47,7 +48,8 @@
                                       $owner->setAvatar($avatar);
                                       $owner->setPetList(array());
                                       $owner->setUserRole(1);
-                
+
+                                      echo "estoy a punto de agregar al dao";
                                       $this->ownerDAO->Add($owner);
                                     
                                  } else { $this->ShowRegisterView("Name or Lastname not valid. Try again."); }
