@@ -1,4 +1,4 @@
-CREATE DATABASE PetHero;
+-- CREATE DATABASE PetHero;
 
 USE PetHero;
 
@@ -28,7 +28,8 @@ CREATE TABLE userRole
 INSERT INTO userRole (roleId,roleName,description) VALUES (1,"Owner","Every user is an Owner. They can add pets and create reservations with keepers.");
 INSERT INTO userRole (roleId,roleName,description) VALUES (2,"Keeper","Users that can take reservations to care for other people's pets.");
 
- insert into owner (email,userName,password,name,lastName,avatar,userRole) VALUES ("email","userName",":password",":name",":lastName",":avatar",1);
+ -- insert into owner (email,userName,password,name,lastName,avatar,userRole) VALUES ("email","userName",":password",":name",":lastName",":avatar",1);
+
 CREATE TABLE daysOfWeek
 (
 	dayOfWeekId INT NOT NULL auto_increment,
@@ -114,9 +115,9 @@ CREATE TABLE date
 (
     dateId INT NOT NULL AUTO_INCREMENT,
     date date NOT NULL,
-    status BOOLEAN DEFAULT NULL,
+    status BOOLEAN DEFAULT NULL, -- 0: available, 1:occupied
     keeperId INT NOT NULL, 
-    petSpecies INT NOT NULL,
+    petSpecies INT,
 
     CONSTRAINT pk_date_id PRIMARY KEY (dateId),
     CONSTRAINT fk_date_keeper_id foreign key (keeperId) REFERENCES owner(ownerId),
