@@ -1,0 +1,65 @@
+<?php
+    namespace DAO;
+
+use Models\Keeper;
+
+    class DB_KeeperDAO implements IKeeperDAO{
+
+        private $tableName = "keeperInfo";
+        private $connection;
+
+        public function add(Keeper $keeper)
+        {
+            $sql_keeperInfo = "INSERT INTO " . $this->tableName . " (ownerId,petSize,price,startDate,endDate) VALUES (:ownerId,:petSize,:price,:startDate,:endDate)";
+
+            $parameters['ownerId'] = $keeper->getId();
+            $parameters['petSize'] = $keeper->getPetSize();
+            $parameters['price'] = $keeper->getPrice();
+            $parameters['startDate'] = $keeper->getAvailability()->getStartDate();
+            $parameters['endDate'] = $keeper->getAvailability()->getEndDate();
+
+            var_dump($parameters);
+            try{
+                $this->connection = Connection::GetInstance();
+                $keeperInfoId = $this->connection->ExecuteNonQuery($sql_keeperInfo,$parameters,true);
+
+                foreach ($keeper->getAvailability()->getDaysOfWeek() as $weekDay)
+                {
+                    // getting weekday Id from daysOfWeek Table
+                    $sql_daysOfWeek = "SELECT dayOfWeekId from daysOfWeek where dayName = :weekDay";
+                    $parametersDOW['weekDay'] = $weekDay;
+                    $result = $this->connection->Execute($sql_daysOfWeek,$parametersDOW);
+                    $dayOfWeekId = $this->mapDayOfWeek($result);
+
+                    $sql_insertKIXDOW = "INSERT INTO keeperInfoXdaysOfWeek (keeperInfoId,dayOfWeekId) VALUES (:keeperInfoId,:dayOfWeekId)";
+                    $parametersKIXDOW['keeperInfoId'] = $keeperInfoId;
+                    $parametersKIXDOW['dayOfWeekId'] = $dayOfWeekId;
+
+                    $this->connection->ExecuteNonQuery($sql_insertKIXDOW,$parametersKIXDOW);
+                }
+            }
+            catch (\PDOException $e)
+            {
+                throw $e;
+            }
+
+        }
+
+        public function getAll()
+        {
+            
+        }
+
+        protected function mapDayOfWeek($value)      
+        {
+            $value = is_array($value) ? $value : [];
+
+            $resp = array_map(function($p){
+                $weekDayId = $p['dayOfWeekId'];
+                return $weekDayId;
+            },$value);
+
+            return count($resp) > 1 ? $resp : $resp['0'];
+        }
+    }
+?>

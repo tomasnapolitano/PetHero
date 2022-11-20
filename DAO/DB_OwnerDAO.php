@@ -66,11 +66,14 @@ use Models\Keeper;
             $value = is_array($value) ? $value : [];
 
             echo "entre al map"; // ---------------------------------------------------------------------- BORRAR
+            var_dump($value);
 
             $resp = array_map(function($p){
                 if ($p['is_keeper']==0){
                     $owner = new Owner();
-                    $owner->setId($p['ownerId']);
+                    //$owner->setId($p['ownerId']);  // el array resultado del SELECT trae null el "ownerId", pero el id
+                    $owner->setId($p[0]);   // correcto en la posición 0 del array. No entiendo por qué
+                                                
                     $owner->setEmail($p['email']);
                     $owner->setUserName($p['userName']);
                     $owner->setPassword($p['password']);
@@ -78,6 +81,7 @@ use Models\Keeper;
                     $owner->setLastName($p['lastName']);
                     $owner->setAvatar($p['avatar']);
                     $owner->setUserRole($p['userRole']);
+                    echo "entre a if de owner";
                 }
                 else if ($p['is_keeper']==1)
                 {
@@ -150,6 +154,22 @@ use Models\Keeper;
             }
             else{
                 return null;
+            }
+        }
+
+        public function RemoveByUserName($username)
+        {
+            $sql = "DELETE FROM owner where owner.userName = :username";
+
+            $parameters['username'] = $username;
+
+            try {
+                $this->connection = Connection::GetInstance();
+                return $this->connection->ExecuteNonQuery($sql,$parameters);
+            }
+            catch(\PDOException $e)
+            {
+                throw $e;
             }
         }
     }

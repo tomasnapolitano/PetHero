@@ -3,6 +3,7 @@
 
     use Models\Date as Date;
     use DAO\DateDAO as DateDAO;
+    use DAO\DB_DateDAO as DB_DateDAO;
 use DateInterval;
 use DatePeriod;
 use DateTime;
@@ -15,7 +16,7 @@ use Models\Availability as Availability;
         
         function __construct()
         {
-            $this->dateDAO = new DateDAO();
+            $this->dateDAO = new DB_DateDAO();
             //$this->validation = new ValidationController();
         }
 
@@ -67,7 +68,7 @@ use Models\Availability as Availability;
                     $counter++;
                     $newDate = new Date();
                     $newDate->setDate(date_format($day,'Y-m-d'));
-                    $newDate->setStatus("Available");
+                    $newDate->setStatus(0);
                     $newDate->setKeeperId($keeperId);
                     $newDate->setPetSpecies(null);
 

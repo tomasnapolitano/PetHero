@@ -50,7 +50,7 @@
             }
         }
         
-        public function ExecuteNonQuery($query, $parameters = array(), $queryType = QueryType::Query)
+        public function ExecuteNonQuery($query, $parameters = array(),$lastId = false, $queryType = QueryType::Query)
 	    {            
             try
             {
@@ -62,6 +62,11 @@
                 $this->pdoStatement->execute();
                 
                 echo " - erxecutie";
+
+                if ($lastId)
+                {
+                    return $this->pdoStatement->lastInsertId();
+                }
                 return $this->pdoStatement->rowCount();
             }
             catch(Exception $ex)

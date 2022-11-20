@@ -17,9 +17,10 @@ use Models\Date;
             $parameters['keeperId'] = $newDate->getKeeperId();
             $parameters['petSpecies'] = $newDate->getPetSpecies();
 
+            var_dump($parameters);
             try {
                 $this->connection = Connection::GetInstance();
-                return $this->connection->ExecuteNonQuery($sql,$parameters,true);
+                return $this->connection->ExecuteNonQuery($sql,$parameters);
             }
             catch (\PDOException $ex) {
                 throw $ex;

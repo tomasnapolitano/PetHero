@@ -68,6 +68,10 @@
             return $this->ownerDAO->GetByUserName($userName);
         }
 
+        public function RemoveByUserName ($userName){
+          return $this->ownerDAO->RemoveByUserName($userName);
+        }
+
         public function ShowRegisterView($message = ""){
             //require_once(VIEWS_PATH."validate-session.php");
             require_once(VIEWS_PATH."register-owner.php");
@@ -115,7 +119,7 @@
                   $flag = 0;
                   foreach ($keeper->getDateArray() as $date)
                   {
-                    if ($date->getDate() === $dateString && $date->getStatus() === 'Available' && ($date->getPetSpecies() == $pet->getPetSpecies() || $date->getPetSpecies() == null))
+                    if ($date->getDate() === $dateString && $date->getStatus() === '0' && ($date->getPetSpecies() == $pet->getPetSpecies() || $date->getPetSpecies() == null))
                     {
                       $flag = 1;
                       $counterAux++;
