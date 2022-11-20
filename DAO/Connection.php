@@ -57,9 +57,11 @@
                 $this->Prepare($query);
                 
                 $this->BindParameters($parameters, $queryType);
-
+                echo " - bindie los parameters";
+                
                 $this->pdoStatement->execute();
-
+                
+                echo " - erxecutie";
                 return $this->pdoStatement->rowCount();
             }
             catch(Exception $ex)
