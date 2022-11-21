@@ -24,15 +24,10 @@ use Models\Keeper;
             $parameters['lastName'] = $owner->getLastName();
             $parameters['avatar'] = $owner->getAvatar();
             $parameters['userRole'] = $owner->getUserRole();
-
-            var_dump($parameters);
-
-            echo " - creo el parameters";
             // agregar checkeo si es keeper o no, y completar la db como corresponda
 
             try {
                 $this->connection = Connection::GetInstance();
-                echo " - traigo la instance";
                 return $this->connection->ExecuteNonQuery($sql,$parameters);
             }
             catch (\PDOException $ex) {
@@ -65,9 +60,6 @@ use Models\Keeper;
         {
             $value = is_array($value) ? $value : [];
 
-
-            var_dump($value);
-
             $resp = array_map(function($p){
                 if ($p['is_keeper']==0){
                     $owner = new Owner();
@@ -81,7 +73,6 @@ use Models\Keeper;
                     $owner->setLastName($p['lastName']);
                     $owner->setAvatar($p['avatar']);
                     $owner->setUserRole($p['userRole']);
-                    echo "entre a if de owner";
                 }
                 else if ($p['is_keeper']==1)
                 {
@@ -136,7 +127,7 @@ use Models\Keeper;
             $sql = "SELECT owner.*, keeperInfo.* FROM owner left join keeperInfo on owner.ownerId = keeperInfo.ownerId where owner.ownerId = :id";
 
             $parameters['id'] = $id;
-            
+
             try {
                 $this->connection = Connection::GetInstance();
                 $result = $this->connection->Execute($sql,$parameters);

@@ -44,7 +44,7 @@ use Models\Owner;
             require_once(VIEWS_PATH."owner-pet-list.php");
         }
 
-        public function Add($name,$petSpecies,$breed,$size,$vacPlan,$picture,$video,$vacObs = NULL)
+        public function Add($name,$petSpecies,$breed,$size,$vacObs = "",$vacPlan,$picture,$video)
         {
             require_once(VIEWS_PATH."validate-session.php");
             $owner = new Owner();
@@ -68,7 +68,7 @@ use Models\Owner;
                     //$dog->setVacPlan($vacPlan);
                     //$dog->setPicture($picture);
                     //$dog->setVideo($video);
-                    
+                    var_dump($pet);
                     $this->petDAO->Add($pet);
 
                 } else { $this->ShowAddView("Breed not valid. Try Again."); }

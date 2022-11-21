@@ -32,7 +32,6 @@
             if(($user != null) && ($user->getPassword() === $password))
             {
                 $_SESSION["loggedUser"] = $user;
-                var_dump($_SESSION['loggedUser']);
                 $this->ShowHomeView();
             }
             else{
