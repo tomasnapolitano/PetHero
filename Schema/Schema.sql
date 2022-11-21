@@ -1,4 +1,4 @@
-CREATE DATABASE PetHero;
+-- CREATE DATABASE PetHero;
 
 USE PetHero;
 
@@ -6,21 +6,29 @@ CREATE TABLE petSpecies
 (
     speciesId INT NOT NULL AUTO_INCREMENT,
     speciesName VARCHAR(30) NOT NULL,
-    description VARCHAR(50),
+    description VARCHAR(200),
 
     CONSTRAINT pk_species_id PRIMARY KEY (speciesId),
     CONSTRAINT unq_species_name UNIQUE (speciesName)
 )Engine=InnoDB;  -- --------------------------------------------------- CARGAR las 2 especies al inicio de la bd.
 
+INSERT INTO petSpecies (speciesId, speciesName, description) VALUES (1,"Dog","Human's best friend.");
+INSERT INTO petSpecies (speciesId, speciesName, description) VALUES (2,"Cat","Little balls of fur (with an attitude).");
+
 CREATE TABLE userRole
 (
     roleId INT NOT NULL AUTO_INCREMENT,
     roleName VARCHAR(30) NOT NULL,
-    description VARCHAR(50),
+    description VARCHAR(200),
 
     CONSTRAINT pk_role_id PRIMARY KEY (roleId),
     CONSTRAINT unq_role_name UNIQUE (roleName)
 )Engine=InnoDB;  -- --------------------------------------------------- CARGAR los 2 roles al inicio de la bd.
+
+INSERT INTO userRole (roleId,roleName,description) VALUES (1,"Owner","Every user is an Owner. They can add pets and create reservations with keepers.");
+INSERT INTO userRole (roleId,roleName,description) VALUES (2,"Keeper","Users that can take reservations to care for other people's pets.");
+
+ -- insert into owner (email,userName,password,name,lastName,avatar,userRole) VALUES ("email","userName",":password",":name",":lastName",":avatar",1);
 
 CREATE TABLE daysOfWeek
 (
@@ -29,6 +37,15 @@ CREATE TABLE daysOfWeek
     
     constraint pk_daysOfWeek primary key (dayOfWeekId)
 )Engine=InnoDB; -- --------------------------------------------------- CARGAR los 7 dias al inicio de la bd.
+
+INSERT INTO daysOfWeek (dayName) VALUES("Sunday");
+INSERT INTO daysOfWeek (dayName) VALUES("Monday");
+INSERT INTO daysOfWeek (dayName) VALUES("Tuesday");
+INSERT INTO daysOfWeek (dayName) VALUES("Wednesday");
+INSERT INTO daysOfWeek (dayName) VALUES("Thursday");
+INSERT INTO daysOfWeek (dayName) VALUES("Friday");
+INSERT INTO daysOfWeek (dayName) VALUES("Saturday");
+
 
 CREATE TABLE owner
 (
@@ -98,9 +115,9 @@ CREATE TABLE date
 (
     dateId INT NOT NULL AUTO_INCREMENT,
     date date NOT NULL,
-    status BOOLEAN DEFAULT NULL,
+    status BOOLEAN DEFAULT NULL, -- 0: available, 1:occupied
     keeperId INT NOT NULL, 
-    petSpecies INT NOT NULL,
+    petSpecies INT,
 
     CONSTRAINT pk_date_id PRIMARY KEY (dateId),
     CONSTRAINT fk_date_keeper_id foreign key (keeperId) REFERENCES owner(ownerId),

@@ -7,16 +7,16 @@ class Reservation
     private $owner;
     private $keeper;
     private $pet;
-    private $dateIdList;
+    private $dateList;
     private $amount;
     private $isAccepted;
 
-    public function _construct($owner = NULL, $keeper = NULL, $pet = NULL, $dateIdList = NULL, $amount = NULL, $isAccepted = null)
+    public function _construct($owner = NULL, $keeper = NULL, $pet = NULL, $dateList = NULL, $amount = NULL, $isAccepted = null)
     {
         $this->owner = $owner;
         $this->keeper = $keeper;
         $this->pet = $pet;
-        $this->dateIdList = $dateIdList;
+        $this->dateList = $dateList;
         $this->amount = $amount;
         $this->isAccepted = $isAccepted;
     }
@@ -33,8 +33,8 @@ class Reservation
     public function getPet(){ return $this->pet; }
     public function setPet($pet): self { $this->pet = $pet; return $this; }
 
-    public function getDateIdList(){ return $this->dateIdList; }
-    public function setDateIdList($dateIdList): self { $this->dateIdList = $dateIdList; return $this; }
+    public function getDateList(){ return $this->dateList; }
+    public function setDateList($dateList): self { $this->dateList = $dateList; return $this; }
 
     public function getAmount(){ return $this->amount; }
     public function setAmount($amount): self { $this->amount = $amount; return $this; }

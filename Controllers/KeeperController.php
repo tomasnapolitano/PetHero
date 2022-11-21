@@ -5,6 +5,7 @@
     use Models\Keeper as Keeper;
     use Models\Date as Date;
     use DAO\KeeperDAO as KeeperDAO;
+    use DAO\DB_KeeperDAO as DB_KeeperDAO;
     use Controllers\OwnerController as OwnerController;
     use Controllers\DateController as DateController;
 use Models\Availability;
@@ -17,7 +18,7 @@ use Models\Availability;
 
         function __construct()
         {
-            $this->KeeperDAO = new KeeperDAO();
+            $this->KeeperDAO = new DB_KeeperDAO();
             $this->ownerController = new OwnerController();
             $this->dateController = new DateController();
         }
@@ -60,34 +61,26 @@ use Models\Availability;
             
             $keeper->setPetSize($petSize);
             $keeper->setPrice($price);
-            
+
             // building Availability:
             if($keeper->setAvailability($this->BuildAvailability()) !== null) 
             {
                 if($this->dateController->AddFromAvailability($keeper->getAvailability(),$keeper->getId()) !== false)
                 {
-                    $this->KeeperDAO->RemoveByUserName($owner->getUserName());
+                    // $this->KeeperDAO->RemoveByUserName($owner->getUserName());
+
                     // saving keeper to DAO and setting them to active user:
+
+
                     $this->KeeperDAO->Add($keeper);
                     $_SESSION['loggedUser'] = $keeper;
                 } else {$this->ShowRegisterView("Selected Weekdays are not included in date range.");}
             }
 
-            // Deberíamos recibir lo elegido en el POST de Keeper-register 
-            // y comparar cada fecha a partir (inclusive) de la fecha startDate y hasta
-            // (inclusive) la fecha endDate con los días de la semana elegidos en DaysOfWeek.
-            // con cada dia que coincida, crear un objeto Date y sumarlo con el DateDAO, con
-            // su respectivo keeperId para identificar cada Date con un keeper.
-
-
-
-            
-
             $this->ShowKeeperHomeView();
-
         }
 
-        private function BuildAvailability()
+        private function BuildAvailability() // no buscar las variables al POST, recibirlas por parametro
         {
             if ($_POST){
                 $availability = new Availability();
@@ -106,10 +99,14 @@ use Models\Availability;
             return $availability;
         }
 
-        public function GetById($id)
-        {
-           return $this->KeeperDAO->GetById($id);
+        public function GetById($id){
+            return $this->KeeperDAO->GetById($id);
         }
+
+        // public function GetById($id)
+        // {
+        //    return $this->KeeperDAO->GetById($id);
+        // }
         
         public function ShowHomeView()
         {

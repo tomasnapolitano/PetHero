@@ -2,6 +2,7 @@
     namespace Controllers;
 
     use DAO\OwnerDAO as OwnerDAO;
+    use DAO\DB_OwnerDAO as DB_OwnerDAO;
     class HomeController
     {
 
@@ -9,7 +10,7 @@
 
         public function __construct()
         {
-            $this->ownerDAO = new OwnerDAO();
+            $this->ownerDAO = new DB_OwnerDAO();
         }
 
         public function Index($message = "")

@@ -40,8 +40,6 @@
 
 			$reservation->setOwner($owner);
 			$reservation->setKeeper($keeper);
-			
-
 			$reservation->setPet($pet);
 			$reservation->setAmount($keeper->getPrice()*count($dateStringArray));
 

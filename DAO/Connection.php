@@ -50,16 +50,22 @@
             }
         }
         
-        public function ExecuteNonQuery($query, $parameters = array(), $queryType = QueryType::Query)
+        public function ExecuteNonQuery($query, $parameters = array(),$lastId = false, $queryType = QueryType::Query)
 	    {            
             try
             {
                 $this->Prepare($query);
                 
+                echo "perpare la querti";
                 $this->BindParameters($parameters, $queryType);
-
+                echo "bindie los parameters en el executenonquery";
                 $this->pdoStatement->execute();
 
+                if ($lastId)
+                {
+                    //return $this->pdoStatement->lastInsertId();
+                    return $this->pdo->lastInsertId();
+                }
                 return $this->pdoStatement->rowCount();
             }
             catch(Exception $ex)

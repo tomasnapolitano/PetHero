@@ -3,6 +3,7 @@
 
     use Models\Pet as Pet;
     use DAO\PetDAO as PetDAO;
+    use DAO\DB_PetDAO as DB_PetDAO;
     use Controllers\OwnerController as OwnerController;
     use Controllers\ValidationController as ValidationController;
 use Models\Owner;
@@ -14,7 +15,7 @@ use Models\Owner;
         
         function __construct()
         {
-            $this->petDAO = new PetDAO();
+            $this->petDAO = new DB_PetDAO();
             $this->ownerController = new OwnerController();
             $this->validation = new ValidationController();
         }
@@ -43,7 +44,7 @@ use Models\Owner;
             require_once(VIEWS_PATH."owner-pet-list.php");
         }
 
-        public function Add($name,$petSpecies,$breed,$size,$vacPlan,$picture,$video,$vacObs = NULL)
+        public function Add($name,$petSpecies,$breed,$size,$vacObs = "",$vacPlan,$picture,$video)
         {
             require_once(VIEWS_PATH."validate-session.php");
             $owner = new Owner();
@@ -67,7 +68,7 @@ use Models\Owner;
                     //$dog->setVacPlan($vacPlan);
                     //$dog->setPicture($picture);
                     //$dog->setVideo($video);
-                    
+                    var_dump($pet);
                     $this->petDAO->Add($pet);
 
                 } else { $this->ShowAddView("Breed not valid. Try Again."); }
@@ -80,8 +81,6 @@ use Models\Owner;
         }
 
 
-        // todos los mensajes con ECHO hay que cambiarlos, para que se pasen por parámetro a la vista
-        // para no romper con el modelo de capas.
         private function UploadFiles(Owner $owner,Pet $pet){ 
             
             $message = "";
