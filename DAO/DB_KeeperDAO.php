@@ -18,7 +18,6 @@ use Models\Keeper;
             $parameters['startDate'] = $keeper->getAvailability()->getStartDate();
             $parameters['endDate'] = $keeper->getAvailability()->getEndDate();
 
-            var_dump($parameters);
             try{
                 $this->connection = Connection::GetInstance();
                 $keeperInfoId = $this->connection->ExecuteNonQuery($sql_keeperInfo,$parameters,true);
