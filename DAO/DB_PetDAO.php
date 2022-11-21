@@ -52,6 +52,22 @@ use Models\Pet;
             }
         }
 
+        public function SearchById($id){
+
+            $sql = "SELECT * FROM pet where petId = :id";
+            $parameters['id'] = $id;
+
+            try{
+                $this->connection = Connection::GetInstance();
+                $result = $this->connection->Execute($sql,$parameters);
+                return $this->map($result);
+            }
+            catch(\PDOException $e)
+            {
+                throw $e;
+            }
+        }
+
         protected function map($value)      
         {
             $value = is_array($value) ? $value : [];
@@ -68,7 +84,7 @@ use Models\Pet;
                 $pet->setSize($p['size']);
                 $pet->setVacPlan($p['vacPlan']);
                 $pet->setVacObs($p['vacObs']);
-                
+
                 return $pet;
             },$value);
 
