@@ -42,6 +42,17 @@ use Models\Keeper;
                 throw $e;
             }
 
+            try { 
+                $sql_isKeeper = "UPDATE TABLE owner SET is_keeper = 1 where ownerId = :ownerId";
+
+                $parametersIsKeeper['ownerId'] = $keeper->getId();
+                $this->connection->ExecuteNonQuery($sql_isKeeper,$parametersIsKeeper);
+            }
+            catch (\PDOException $e)
+            {
+                throw $e;
+            }
+
         }
 
         public function getAll()
