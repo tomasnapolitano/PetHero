@@ -57,15 +57,13 @@
                 $this->Prepare($query);
                 
                 $this->BindParameters($parameters, $queryType);
-                echo " - bindie los parameters";
                 
                 $this->pdoStatement->execute();
-                
-                echo " - erxecutie";
 
                 if ($lastId)
                 {
-                    return $this->pdoStatement->lastInsertId();
+                    //return $this->pdoStatement->lastInsertId();
+                    return $this->pdo->lastInsertId();
                 }
                 return $this->pdoStatement->rowCount();
             }
