@@ -81,8 +81,6 @@ use Models\Owner;
         }
 
 
-        // todos los mensajes con ECHO hay que cambiarlos, para que se pasen por parámetro a la vista
-        // para no romper con el modelo de capas.
         private function UploadFiles(Owner $owner,Pet $pet){ 
             
             $message = "";
