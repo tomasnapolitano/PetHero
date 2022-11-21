@@ -40,6 +40,118 @@
         "name": "nicolas",
         "lastName": "perez",
         "avatar": null,
+        "userRole": 2,
+        "petSize": "medium",
+        "price": "1500",
+        "startDate": "2022-11-09",
+        "endDate": "2022-11-10",
+        "daysOfWeek": [
+            "Wednesday"
+        ]
+    },
+    {
+        "id": 3,
+        "userName": "mariano19",
+        "email": "dd@gam.com",
+        "password": "123123",
+        "name": "Mariano",
+        "lastName": "Morales",
+        "avatar": null,
+        "userRole": 2,
+        "petSize": "small",
+        "price": "2000",
+        "startDate": "2022-11-09",
+        "endDate": "2022-11-30",
+        "daysOfWeek": [
+            "Wednesday",
+            "Saturday"
+        ]
+    },
+    {
+        "id": 4,
+        "userName": "pepitronix",
+        "email": "asda@sd.com",
+        "password": "123123",
+        "name": "Pepi",
+        "lastName": "pepsi",
+        "avatar": null,
+        "userRole": 1
+    },
+    {
+        "id": 5,
+        "userName": "marmota44",
+        "email": "m@accenture.com",
+        "password": "123123",
+        "name": "Marmota",
+        "lastName": "Wisconsin",
+        "avatar": null,
+        "userRole": 2,
+        "petSize": "small",
+        "price": "1000",
+        "startDate": "2022-11-09",
+        "endDate": "2022-11-30",
+        "daysOfWeek": [
+            "Monday",
+            "Wednesday",
+            "Saturday"
+        ]
+    },
+    {
+        "id": 6,
+        "userName": "tucson33",
+        "email": "yy@gmail.com",
+        "password": "123123",
+        "name": "Tucan",
+        "lastName": "Williams",
+        "avatar": null,
+        "userRole": 2,
+        "petSize": "small",
+        "price": "1000",
+        "startDate": "2022-11-09",
+        "endDate": "2022-12-01",
+        "daysOfWeek": [
+            "Monday",
+            "Wednesday",
+            "Thursday"
+        ]
+    },
+    {
+        "id": 7,
+        "userName": "emicapa45",
+        "email": "emi@yahoo.com",
+        "password": "123123",
+        "name": "Emilia",
+        "lastName": "Capini",
+        "avatar": null,
+        "userRole": 2,
+        "petSize": "small",
+        "price": "1000",
+        "startDate": "2022-11-09",
+        "endDate": "2022-12-10",
+        "daysOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday"
+        ]
+    },
+    {
+        "id": 8,
+        "userName": "andromeda102",
+        "email": "andromeda@gmail.com",
+        "password": "123123",
+        "name": "Andro",
+        "lastName": "Medini",
+        "avatar": null,
+        "userRole": 1
+    },
+    {
+        "id": 9,
+        "userName": "cris333",
+        "email": "crishalm@gmail.com",
+        "password": "123123",
+        "name": "Cris",
+        "lastName": "Halm",
+        "avatar": null,
         "userRole": 1
     }
 ]

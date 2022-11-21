@@ -5,6 +5,12 @@
 use Models\Availability as Availability;
 use Models\Keeper as Keeper;
     use Models\Owner as Owner;
+
+    // - Search de keepers no debe llamar al POST. debe recibir las variables del post por parámetro
+    // - Cambiar validationController a un pack de utils(cambiar a un nuevo namespace Utils)
+    // - las llamadas a controllers (fuera del constructor)
+    // - BBDD
+
     
     
     class KeeperDAO implements IKeeperDAO

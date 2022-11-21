@@ -75,7 +75,7 @@ use Models\Owner;
                         {
                           $counter++; ?>
 
-                          <option value="<?php echo $pet->GetId()?>"> <?php echo $pet->GetName() . ' (' . $pet->getPetSpecies() .')'; ?> </option>
+                          <option value="<?php echo $pet->GetId()?>"> <?php echo $pet->GetName(); ?> </option>
                         <?php
                         }
                       }
@@ -112,7 +112,7 @@ use Models\Owner;
             <tr>
               <th style="width: 15%;">Name</th>
               <th style="width: 10%;">Pet Size</th>
-              <th style="width: 15%;">Price</th>
+              <th style="width: 10%;">Price per Day</th>
               <th style="width: 30%;">Availability</th>
             </tr>
           </thead>

@@ -41,7 +41,7 @@
                 </select> 
                 </td>
                 <td>
-                  <input type="text" name="price" size="15" required>
+                  <input type="number" min="1" max="1000000" name="price" size="15" required>
                 </td>         
                 <td>
                   <input type="date" name="startDate" min="<?php echo date('Y-m-d') ?>" required>
@@ -85,6 +85,10 @@
           </div>
         </form>
       </div>
+      <?php if ($message!=="" && $message!==1 && $message!==2 && strpos($message,"-")==false){
+                echo $message;
+              }
+              ?>
     </div>
   </main>
 </div>
