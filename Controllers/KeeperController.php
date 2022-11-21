@@ -99,6 +99,10 @@ use Models\Availability;
             return $availability;
         }
 
+        public function GetById($id){
+            return $this->KeeperDAO->GetById($id);
+        }
+
         // public function GetById($id)
         // {
         //    return $this->KeeperDAO->GetById($id);

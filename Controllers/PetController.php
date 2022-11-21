@@ -3,6 +3,7 @@
 
     use Models\Pet as Pet;
     use DAO\PetDAO as PetDAO;
+    use DAO\DB_PetDAO as DB_PetDAO;
     use Controllers\OwnerController as OwnerController;
     use Controllers\ValidationController as ValidationController;
 use Models\Owner;
@@ -14,7 +15,7 @@ use Models\Owner;
         
         function __construct()
         {
-            $this->petDAO = new PetDAO();
+            $this->petDAO = new DB_PetDAO();
             $this->ownerController = new OwnerController();
             $this->validation = new ValidationController();
         }

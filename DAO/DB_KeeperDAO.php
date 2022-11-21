@@ -2,6 +2,7 @@
     namespace DAO;
 
 use Models\Keeper;
+use DAO\DB_OwnerDAO;
 
     class DB_KeeperDAO implements IKeeperDAO{
 
@@ -58,6 +59,12 @@ use Models\Keeper;
         public function getAll()
         {
             
+        }
+
+        public function GetById($id)
+        {
+            $DB_ownerDAO = new DB_OwnerDAO();
+            return $DB_ownerDAO->GetById($id);
         }
 
         protected function mapDayOfWeek($value)      

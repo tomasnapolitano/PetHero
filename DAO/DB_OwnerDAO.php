@@ -65,7 +65,7 @@ use Models\Keeper;
         {
             $value = is_array($value) ? $value : [];
 
-            echo "entre al map"; // ---------------------------------------------------------------------- BORRAR
+
             var_dump($value);
 
             $resp = array_map(function($p){
@@ -129,6 +129,30 @@ use Models\Keeper;
             },$value);
 
             return count($resp) > 1 ? $resp : $resp['0'];
+        }
+
+        public function GetById($id)
+        {
+            $sql = "SELECT owner.*, keeperInfo.* FROM owner left join keeperInfo on owner.ownerId = keeperInfo.ownerId where owner.ownerId = :id";
+
+            $parameters['id'] = $id;
+            
+            try {
+                $this->connection = Connection::GetInstance();
+                $result = $this->connection->Execute($sql,$parameters);
+
+            }
+            catch(\PDOException $e)
+            {
+                throw $e;
+            }
+
+            if(!empty($result)){
+                return $this->map($result);
+            }
+            else{
+                return null;
+            }
         }
 
 
