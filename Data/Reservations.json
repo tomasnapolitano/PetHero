@@ -1,42 +1,26 @@
 [
     {
-        "ownerId": 3,
-        "keeperId": 2,
-        "petId": 7,
-        "dateIdList": null,
-        "amount": 1500,
-        "isAccepted": null
-    },
-    {
-        "ownerId": 4,
+        "ownerId": 2,
         "keeperId": 1,
-        "petId": 8,
+        "petId": 4,
         "dateIdList": null,
-        "amount": 1000,
-        "isAccepted": null
-    },
-    {
-        "ownerId": 8,
-        "keeperId": 7,
-        "petId": 9,
-        "dateIdList": null,
-        "amount": 2000,
-        "isAccepted": null
-    },
-    {
-        "ownerId": 9,
-        "keeperId": 1,
-        "petId": 10,
-        "dateIdList": null,
-        "amount": 2000,
+        "amount": 100,
         "isAccepted": null
     },
     {
         "ownerId": 2,
-        "keeperId": 5,
-        "petId": 5,
+        "keeperId": 1,
+        "petId": 3,
         "dateIdList": null,
-        "amount": 1000,
+        "amount": 100,
+        "isAccepted": null
+    },
+    {
+        "ownerId": 3,
+        "keeperId": 1,
+        "petId": 7,
+        "dateIdList": null,
+        "amount": 100,
         "isAccepted": null
     }
 ]

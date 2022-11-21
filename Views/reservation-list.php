@@ -23,7 +23,8 @@ $counter = 0;
                   <th style="width: 10%;">Pet Name</th>
                   <!-- <th style="width: 10%;">Start Date</th>
               <th style="width: 10%;">End Date</th> -->
-                  <th style="width: 12%;">Amount</th>
+                  <th style="width: 12%;">Amount($)</th>
+                  <th style="width: 12%;">Observation</th>
                 </tr>
               </thead>
               <tbody>
@@ -37,16 +38,19 @@ $counter = 0;
                       <td><?php echo $reservation->getOwner()->getName() . " " . $reservation->getOwner()->getLastName() ?></td>
                       <td><?php echo $reservation->getPet()->getName() ?></td>
                       <td><?php echo $reservation->getAmount() ?></td>
+
                       <td style="width: 10%;">
-                        <?php if ($reservation->getIsAccepted() == 1) {
+                        <?php if ($reservation->getIsAccepted() == "Accepted") {
                           echo "Reservation Accepted";
-                        } elseif ($reservation->getIsAccepted() == NULL) {
+                        } elseif ($reservation->getIsAccepted() == null) {
                           echo "Pending";
-                        }                         
+                        } elseif ($reservation->getIsAccepted() == "Rejected") {
+                          echo "Reservation Canceled";
+                        }
                         ?>
                       </td>
 
-                      <?php if ($reservation->getIsAccepted() == NULL) { ?>
+                      <?php if ($reservation->getIsAccepted() == null) { ?>
                         <td style="width: 0%;">
                           <form action="<?php echo FRONT_ROOT . "Reservation/ConfirmReservation" ?>" method="post">
                             <button type="submit" class="btn" name="petId" value=<?php echo $reservation->getPet()->getId() ?>> Confirm </button>
@@ -79,6 +83,7 @@ $counter = 0;
                 <!-- <th style="width: 10%;">Start Date</th>
               <th style="width: 10%;">End Date</th> -->
                 <th style="width: 12%;">Amount</th>
+                <th style="width: 12%;">Observation</th>
               </tr>
             </thead>
             <tbody>
@@ -96,28 +101,39 @@ $counter = 0;
                     <td><?php echo $reservation->getKeeper()->getName() . " " . $reservation->getKeeper()->getLastName() ?></td>
                     <td><?php echo $reservation->getPet()->getName() ?></td>
                     <td><?php echo $reservation->getAmount() ?></td>
-                    <form action="Reservation/ShowReservationListView" method="">
-                      <td style="width: 10%;">
-                        <button type="submit" class="btn" value=""> Cancel </button>
-                      </td>
-                    </form>
-                  </tr>
+
+                    <td style="width: 10%;">
+                      <?php if ($reservation->getIsAccepted() == "Accepted") {
+                        echo "Reservation Accepted";
+                      } elseif ($reservation->getIsAccepted() == "Rejected") {
+                        echo "Reservation Canceled";
+                      }
+                      ?>
+                      <?php if ($reservation->getIsAccepted() == null) { ?>
+                        <form action="Reservation/CancelReservation" method="">
+                    <td style="width: 10%;">
+                      <button type="submit" class="btn" value=<?php echo $reservation->getPet()->getId() ?>> Cancel </button>
+                    </td>
+        </form>
+      <?php } ?>
+      </td>
+      </tr>
 
 
-              <?php
+  <?php
                 }
               } ?>
-              <?php
-              if (!isset($counterOwn) || $counterOwn == 0) { ?>
-                <tr>
-                  <td colspan="8">You haven't placed any reservations yet!</td>
-                </tr>
+  <?php
+  if (!isset($counterOwn) || $counterOwn == 0) { ?>
+    <tr>
+      <td colspan="8">You haven't placed any reservations yet!</td>
+    </tr>
 
-              <?php } ?>
-            </tbody>
-          </table>
+  <?php } ?>
+  </tbody>
+  </table>
 
-        </form>
+  </form>
       </div>
     </div>
     <!-- / main body -->

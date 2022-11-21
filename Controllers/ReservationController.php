@@ -89,9 +89,9 @@
 
             if ($_SESSION['loggedUser']->getId() == $reservation->getKeeper()->GetId() && $petId == $reservation->getPet()->getId())
             {              
-                $reservation->setIsAccepted(1);
+                $reservation->setIsAccepted("Accepted");
                 $this->reservationDAO->SaveData();   
-                        
+                require_once(VIEWS_PATH . "reservation-list.php");      
             }
             }
             
@@ -107,9 +107,27 @@
             if ($_SESSION['loggedUser']->getId() == $reservation->getKeeper()->GetId() && $petId == $reservation->getPet()->getId())
             {
                 
-                $reservation->setIsAccepted(0);
+                $reservation->setIsAccepted("Rejected");
                 $this->reservationDAO->SaveData();
-                      
+                require_once(VIEWS_PATH . "reservation-list.php");                      
+            }
+            }
+            
+
+        }
+
+        public function CancelReservation($petId)
+        {
+            require_once(VIEWS_PATH."validate-session.php");
+            $reservationList = $this->reservationDAO->getAll();
+            foreach($reservationList as $reservation){
+
+            if ($_SESSION['loggedUser']->getId() == $reservation->getKeeper()->GetId() && $petId == $reservation->getPet()->getId())
+            {
+                
+                //Tendria que llamarse al Remove de base de datos 
+                //$this->reservationDAO->SaveData();
+                require_once(VIEWS_PATH . "reservation-list.php");                      
             }
             }
             
