@@ -55,10 +55,7 @@
             try
             {
                 $this->Prepare($query);
-                
-                echo "perpare la querti";
                 $this->BindParameters($parameters, $queryType);
-                echo "bindie los parameters en el executenonquery";
                 $this->pdoStatement->execute();
 
                 if ($lastId)

@@ -44,7 +44,7 @@ use DAO\DB_OwnerDAO;
             }
 
             try { 
-                $sql_isKeeper = "UPDATE TABLE owner SET is_keeper = 1 where ownerId = :ownerId";
+                $sql_isKeeper = "UPDATE owner SET is_keeper = true, userRole = 2 where ownerId = :ownerId";
 
                 $parametersIsKeeper['ownerId'] = $keeper->getId();
                 $this->connection->ExecuteNonQuery($sql_isKeeper,$parametersIsKeeper);
