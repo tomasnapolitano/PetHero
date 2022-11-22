@@ -10,6 +10,7 @@
     use Controllers\OwnerController;
     use Controllers\homeController;
     use DAO\ReservationDAO;
+    use DAO\DB_ReservationDAO;
 
     class ReservationController {
         private $reservationDAO;
@@ -20,7 +21,7 @@
 
         public function __construct()
 		{
-			$this->reservationDAO= new ReservationDAO();
+			$this->reservationDAO= new DB_ReservationDAO();
             $this->keeperController = new KeeperController();
             $this->petController = new PetController();
             $this->ownerController = new OwnerController();
@@ -78,6 +79,8 @@
             require_once(VIEWS_PATH."validate-session.php");
             require_once(VIEWS_PATH."reservation-list.php");
         }
+
+        // ambos metodos debajo deben ser correjidos, para que la logica la haga el dao.
 
         public function ConfirmReservation($petId)
         {

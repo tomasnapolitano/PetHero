@@ -4,6 +4,7 @@
     use Models\Owner as Owner;
     use Models\Pet as Pet;
     use DAO\OwnerDAO as OwnerDAO;
+    use DAO\DB_PetDAO as DB_PetDAO;
     use DAO\DB_OwnerDAO as DB_OwnerDAO;
     use DAO\PetDAO as PetDAO;
     
@@ -18,7 +19,7 @@
         function __construct()
         {
             $this->ownerDAO = new DB_OwnerDAO();
-            $this->petDAO = new PetDAO();
+            $this->petDAO = new DB_PetDAO();
             //$this->petController = new PetController(); creates a Loop because of constructors in PetController and OwnerController.
             $this->validation = new ValidationController();
         }
@@ -49,7 +50,6 @@
                                       $owner->setPetList(array());
                                       $owner->setUserRole(1);
 
-                                      echo "estoy a punto de agregar al dao";
                                       $this->ownerDAO->Add($owner);
                                     
                                  } else { $this->ShowRegisterView("Name or Lastname not valid. Try again."); }
@@ -99,7 +99,6 @@
          // ---------------------------------------- If a date and pet are entered: (filters keepers by date)
           $keepersToShow = array();
           $keepersList = $this->ownerDAO->getAll();
-
 
           if (isset($_POST['date']) && isset($_POST['pets']) && $_POST['pets']!=="0")
           {
