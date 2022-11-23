@@ -70,6 +70,50 @@ use Models\Date;
             }
         }
 
+        public function GetByKeeperIdAndDate($keeperId,$dateStringArray)
+        {
+            // $sql = "SELECT * FROM " . $this->tableName . " where keeperId = :id AND date = :date";
+
+            // $parameters["id"] = $keeperId;
+
+            // try{
+            //     $this->connection = Connection::GetInstance();
+            //     $result = $this->connection->Execute($sql,$parameters);
+
+            // }
+            // catch(\PDOException $e){
+            //     throw $e;
+            // }
+
+            // if(!empty($result)){
+            //     return $this->map($result);
+            // }
+            // else{
+            //     return false;
+            // }
+
+            $allKeeperDates = $this->getByKeeperId($keeperId);
+            $result = array();
+            
+            if ($allKeeperDates)
+            {
+                foreach ($dateStringArray as $date)
+                {
+                    $auxResult = array_filter($allKeeperDates, function ($d) use($date)
+                    {
+                        return $d->getdate() === $date;
+                    });
+
+                    foreach($auxResult as $selectedDate)
+                    {
+                        array_push($result,$selectedDate);
+                    }
+                }
+            }
+            return $result;
+
+        }
+
         protected function map($value)
         {
             $value = is_array($value) ? $value : [];
