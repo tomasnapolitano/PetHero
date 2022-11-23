@@ -91,7 +91,7 @@ $counter = 0;
               <?php
               $counterOwn = 0;
               foreach ($reservationList as $reservation) {
-
+                
                 if ($reservation->getOwner()->getId() == $_SESSION['loggedUser']->getId()) {
 
                   $counterOwn++;
@@ -103,10 +103,13 @@ $counter = 0;
                     <td><?php echo $reservation->getAmount() ?></td>
 
                     <td style="width: 10%;">
-                      <?php if ($reservation->getIsAccepted() == "Accepted") {
+                      <?php if ($reservation->getIsAccepted() === true) {
                         echo "Reservation Accepted";
-                      } elseif ($reservation->getIsAccepted() == "Rejected") {
-                        echo "Reservation Canceled";
+                      } elseif ($reservation->getIsAccepted() === false) {
+                        echo "Reservation Cancelled";
+                      }
+                      else {
+                        echo "Pending Keeper Confirmation";
                       }
                       ?>
                       <?php if ($reservation->getIsAccepted() == null) { ?>

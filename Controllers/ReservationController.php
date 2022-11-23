@@ -6,6 +6,7 @@
     use Models\Keeper;
     use Models\Owner;
     use Controllers\KeeperController;
+    use Controllers\DateController;
     use Controllers\PetController;
     use Controllers\OwnerController;
     use Controllers\homeController;
@@ -34,18 +35,20 @@
 			$reservation = new Reservation();
             $owner = $_SESSION['loggedUser'];
             $isAccepted = null;
+            $dateController = new DateController();
 
             $keeper = $this->keeperController->GetById($keeperId);
             $pet = $this->petController->SearchById($petId);
             $dateStringArray = explode(",",$dateString);
 
+            $reservation->setDateList($dateController->GetByKeeperIdAndDate($keeperId,$dateStringArray));
 			$reservation->setOwner($owner);
 			$reservation->setKeeper($keeper);
 			$reservation->setPet($pet);
 			$reservation->setAmount($keeper->getPrice()*count($dateStringArray));
 
 			$reservation->setIsAccepted($isAccepted);	
-
+echo "antes del add DAO - ";
             $this->reservationDAO->Add($reservation);
 
             $this->homeController->ShowHomeView("Reservation placed succesfully! Remember: Reservation must be confirmed by keeper.");
@@ -76,6 +79,7 @@
         public function ShowReservationListView()
         {
             $reservationList = $this->reservationDAO->getAll();
+            $reservationList = ($reservationList == false) ? array() : $reservationList;
             require_once(VIEWS_PATH."validate-session.php");
             require_once(VIEWS_PATH."reservation-list.php");
         }
