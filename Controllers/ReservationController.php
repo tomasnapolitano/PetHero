@@ -32,23 +32,22 @@
         public function add($keeperId, $petId, $dateString)
 		{
 			require_once(VIEWS_PATH . "validate-session.php");
-			$reservation = new Reservation();
             $owner = $_SESSION['loggedUser'];
             $isAccepted = null;
             $dateController = new DateController();
-
+            
             $keeper = $this->keeperController->GetById($keeperId);
             $pet = $this->petController->SearchById($petId);
             $dateStringArray = explode(",",$dateString);
-
+            
+			$reservation = new Reservation();
             $reservation->setDateList($dateController->GetByKeeperIdAndDate($keeperId,$dateStringArray));
 			$reservation->setOwner($owner);
 			$reservation->setKeeper($keeper);
 			$reservation->setPet($pet);
 			$reservation->setAmount($keeper->getPrice()*count($dateStringArray));
+            $reservation->setIsAccepted($isAccepted);	
 
-			$reservation->setIsAccepted($isAccepted);	
-echo "antes del add DAO - ";
             $this->reservationDAO->Add($reservation);
 
             $this->homeController->ShowHomeView("Reservation placed succesfully! Remember: Reservation must be confirmed by keeper.");
@@ -84,58 +83,44 @@ echo "antes del add DAO - ";
             require_once(VIEWS_PATH."reservation-list.php");
         }
 
-        // ambos metodos debajo deben ser correjidos, para que la logica la haga el dao.
 
-        public function ConfirmReservation($petId)
+        public function ConfirmReservation($reservationId)
         {
             require_once(VIEWS_PATH."validate-session.php");
-            $reservationList = $this->reservationDAO->getAll();
-            foreach($reservationList as $reservation){
 
-            if ($_SESSION['loggedUser']->getId() == $reservation->getKeeper()->GetId() && $petId == $reservation->getPet()->getId())
-            {              
-                $reservation->setIsAccepted("Accepted");
-                $this->reservationDAO->SaveData();   
-                require_once(VIEWS_PATH . "reservation-list.php");      
-            }
+            $reservation = $this->reservationDAO->getById($reservationId);
+            if ($_SESSION['loggedUser']->getId() == $reservation->getKeeper()->getId())
+            {
+                $reservation->setIsAccepted(true);
+                $this->reservationDAO->updateReservation($reservation);
             }
             
            
         }
 
-        public function RejectReservation($petId)
+        public function RejectReservation($reservationId)
         {
             require_once(VIEWS_PATH."validate-session.php");
-            $reservationList = $this->reservationDAO->getAll();
-            foreach($reservationList as $reservation){
 
-            if ($_SESSION['loggedUser']->getId() == $reservation->getKeeper()->GetId() && $petId == $reservation->getPet()->getId())
+            $reservation = $this->reservationDAO->getById($reservationId);
+            if ($_SESSION['loggedUser']->getId() == $reservation->getKeeper()->getId())
             {
-                
-                $reservation->setIsAccepted("Rejected");
-                $this->reservationDAO->SaveData();
-                require_once(VIEWS_PATH . "reservation-list.php");                      
+                $reservation->setIsAccepted(false);
+                $this->reservationDAO->updateReservation($reservation);
             }
-            }
-            
 
         }
 
-        public function CancelReservation($petId)
+        //Solamente disponible para Owners:
+        public function CancelReservation($reservationId)
         {
             require_once(VIEWS_PATH."validate-session.php");
-            $reservationList = $this->reservationDAO->getAll();
-            foreach($reservationList as $reservation){
 
-            if ($_SESSION['loggedUser']->getId() == $reservation->getKeeper()->GetId() && $petId == $reservation->getPet()->getId())
+            $reservation = $this->reservationDAO->getById($reservationId);
+            if ($_SESSION['loggedUser']->getId() == $reservation->getOwner()->getId())
             {
-                
-                //Tendria que llamarse al Remove de base de datos 
-                //$this->reservationDAO->SaveData();
-                require_once(VIEWS_PATH . "reservation-list.php");                      
+                $this->reservationDAO->delete($reservation->getId());
             }
-            }
-            
 
         }
     }
