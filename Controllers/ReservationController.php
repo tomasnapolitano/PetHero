@@ -115,13 +115,17 @@
         public function CancelReservation($reservationId)
         {
             require_once(VIEWS_PATH."validate-session.php");
-
+            
             $reservation = $this->reservationDAO->getById($reservationId);
+            echo "Corrio el cancel";
             if ($_SESSION['loggedUser']->getId() == $reservation->getOwner()->getId())
             {
+                echo " - entro al if";
                 $this->reservationDAO->delete($reservation->getId());
+                
             }
-
+            
+            $this->ShowReservationListView("Reservation was cancelled successfully.");
         }
     }
  ?>

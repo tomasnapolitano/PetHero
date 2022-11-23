@@ -97,7 +97,7 @@ use Models\Date;
         {
             $reservation = $this->getById($id);
 
-            $sql_resXdates = "DELETE FROM reservationxdates rxd WHERE reservationId = :id";
+            $sql_resXdates = "DELETE FROM reservationxdates WHERE reservationId = :id";
             $sql = "DELETE FROM " . $this->tableName . " WHERE reservationId = :id";
             
             $parameters['id'] = $id;

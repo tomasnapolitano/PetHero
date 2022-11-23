@@ -14,7 +14,7 @@ $counter = 0;
     <!-- main body -->
     <div class="content">
       <div class="scrollable">
-        <form action="" method="">
+        
           <?php if ($_SESSION['loggedUser']->getUserRole() == 2) { ?>
             <table style="text-align:center;">
               <thead>
@@ -112,15 +112,16 @@ $counter = 0;
                         echo "Pending Keeper Confirmation";
                       }
                       ?>
-                      <?php if ($reservation->getIsAccepted() == null) { ?>
-                        <form action="Reservation/CancelReservation" method="post">
-                    <td style="width: 10%;">
-                      <button type="submit" class="btn" name="reservationId" value=<?php echo $reservation->getId() ?>> Cancel </button>
+                      <?php if ($reservation->getIsAccepted() === null) { ?>
+                        <td style="width: 10%;">
+                        <form action="<?php echo FRONT_ROOT . "Reservation/CancelReservation" ?>" method="post" >
+                          <input type="hidden" value="<?php echo $reservation->getId(); ?>" name="reservationId"/>
+                          <button type="submit" class="btn" value=""> Cancel </button>
+                        </form>
+                        </td>
+                      <?php } ?>
                     </td>
-        </form>
-      <?php } ?>
-      </td>
-      </tr>
+                  </tr>
 
 
   <?php
@@ -136,7 +137,7 @@ $counter = 0;
   </tbody>
   </table>
 
-  </form>
+
       </div>
     </div>
     <!-- / main body -->
