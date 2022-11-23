@@ -113,9 +113,9 @@ $counter = 0;
                       }
                       ?>
                       <?php if ($reservation->getIsAccepted() == null) { ?>
-                        <form action="Reservation/CancelReservation" method="">
+                        <form action="Reservation/CancelReservation" method="post">
                     <td style="width: 10%;">
-                      <button type="submit" class="btn" value=<?php echo $reservation->getPet()->getId() ?>> Cancel </button>
+                      <button type="submit" class="btn" name="reservationId" value=<?php echo $reservation->getId() ?>> Cancel </button>
                     </td>
         </form>
       <?php } ?>

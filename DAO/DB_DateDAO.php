@@ -70,6 +70,29 @@ use Models\Date;
             }
         }
 
+        public function getById($id)
+        {
+            $sql = "SELECT * FROM " . $this->tableName . " where dateId = :id";
+
+            $parameters["id"] = $id;
+
+            try{
+                $this->connection = Connection::GetInstance();
+                $result = $this->connection->Execute($sql,$parameters);
+
+            }
+            catch(\PDOException $e){
+                throw $e;
+            }
+
+            if(!empty($result)){
+                return $this->map($result);
+            }
+            else{
+                return false;
+            }
+        }
+
         public function GetByKeeperIdAndDate($keeperId,$dateStringArray)
         {
             // $sql = "SELECT * FROM " . $this->tableName . " where keeperId = :id AND date = :date";
@@ -94,7 +117,7 @@ use Models\Date;
 
             $allKeeperDates = $this->getByKeeperId($keeperId);
             $result = array();
-            
+
             if ($allKeeperDates)
             {
                 foreach ($dateStringArray as $date)
@@ -114,7 +137,33 @@ use Models\Date;
 
         }
 
-        protected function map($value)
+        public function Update(Date $date)
+        {
+            $sql = "UPDATE " . $this->tableName . " SET 
+            date = :date,
+            status = :status,
+            keeperId = :keeperId,
+            petSpecies = :petSpecies WHERE dateId = :dateId";
+
+            $parameters['date'] = $date->getDate();
+            $parameters['status'] = $date->getStatus();
+            $parameters['keeperId'] = $date->getKeeperId();
+            $parameters['petSpecies'] = $date->getPetSpecies();
+            $parameters['dateId'] = $date->getId();
+
+            try{
+                $this->connection = Connection::GetInstance();
+                $this->connection->ExecuteNonQuery($sql,$parameters);
+                return true;
+            }
+            catch(\PDOException $e)
+            {
+                throw $e;
+                return false;
+            }
+        }
+
+        public function map($value)
         {
             $value = is_array($value) ? $value : [];
 
