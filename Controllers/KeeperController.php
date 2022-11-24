@@ -60,7 +60,7 @@ use Models\Availability;
             $keeper->setPrice($price);
 
             // building Availability:
-            if($keeper->setAvailability($this->BuildAvailability()) !== null) 
+            if($keeper->setAvailability($this->BuildAvailability($startDate,$endDate,$daysOfWeek)) !== null) 
             {
                 if($dateController->AddFromAvailability($keeper->getAvailability(),$keeper->getId()) !== false)
                 {
@@ -77,21 +77,20 @@ use Models\Availability;
             $this->ShowKeeperHomeView();
         }
 
-        private function BuildAvailability() // no buscar las variables al POST, recibirlas por parametro
+        private function BuildAvailability($startDate,$endDate,$daysOfWeek) // no buscar las variables al POST, recibirlas por parametro
         {
-            if ($_POST){
-                $availability = new Availability();
-                
-                if(isset($_POST['startDate'])){
-                    $availability->setStartDate($_POST['startDate']);
-                } else {$this->ShowRegisterView("Please select a Starting Date!"); return null;}
-                if(isset($_POST['endDate'])){
-                    $availability->setEndDate($_POST['endDate']);
-                } else {$this->ShowRegisterView("Please select an End Date!"); return null;}
-                if(isset($_POST['daysOfWeek'])){
-                    $availability->setDaysOfWeek($_POST['daysOfWeek']);
-                } else {$this->ShowRegisterView("Please select at least one Day of the Week!"); return null;}
-            }
+            $availability = new Availability();
+            
+            if(isset($startDate)){
+                $availability->setStartDate($startDate);
+            } else {$this->ShowRegisterView("Please select a Starting Date!"); return null;}
+            if(isset($endDate)){
+                $availability->setEndDate($endDate);
+            } else {$this->ShowRegisterView("Please select an End Date!"); return null;}
+            if(isset($daysOfWeek)){
+                $availability->setDaysOfWeek($daysOfWeek);
+            } else {$this->ShowRegisterView("Please select at least one Day of the Week!"); return null;}
+            
 
             return $availability;
         }

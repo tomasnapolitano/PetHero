@@ -65,7 +65,6 @@
                     //$dog->setVacPlan($vacPlan);
                     //$dog->setPicture($picture);
                     //$dog->setVideo($video);
-                    var_dump($pet);
                     $this->petDAO->Add($pet);
 
                 } else { $this->ShowAddView("Breed not valid. Try Again."); }

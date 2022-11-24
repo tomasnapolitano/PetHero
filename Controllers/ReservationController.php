@@ -56,13 +56,10 @@
             $petController = new PetController();
 
 
-            if (isset($_POST['keeperId']) && isset($_POST['petId']) && isset($_POST['reservationDate'])){
+            if (isset($keeperId) && isset($petId) && isset($reservationDate)){
           
-                $keeperId = $_POST['keeperId'];
                 $keeper = $keeperController->GetById($keeperId);
-                $petId = $_POST['petId'];
                 $pet = $petController->SearchById($petId);
-                $reservationDate = $_POST['reservationDate'];
                 $dateStringArray = explode(",",$reservationDate);
                 require_once(VIEWS_PATH . "create-reservation.php");
                 

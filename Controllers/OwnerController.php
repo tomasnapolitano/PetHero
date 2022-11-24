@@ -12,7 +12,7 @@
     use Controllers\PetController as PetController;
     use Controllers\DateController as DateController;
     class OwnerController{
-      
+
         private $ownerDAO;
 
         function __construct()
@@ -89,7 +89,7 @@
           return $this->ownerDAO->getAll();
         }
 
-        public function ShowKeeperListView($date=NULL,$pets=NULL,$message = ""){
+        public function ShowKeeperListView($postDate=NULL,$pets=NULL,$message = ""){
             require_once(VIEWS_PATH."validate-session.php");
 
 
@@ -98,13 +98,11 @@
           $keepersList = $this->ownerDAO->getAll();
           $petDAO = new DB_PetDAO();
 
-          if (isset($_POST['date']) && isset($_POST['pets']) && $_POST['pets']!=="0")
+          if (isset($postDate) && isset($pets) && $pets!=="0")
           {
-            //echo $_POST['date'];
-            //echo $_POST['pets'];
 
-            $pet = $petDAO->searchById($_POST['pets']);
-            $string = $_POST['date'];
+            $pet = $petDAO->searchById($pets);
+            $string = $postDate;
 
             $dateStringArray = explode(',',$string);
             $dateController = new DateController();
