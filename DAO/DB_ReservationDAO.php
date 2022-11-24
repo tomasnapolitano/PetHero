@@ -86,6 +86,50 @@ use Models\Date;
             try{
                 $this->connection = Connection::GetInstance();
                 $this->connection->ExecuteNonQuery($sql,$parameters);
+
+                if($reservation->getIsAccepted()===false)
+                {
+                    foreach ($reservation->getDateList() as $date)
+                    {
+                        $sql_dates = "SELECT * FROM reservationxdates rxd
+                        join reservation r on r.reservationId = rxd.reservationId
+                        WHERE rxd.dateId = :dateId";
+                        $parameters_dates['dateId'] = $date->getId();
+    
+                        try {
+                            $result = $this->connection->Execute($sql_dates,$parameters_dates);
+                        }
+                        catch(\PDOException $e)
+                        {
+                            throw $e;
+                        }
+                        //if there are no other reservations for that date:
+                        if(empty($result))
+                        {
+                            $date->setPetSpecies(NULL);
+                            $dateDAO = new DB_DateDAO();
+                            $dateDAO->Update($date);
+                        }
+                        else{ //if there are, check to see if reservations are rejected (still on RxD table but not active)
+                            $flag = 0;
+                            foreach ($result as $row)
+                            {
+                                if($row['isAccepted']!==false)
+                                {
+                                    $flag = 1;
+                                    break;
+                                }
+                            }
+                            if($flag==0)
+                            {
+                                $date->setPetSpecies(NULL);
+                                $dateDAO = new DB_DateDAO();
+                                $dateDAO->Update($date);
+                            }
+                            
+                        }
+                    }
+                }
             }
             catch(\PDOException $e)
             {
@@ -113,7 +157,9 @@ use Models\Date;
                 // back to NULL.
                 foreach ($reservation->getDateList() as $date)
                 {
-                    $sql_dates = "SELECT * FROM reservationxdates WHERE dateId = :dateId";
+                    $sql_dates = "SELECT * FROM reservationxdates rxd
+                    join reservation r on r.reservationId = rxd.reservationId
+                    WHERE rxd.dateId = :dateId";
                     $parameters_dates['dateId'] = $date->getId();
 
                     try {
@@ -123,12 +169,30 @@ use Models\Date;
                     {
                         throw $e;
                     }
-
+                    //if there are no other reservations for that date:
                     if(empty($result))
                     {
                         $date->setPetSpecies(NULL);
                         $dateDAO = new DB_DateDAO();
                         $dateDAO->Update($date);
+                    }
+                    else{ //if there are, check to see if reservations are rejected (still on RxD table but not active)
+                        $flag = 0;
+                        foreach ($result as $row)
+                        {
+                            if($row['isAccepted']!==false)
+                            {
+                                $flag = 1;
+                                break;
+                            }
+                        }
+                        if($flag==0)
+                        {
+                            $date->setPetSpecies(NULL);
+                            $dateDAO = new DB_DateDAO();
+                            $dateDAO->Update($date);
+                        }
+                        
                     }
                 }
                 return true;
