@@ -162,6 +162,7 @@ use Models\Keeper;
             catch(\PDOException $e)
             {
                 throw $e;
+                //return "An connection error occurred: " . $e->getMessage();
             }
 
             if(!empty($result)){

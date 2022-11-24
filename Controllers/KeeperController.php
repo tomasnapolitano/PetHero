@@ -39,42 +39,48 @@ use Models\Availability;
         public function Add($petSize,$price, $startDate, $endDate, $daysOfWeek)
         {
             require_once(VIEWS_PATH."validate-session.php");
-            $dateController = new DateController();
-            $owner = new Owner();
-            $owner = $_SESSION['loggedUser'];
-            
-            $keeper = new Keeper();
-            
-            $keeper->setId($owner->getId());
-            $keeper->setUserName($owner->getUserName());
-            $keeper->setEmail($owner->getEmail());
-            $keeper->setPassword($owner->getPassword());
-            $keeper->setName($owner->getName());
-            $keeper->setLastName($owner->getLastName());
-            $keeper->setAvatar($owner->getAvatar());
-            $keeper->setPetList(array()); // Hacer que busque sus Pets actuales y no las pise con un array vacio (guarda con el nuevo ID)
-            $keeper->setUserRole(2);
-            
-            
-            $keeper->setPetSize($petSize);
-            $keeper->setPrice($price);
+            try{
+                $dateController = new DateController();
+                $owner = new Owner();
+                $owner = $_SESSION['loggedUser'];
+                
+                $keeper = new Keeper();
+                
+                $keeper->setId($owner->getId());
+                $keeper->setUserName($owner->getUserName());
+                $keeper->setEmail($owner->getEmail());
+                $keeper->setPassword($owner->getPassword());
+                $keeper->setName($owner->getName());
+                $keeper->setLastName($owner->getLastName());
+                $keeper->setAvatar($owner->getAvatar());
+                $keeper->setPetList(array()); // Hacer que busque sus Pets actuales y no las pise con un array vacio (guarda con el nuevo ID)
+                $keeper->setUserRole(2);
+                
+                
+                $keeper->setPetSize($petSize);
+                $keeper->setPrice($price);
 
-            // building Availability:
-            if($keeper->setAvailability($this->BuildAvailability($startDate,$endDate,$daysOfWeek)) !== null) 
-            {
-                if($dateController->AddFromAvailability($keeper->getAvailability(),$keeper->getId()) !== false)
+                // building Availability:
+                if($keeper->setAvailability($this->BuildAvailability($startDate,$endDate,$daysOfWeek)) !== null) 
                 {
-                    // $this->KeeperDAO->RemoveByUserName($owner->getUserName());
+                    if($dateController->AddFromAvailability($keeper->getAvailability(),$keeper->getId()) !== false)
+                    {
+                        // $this->KeeperDAO->RemoveByUserName($owner->getUserName());
 
-                    // saving keeper to DAO and setting them to active user:
+                        // saving keeper to DAO and setting them to active user:
 
 
-                    $this->KeeperDAO->Add($keeper);
-                    $_SESSION['loggedUser'] = $keeper;
-                } else {$this->ShowRegisterView("Selected Weekdays are not included in date range.");}
+                        $this->KeeperDAO->Add($keeper);
+                        $_SESSION['loggedUser'] = $keeper;
+                    } else {$this->ShowRegisterView("Selected Weekdays are not included in date range.");}
+                }
+
+                $this->ShowKeeperHomeView();
             }
-
-            $this->ShowKeeperHomeView();
+            catch(\PDOException $e)
+            {
+                $this->ShowRegisterView("Error de Conexión: " . $e->getMessage());
+            }
         }
 
         private function BuildAvailability($startDate,$endDate,$daysOfWeek) // no buscar las variables al POST, recibirlas por parametro

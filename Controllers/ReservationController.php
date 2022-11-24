@@ -49,33 +49,45 @@
 		}
 
         public function ShowCreateReservationView($keeperId, $petId, $reservationDate, $message = "")
-        {
+        {   
             require_once(VIEWS_PATH . "validate-session.php");
-            $keeperController = new KeeperController();
-            $ownerController = new OwnerController();
-            $petController = new PetController();
+            try{
+                $keeperController = new KeeperController();
+                $ownerController = new OwnerController();
+                $petController = new PetController();
 
 
-            if (isset($keeperId) && isset($petId) && isset($reservationDate)){
-          
-                $keeper = $keeperController->GetById($keeperId);
-                $pet = $petController->SearchById($petId);
-                $dateStringArray = explode(",",$reservationDate);
-                require_once(VIEWS_PATH . "create-reservation.php");
-                
+                if (isset($keeperId) && isset($petId) && isset($reservationDate)){
+            
+                    $keeper = $keeperController->GetById($keeperId);
+                    $pet = $petController->SearchById($petId);
+                    $dateStringArray = explode(",",$reservationDate);
+                    require_once(VIEWS_PATH . "create-reservation.php");
+                    
+                }
+                else{
+                    $ownerController->ShowKeeperListView("Error en el envio de datos!");
+                }
             }
-            else{
-                $ownerController->ShowKeeperListView("Error en el envio de datos!");
+            catch(\PDOException $e)
+            {
+                $this->ShowCreateReservationView($keeperId,$petId,$reservationDate,"Error de Conexión: " . $e->getMessage());
             }
-
         }
 
         public function ShowReservationListView($message = "")
         {
-            $reservationList = $this->reservationDAO->getAll();
-            $reservationList = ($reservationList == false) ? array() : $reservationList;
             require_once(VIEWS_PATH."validate-session.php");
-            require_once(VIEWS_PATH."reservation-list.php");
+            try{
+                $reservationList = $this->reservationDAO->getAll();
+                $reservationList = ($reservationList == false) ? array() : $reservationList;
+                require_once(VIEWS_PATH."reservation-list.php");
+            }
+            catch(\PDOException $e)
+            {
+                $ownerController = new OwnerController();
+                $ownerController->ShowHomeView("Error de Conexión: " . $e->getMessage());
+            }
         }
 
 

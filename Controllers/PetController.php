@@ -34,46 +34,58 @@
         
         public function ShowPetList()
         {
-            $petList = $this->petDAO->getAll();
             require_once(VIEWS_PATH."validate-session.php");
-            require_once(VIEWS_PATH."owner-pet-list.php");
+            try {
+                $petList = $this->petDAO->getAll();
+                require_once(VIEWS_PATH."owner-pet-list.php");
+            }
+            catch(\PDOException $e)
+            {
+                $ownerController = new OwnerController();
+                $ownerController->ShowHomeView("Error de Conexión: " . $e->getMessage());
+            }
         }
 
         public function Add($name,$petSpecies,$breed,$size,$vacObs = "",$vacPlan,$picture,$video)
         {
             require_once(VIEWS_PATH."validate-session.php");
-            $validation = new ValidationController();
-            $ownerController = new OwnerController();
-            $owner = new Owner();
-            $owner = $_SESSION['loggedUser'];
+            try {
+                $validation = new ValidationController();
+                $ownerController = new OwnerController();
+                $owner = new Owner();
+                $owner = $_SESSION['loggedUser'];
 
-            if($validation->validateName($name))
-            {
-                $pet = new Pet();
-                $pet->setOwnerId($owner->getId());
-                $pet->setName($name);
-
-                if ($validation->validateName($breed))
+                if($validation->validateName($name))
                 {
-                    $pet->setPetSpecies($petSpecies); //debería recibir lo elegido en el form
-                                                    // y buscarlo por name en un json de petSpecies
-                    $pet->setBreed($breed);
-                    $pet->setSize($size);
-                    $pet->setVacObs($vacObs);
-                    
-                    $message = $this->UploadFiles($owner,$pet);
-                    //$dog->setVacPlan($vacPlan);
-                    //$dog->setPicture($picture);
-                    //$dog->setVideo($video);
-                    $this->petDAO->Add($pet);
+                    $pet = new Pet();
+                    $pet->setOwnerId($owner->getId());
+                    $pet->setName($name);
 
-                } else { $this->ShowAddView("Breed not valid. Try Again."); }
+                    if ($validation->validateName($breed))
+                    {
+                        $pet->setPetSpecies($petSpecies); //debería recibir lo elegido en el form
+                                                        // y buscarlo por name en un json de petSpecies
+                        $pet->setBreed($breed);
+                        $pet->setSize($size);
+                        $pet->setVacObs($vacObs);
+                        
+                        $message = $this->UploadFiles($owner,$pet);
+                        //$dog->setVacPlan($vacPlan);
+                        //$dog->setPicture($picture);
+                        //$dog->setVideo($video);
+                        $this->petDAO->Add($pet);
 
-            } else { $this->ShowAddView("Name not valid. Try Again."); }
-            
+                    } else { $this->ShowAddView("Breed not valid. Try Again."); }
 
-            $ownerController->ShowHomeView($message);
+                } else { $this->ShowAddView("Name not valid. Try Again."); }
+                
 
+                $ownerController->ShowHomeView($message);
+            }
+            catch(\PDOException $e)
+            {
+                $this->ShowAddView("Error de Conexión: " . $e->getMessage());
+            }
         }
 
 

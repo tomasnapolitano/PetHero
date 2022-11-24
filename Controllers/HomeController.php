@@ -27,15 +27,20 @@
 
         public function Login($userName, $password)
         {
-            $user = $this->ownerDAO->GetByUserName($userName);
-
-            if(($user != null) && ($user->getPassword() === $password))
-            {
-                $_SESSION["loggedUser"] = $user;
-                $this->ShowHomeView();
+            try {
+                $user = $this->ownerDAO->GetByUserName($userName);
+                if(($user != null) && ($user->getPassword() === $password))
+                {
+                    $_SESSION["loggedUser"] = $user;
+                    $this->ShowHomeView();
+                }
+                else{
+                    $this->Index("Usuario y/o Contraseña incorrectos");
+                }
             }
-            else{
-                $this->Index("Usuario y/o Contraseña incorrectos");
+            catch (\PDOException $e)
+            {
+                $this->Index("Error de Conexión: " . $e->GetMessage());
             }
         }
 
