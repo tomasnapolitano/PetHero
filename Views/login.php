@@ -42,4 +42,8 @@
         <a href="<?php echo FRONT_ROOT . "Owner/ShowRegisterView"?>">Register a New Account</a>
       </form>
   </div>
+  <?php if (isset($message) && $message!=="" && $message!==1 && $message!==2 && strpos($message,"-")==false){
+                echo $message;
+              }
+              ?>
 </div>
