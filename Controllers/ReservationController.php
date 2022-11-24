@@ -93,23 +93,27 @@
             {
                 $reservation->setIsAccepted(true);
                 $this->reservationDAO->updateReservation($reservation);
+                $this->ShowReservationListView("Reservation was Confirmed successfully.");
             }
+            $this->ShowReservationListView("Error in operation.");
             
-           
+            
         }
-
+        
         public function RejectReservation($reservationId)
         {
             require_once(VIEWS_PATH."validate-session.php");
-
+            
             $reservation = $this->reservationDAO->getById($reservationId);
             
             if ($_SESSION['loggedUser']->getId() == $reservation->getKeeper()->getId())
             {
-                $reservation->setIsAccepted(false);
+                $reservation->setIsAccepted(0);
                 $this->reservationDAO->updateReservation($reservation);
+                $this->ShowReservationListView("Reservation was Rejected successfully.");
             }
-
+            
+            $this->ShowReservationListView("Error in operation.");
         }
 
         //Solamente disponible para Owners:
@@ -122,9 +126,10 @@
             if ($_SESSION['loggedUser']->getId() == $reservation->getOwner()->getId())
             {
                 $this->reservationDAO->delete($reservation->getId());
+                $this->ShowReservationListView("Reservation was Cancelled successfully.");
             }
             
-            $this->ShowReservationListView("Reservation was cancelled successfully.");
+            $this->ShowReservationListView("Error in operation.");
         }
     }
  ?>
