@@ -21,8 +21,8 @@ $counter = 0;
                 <tr>
                   <th style="width: 10%;">Owner Name</th>
                   <th style="width: 10%;">Pet Name</th>
-                  <!-- <th style="width: 10%;">Start Date</th>
-              <th style="width: 10%;">End Date</th> -->
+                   <th style="width: 10%;">Dates</th>
+              <!--<th style="width: 10%;">End Date</th> -->
                   <th style="width: 12%;">Amount($)</th>
                   <th style="width: 12%;">Observation</th>
                 </tr>
@@ -37,29 +37,31 @@ $counter = 0;
 
                       <td><?php echo $reservation->getOwner()->getName() . " " . $reservation->getOwner()->getLastName() ?></td>
                       <td><?php echo $reservation->getPet()->getName() ?></td>
+                      <td><?php foreach ($reservation->getDateList() as $date)
+                    {echo $date->GetDate() . " ";}?></td>
                       <td><?php echo $reservation->getAmount() ?></td>
 
                       <td style="width: 10%;">
-                        <?php if ($reservation->getIsAccepted() == "Accepted") {
+                        <?php if ($reservation->getIsAccepted() == true) {
                           echo "Reservation Accepted";
-                        } elseif ($reservation->getIsAccepted() == null) {
-                          echo "Pending";
-                        } elseif ($reservation->getIsAccepted() == "Rejected") {
-                          echo "Reservation Canceled";
+                        } elseif ($reservation->getIsAccepted() === null) {
+                          echo "Pending Confirmation";
+                        } else {
+                          echo "Reservation Rejected";
                         }
                         ?>
                       </td>
 
-                      <?php if ($reservation->getIsAccepted() == null) { ?>
+                      <?php if ($reservation->getIsAccepted() === null) { ?>
                         <td style="width: 0%;">
                           <form action="<?php echo FRONT_ROOT . "Reservation/ConfirmReservation" ?>" method="post">
-                            <button type="submit" class="btn" name="petId" value=<?php echo $reservation->getPet()->getId() ?>> Confirm </button>
+                            <button type="submit" class="btn" name="reservationId" value=<?php echo $reservation->getId() ?>> Confirm </button>
                           </form>
                         </td>
 
                         <td style="width: 0%;">
                           <form action="<?php echo FRONT_ROOT . "Reservation/RejectReservation" ?>" method="post">
-                            <button type="submit" class="btn" name="petId" value=<?php echo $reservation->getPet()->getId() ?>> Reject </button>
+                            <button type="submit" class="btn" name="reservationId" value=<?php echo $reservation->getId() ?>> Reject </button>
                           </form>
                         </td>
                       <?php } ?>
@@ -80,9 +82,9 @@ $counter = 0;
               <tr>
                 <th style="width: 10%;">Keeper Name</th>
                 <th style="width: 10%;">Pet Name</th>
-                <!-- <th style="width: 10%;">Start Date</th>
-              <th style="width: 10%;">End Date</th> -->
-                <th style="width: 12%;">Amount</th>
+                 <th style="width: 10%;">Dates</th>
+              <!--<th style="width: 10%;">End Date</th> -->
+                <th style="width: 12%;">Amount($)</th>
                 <th style="width: 12%;">Observation</th>
               </tr>
             </thead>
@@ -91,7 +93,7 @@ $counter = 0;
               <?php
               $counterOwn = 0;
               foreach ($reservationList as $reservation) {
-                
+
                 if ($reservation->getOwner()->getId() == $_SESSION['loggedUser']->getId()) {
 
                   $counterOwn++;
@@ -100,16 +102,19 @@ $counter = 0;
                   <tr>
                     <td><?php echo $reservation->getKeeper()->getName() . " " . $reservation->getKeeper()->getLastName() ?></td>
                     <td><?php echo $reservation->getPet()->getName() ?></td>
+                    <td><?php foreach ($reservation->getDateList() as $date)
+                    {echo $date->GetDate() . " ";}?></td>
+                  
                     <td><?php echo $reservation->getAmount() ?></td>
 
                     <td style="width: 10%;">
-                      <?php if ($reservation->getIsAccepted() === true) {
+                      <?php if ($reservation->getIsAccepted() == true) {
                         echo "Reservation Accepted";
-                      } elseif ($reservation->getIsAccepted() === false) {
-                        echo "Reservation Cancelled";
+                      } elseif ($reservation->getIsAccepted() === null) {
+                        echo "Pending Keeper Confirmation";
                       }
                       else {
-                        echo "Pending Keeper Confirmation";
+                        echo "Reservation Rejected";
                       }
                       ?>
                       <?php if ($reservation->getIsAccepted() === null) { ?>
