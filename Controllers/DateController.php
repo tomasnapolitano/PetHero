@@ -83,6 +83,11 @@ use Models\Availability as Availability;
             return true;
         }
 
+        public function checkDateForPet($dateId,$petId)
+        {
+            return $this->dateDAO->checkDateForPet($dateId,$petId);
+        }
+
         public function GetByKeeperIdAndDate($keeperId,$dateStringArray)
         {
             return $this->dateDAO->GetByKeeperIdAndDate($keeperId,$dateStringArray);

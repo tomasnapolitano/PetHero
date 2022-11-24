@@ -181,6 +181,33 @@ use Models\Date;
             return count($resp) > 1 ? $resp : $resp['0'];
         }
 
+        // checks if a particular Date is assigned to a particular Pet by any reservation.
+        public function checkDateForPet($dateId,$petId)
+        {
+            $sql = "SELECT r.*, rxd.*, d.* FROM reservationxdates rxd 
+            join date d on rxd.dateId = d.dateId
+            join reservation r on r.reservationId = rxd.reservationId WHERE rxd.dateId = :dateId";
+
+            $parameters['dateId'] = $dateId;
+
+            try {
+                $this->connection = Connection::GetInstance();
+                $result = $this->connection->Execute($sql,$parameters);
+
+                foreach ($result as $resXdate)
+                {
+                    if ($resXdate['petId'] == $petId)
+                    {
+                        return true;
+                    }
+                }
+            }
+            catch(\PDOException $e)
+            {
+                throw $e;
+            }
+            return false;
+        }
 
     }
 ?>

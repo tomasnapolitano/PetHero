@@ -10,6 +10,7 @@
     
     use Controllers\ValidationController as ValidationController;
     use Controllers\PetController as PetController;
+    use Controllers\DateController as DateController;
     class OwnerController{
         private $ownerDAO;
         private $petDAO;
@@ -109,6 +110,7 @@
             $string = $_POST['date'];
 
             $dateStringArray = explode(',',$string);
+            $dateController = new DateController();
 
             foreach ($keepersList as $keeper) {
               if($keeper->getUserRole() == 2 && $keeper->getId() !== $_SESSION['loggedUser']->GetId()){
@@ -118,7 +120,9 @@
                   $flag = 0;
                   foreach ($keeper->getDateArray() as $date)
                   {
-                    if ($date->getDate() === $dateString && $date->getStatus() === '0' && ($date->getPetSpecies() == $pet->getPetSpecies() || $date->getPetSpecies() == null))
+                    if ($date->getDate() === $dateString && $date->getStatus() === '0' 
+                    && ($date->getPetSpecies() == $pet->getPetSpecies() || $date->getPetSpecies() == null)
+                    && $dateController->checkDateForPet($date->getId(),$pet->getId()) == false)
                     {
                       $flag = 1;
                       $counterAux++;
