@@ -22,7 +22,6 @@ use Models\Pet;
             $parameters['vacPlan'] = $pet->getVacPlan();
             $parameters['vacObs'] = $pet->getVacObs();
 
-            echo "bindie los parameters";
             try {
                 $this->connection = Connection::GetInstance();
                 return $this->connection->ExecuteNonQuery($sql,$parameters);

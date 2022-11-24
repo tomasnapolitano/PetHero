@@ -145,6 +145,10 @@ $counter = 0;
 
       </div>
     </div>
+    <?php if (isset($message) && $message!=="" && $message!==1 && $message!==2 && strpos($message,"-")==false){
+                echo $message;
+              }
+              ?>
     <!-- / main body -->
     <div class="clear"></div>
   </main>

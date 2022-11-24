@@ -70,7 +70,7 @@
 
         }
 
-        public function ShowReservationListView()
+        public function ShowReservationListView($message = "")
         {
             $reservationList = $this->reservationDAO->getAll();
             $reservationList = ($reservationList == false) ? array() : $reservationList;

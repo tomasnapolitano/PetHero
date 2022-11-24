@@ -108,7 +108,7 @@
             $dateController = new DateController();
 
             foreach ($keepersList as $keeper) {
-              if($keeper->getUserRole() == 2 && $keeper->getId() !== $_SESSION['loggedUser']->GetId()){
+              if($keeper->getUserRole() == 2 && $pet->getSize() == $keeper->getPetSize() && $keeper->getId() !== $_SESSION['loggedUser']->GetId() ){
                 $counterAux=0;
                 foreach ($dateStringArray as $dateString) // cycling through the chosen dates to search
                 {
