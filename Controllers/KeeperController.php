@@ -12,15 +12,11 @@ use Models\Availability;
 
     class KeeperController{
         private $KeeperDAO;
-        private $ownerController;
-        private $dateController;
 
 
         function __construct()
         {
             $this->KeeperDAO = new DB_KeeperDAO();
-            $this->ownerController = new OwnerController();
-            $this->dateController = new DateController();
         }
 
         public function ShowRegisterView($message = ""){
@@ -43,6 +39,7 @@ use Models\Availability;
         public function Add($petSize,$price, $startDate, $endDate, $daysOfWeek)
         {
             require_once(VIEWS_PATH."validate-session.php");
+            $dateController = new DateController();
             $owner = new Owner();
             $owner = $_SESSION['loggedUser'];
             
@@ -65,7 +62,7 @@ use Models\Availability;
             // building Availability:
             if($keeper->setAvailability($this->BuildAvailability()) !== null) 
             {
-                if($this->dateController->AddFromAvailability($keeper->getAvailability(),$keeper->getId()) !== false)
+                if($dateController->AddFromAvailability($keeper->getAvailability(),$keeper->getId()) !== false)
                 {
                     // $this->KeeperDAO->RemoveByUserName($owner->getUserName());
 
@@ -102,11 +99,6 @@ use Models\Availability;
         public function GetById($id){
             return $this->KeeperDAO->GetById($id);
         }
-
-        // public function GetById($id)
-        // {
-        //    return $this->KeeperDAO->GetById($id);
-        // }
         
         public function ShowHomeView()
         {

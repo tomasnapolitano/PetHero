@@ -15,18 +15,10 @@
 
     class ReservationController {
         private $reservationDAO;
-        private $keeperController;
-        private $ownerController;
-        private $petController;
-        private $homeController;
 
         public function __construct()
 		{
 			$this->reservationDAO= new DB_ReservationDAO();
-            $this->keeperController = new KeeperController();
-            $this->petController = new PetController();
-            $this->ownerController = new OwnerController();
-            $this->homeController = new homeController();
 		}
 
         public function add($keeperId, $petId, $dateString)
@@ -35,9 +27,12 @@
             $owner = $_SESSION['loggedUser'];
             $isAccepted = null;
             $dateController = new DateController();
+            $keeperController = new KeeperController();
+            $petController = new PetController();
+            $homeController = new HomeController();
             
-            $keeper = $this->keeperController->GetById($keeperId);
-            $pet = $this->petController->SearchById($petId);
+            $keeper = $keeperController->GetById($keeperId);
+            $pet = $petController->SearchById($petId);
             $dateStringArray = explode(",",$dateString);
             
 			$reservation = new Reservation();
@@ -50,27 +45,30 @@
 
             $this->reservationDAO->Add($reservation);
 
-            $this->homeController->ShowHomeView("Reservation placed succesfully! Remember: Reservation must be confirmed by keeper.");
+            $homeController->ShowHomeView("Reservation placed succesfully! Remember: Reservation must be confirmed by keeper.");
 		}
 
         public function ShowCreateReservationView($keeperId, $petId, $reservationDate, $message = "")
         {
             require_once(VIEWS_PATH . "validate-session.php");
+            $keeperController = new KeeperController();
+            $ownerController = new OwnerController();
+            $petController = new PetController();
 
 
             if (isset($_POST['keeperId']) && isset($_POST['petId']) && isset($_POST['reservationDate'])){
           
                 $keeperId = $_POST['keeperId'];
-                $keeper = $this->keeperController->GetById($keeperId);
+                $keeper = $keeperController->GetById($keeperId);
                 $petId = $_POST['petId'];
-                $pet = $this->petController->SearchById($petId);
+                $pet = $petController->SearchById($petId);
                 $reservationDate = $_POST['reservationDate'];
                 $dateStringArray = explode(",",$reservationDate);
                 require_once(VIEWS_PATH . "create-reservation.php");
                 
             }
             else{
-                $this->ownerController->ShowKeeperListView("Error en el envio de datos!");
+                $ownerController->ShowKeeperListView("Error en el envio de datos!");
             }
 
         }

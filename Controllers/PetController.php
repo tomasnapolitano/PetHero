@@ -6,18 +6,13 @@
     use DAO\DB_PetDAO as DB_PetDAO;
     use Controllers\OwnerController as OwnerController;
     use Controllers\ValidationController as ValidationController;
-use Models\Owner;
-
+    use Models\Owner;
     class PetController{
         private $petDAO;
-        private $ownerController;
-        private $validation;
-        
+    
         function __construct()
         {
             $this->petDAO = new DB_PetDAO();
-            $this->ownerController = new OwnerController();
-            $this->validation = new ValidationController();
         }
 
         public function SearchById($id)
@@ -47,16 +42,18 @@ use Models\Owner;
         public function Add($name,$petSpecies,$breed,$size,$vacObs = "",$vacPlan,$picture,$video)
         {
             require_once(VIEWS_PATH."validate-session.php");
+            $validation = new ValidationController();
+            $ownerController = new OwnerController();
             $owner = new Owner();
             $owner = $_SESSION['loggedUser'];
 
-            if($this->validation->validateName($name))
+            if($validation->validateName($name))
             {
                 $pet = new Pet();
                 $pet->setOwnerId($owner->getId());
                 $pet->setName($name);
 
-                if ($this->validation->validateName($breed))
+                if ($validation->validateName($breed))
                 {
                     $pet->setPetSpecies($petSpecies); //debería recibir lo elegido en el form
                                                     // y buscarlo por name en un json de petSpecies
@@ -76,7 +73,7 @@ use Models\Owner;
             } else { $this->ShowAddView("Name not valid. Try Again."); }
             
 
-            $this->ownerController->ShowHomeView($message);
+            $ownerController->ShowHomeView($message);
 
         }
 

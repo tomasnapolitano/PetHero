@@ -12,37 +12,33 @@
     use Controllers\PetController as PetController;
     use Controllers\DateController as DateController;
     class OwnerController{
+      
         private $ownerDAO;
-        private $petDAO;
-        private $validation;
-        //private $petController;
-        
+
         function __construct()
         {
             $this->ownerDAO = new DB_OwnerDAO();
-            $this->petDAO = new DB_PetDAO();
-            //$this->petController = new PetController(); creates a Loop because of constructors in PetController and OwnerController.
-            $this->validation = new ValidationController();
         }
 
         public function Add($email,$userName,$password,$name,$lastName,$avatar = null)
         {
             //require_once(VIEWS_PATH."validate-session.php");
 
+            $validation = new ValidationController();
           if (!$this->validateEmailExists($email))
           {
            if ($this->GetByUserName($userName) == null)
             {
-              if ($this->validation->validateUserName($userName))
+              if ($validation->validateUserName($userName))
                   {
                       $owner = new Owner();
                       $owner->setUserName($userName);
 
-                      if($this->validation->validatePassword($password))
+                      if($validation->validatePassword($password))
                           {
                               $owner->setPassword($password);
 
-                              if($this->validation->validateName($name) && $this->validation->validateName($lastName))
+                              if($validation->validateName($name) && $validation->validateName($lastName))
                                   {
                                       $owner->setName($name);
                                       $owner->setLastName($lastName);
@@ -100,13 +96,14 @@
          // ---------------------------------------- If a date and pet are entered: (filters keepers by date)
           $keepersToShow = array();
           $keepersList = $this->ownerDAO->getAll();
+          $petDAO = new DB_PetDAO();
 
           if (isset($_POST['date']) && isset($_POST['pets']) && $_POST['pets']!=="0")
           {
             //echo $_POST['date'];
             //echo $_POST['pets'];
 
-            $pet = $this->petDAO->searchById($_POST['pets']);
+            $pet = $petDAO->searchById($_POST['pets']);
             $string = $_POST['date'];
 
             $dateStringArray = explode(',',$string);
@@ -148,7 +145,7 @@
             
         }
 
-            $petList = $this->petDAO->getAll();
+            $petList = $petDAO->getAll();
 
             require_once(VIEWS_PATH."keeper-list.php");
         }

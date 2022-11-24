@@ -12,12 +12,10 @@ use Models\Availability as Availability;
     // use Controllers\ValidationController as ValidationController;
     class DateController{
         private $dateDAO;
-        //private $validation;
         
         function __construct()
         {
             $this->dateDAO = new DB_DateDAO();
-            //$this->validation = new ValidationController();
         }
 
         public function Add($date, $status, $keeperId, $petSpecies = null) {
@@ -31,25 +29,6 @@ use Models\Availability as Availability;
             $this->dateDAO->Add($newDate);
         }
 
-        // public function AddFromAvailability(Availability $availability,$keeperId)
-        // {
-        //     $auxDate = date_create($availability->getStartDate());
-        //     $auxEndDate = date_create($availability->getEndDate());
-
-        //     while ($auxDate <= $auxEndDate)
-        //     {
-        //         if(!empty($availability->getDaysOfWeek()) && in_array(date('l',date_format($auxDate,'Y-m-d')),$availability->getDaysOfWeek()))
-        //         {
-        //             $newDate = new Date();
-        //             $newDate->setDate(date('Y-m-d'), $auxDate);
-        //             $newDate->setStatus("Available");
-        //             $newDate->setKeeperId($keeperId);
-
-        //             $this->dateDAO->Add($newDate);
-        //         }
-        //         date_add($auxDate,date_interval_create_from_date_string("1 days"));
-        //     }
-        // }
 
         public function AddFromAvailability(Availability $availability, $keeperId){
 
