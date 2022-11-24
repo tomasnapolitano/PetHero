@@ -275,7 +275,16 @@ use Models\Date;
             }
 
             if(!empty($result)){
-                return $this->mapReservationDates($result);
+                $aux = $this->mapReservationDates($result);
+                if (is_array($aux))
+                {
+                    return $aux;
+                }
+                else{
+                    $auxResult = array();
+                    array_push($auxResult,$aux);
+                    return $auxResult;
+                }
             }
             else{
                 return array();
