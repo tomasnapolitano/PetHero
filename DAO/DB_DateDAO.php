@@ -196,7 +196,7 @@ use Models\Date;
 
                 foreach ($result as $resXdate)
                 {
-                    if ($resXdate['petId'] == $petId)
+                    if ($resXdate['petId'] == $petId && ($resXdate['isAccepted']==1 || $resXdate['isAccepted']===null))
                     {
                         return true;
                     }

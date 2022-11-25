@@ -38,6 +38,10 @@
                     $this->Index("Usuario y/o Contraseña incorrectos");
                 }
             }
+            catch (\mysqli_sql_exception $sql)
+            {
+                $this->Index("Error de SQL: " . $sql->GetMessage());
+            }
             catch (\PDOException $e)
             {
                 $this->Index("Error de Conexión: " . $e->GetMessage());

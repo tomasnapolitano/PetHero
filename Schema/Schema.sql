@@ -131,7 +131,6 @@ CREATE TABLE reservation
     ownerId INT NOT NULL,
     keeperId INT NOT NULL,
     petId INT NOT NULL,
-    dateId date, -- not used, DELETE?
     amount FLOAT NOT NULL,
     isAccepted BOOLEAN DEFAULT NULL,
 

@@ -87,10 +87,11 @@ use Models\Date;
                 $this->connection = Connection::GetInstance();
                 $this->connection->ExecuteNonQuery($sql,$parameters);
 
-                if($reservation->getIsAccepted()===false)
+                if($reservation->getIsAccepted()===0)
                 {
                     foreach ($reservation->getDateList() as $date)
                     {
+
                         $sql_dates = "SELECT * FROM reservationxdates rxd
                         join reservation r on r.reservationId = rxd.reservationId
                         WHERE rxd.dateId = :dateId";
@@ -114,7 +115,7 @@ use Models\Date;
                             $flag = 0;
                             foreach ($result as $row)
                             {
-                                if($row['isAccepted']!==false)
+                                if($row['isAccepted']==1 || $row['isAccepted']===null)
                                 {
                                     $flag = 1;
                                     break;

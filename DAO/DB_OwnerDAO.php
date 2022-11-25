@@ -159,10 +159,18 @@ use Models\Keeper;
                 $result = $this->connection->Execute($sql,$parameters);
 
             }
-            catch(\PDOException $e)
+            // catch (\mysqli_sql_exception $sql)
+            // {
+            //     throw $sql;
+            // }
+            // catch(\PDOException $e)
+            // {
+            //     throw $e;
+            //     //return "An connection error occurred: " . $e->getMessage();
+            // }
+            catch(\Exception $e)
             {
                 throw $e;
-                //return "An connection error occurred: " . $e->getMessage();
             }
 
             if(!empty($result)){
